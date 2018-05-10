@@ -339,8 +339,26 @@ class Nksexam extends Nksmanager
         $user = $_SESSION['nks_user'];
         $this->load->model('nks/nks_exam');
         $obj = $this->nks_exam->getExamById($ex_id);
-        if(isset($_POST['ex_invname']) && $_POST['ex_invname'] != '') {
-            $arr = $this->myinput->getBykeys(array('ex_invname'));
+        $flag = true;
+        for($i=1;$i<=$obj->ex_invinum;$i++) {
+            if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
+                $flag = false;
+                break;
+            }
+        }
+        if($flag) {
+
+            $post_arr = array();
+            for($i=1;$i<=$obj->ex_invinum;$i++) {
+                $post_arr[$i-1] = 'ex_invname' . $i;
+            }
+
+            $arr = $this->myinput->getBykeys($post_arr);
+            $arr['ex_invname'] = '';
+            for($i=1;$i<$obj->ex_invinum;$i++) {
+                $arr['ex_invname'] .= $arr['ex_invname' . $i] . ' ';
+            }
+            $arr['ex_invname'] .= $arr['ex_invname' . $i];
             $obj->ex_invname = $arr['ex_invname'];
             $obj->ex_input_date = date('Y-m-d H:i:s');
             $res = $this->nks_exam->update((array)$obj);
@@ -354,6 +372,7 @@ class Nksexam extends Nksmanager
             'us_img' => $user->us_img,
             'form_ac' => 'nksexam/addinv/' . $ex_id
         );
+        $obj->ex_invname = explode(' ', $obj->ex_invname);
         $data['obj'] = $obj;
         $this->load->view("nks/nks_global/header_ks", $data);
         $this->load->view("nks/nks_exam/addinv");
@@ -365,13 +384,30 @@ class Nksexam extends Nksmanager
         $user = $_SESSION['nks_user'];
         $this->load->model('nks/nks_exam');
         $obj = $this->nks_exam->getExamById($ex_id);
-        if(isset($_POST['ex_invname']) && $_POST['ex_invname'] != '') {
-            $arr = $this->myinput->getBykeys(array('ex_invname'));
+        $flag = true;
+        for($i=1;$i<=$obj->ex_invinum;$i++) {
+            if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
+                $flag = false;
+                break;
+            }
+        }
+        if($flag) {
+            $post_arr = array();
+            for($i=1;$i<=$obj->ex_invinum;$i++) {
+                $post_arr[$i-1] = 'ex_invname' . $i;
+            }
+            $arr = $this->myinput->getBykeys($post_arr);
+            $arr['ex_invname'] = '';
+            for($i=1;$i<$obj->ex_invinum;$i++) {
+                $arr['ex_invname'] .= $arr['ex_invname' . $i] . ' ';
+            }
+            $arr['ex_invname'] .= $arr['ex_invname' . $i];
             $obj->ex_invname = $arr['ex_invname'];
             $obj->ex_input_date = date('Y-m-d H:i:s');
             $res = $this->nks_exam->update((array)$obj);
             $this->handle_res($res, 'nksexam/examlistinvbylab', 'nksexam/examlistinvbylab');
         }
+
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
@@ -380,6 +416,7 @@ class Nksexam extends Nksmanager
             'us_img' => $user->us_img,
             'form_ac' => 'nksexam/addinv/' . $ex_id
         );
+        $obj->ex_invname = explode(' ', $obj->ex_invname);
         $data['obj'] = $obj;
         $this->load->view("nks/nks_global/header_ks", $data);
         $this->load->view("nks/nks_exam/addinv");

@@ -24,13 +24,17 @@
                     </div>
                 </div>
 
-                <div class="mws-form-row">
-                    <label>监考教师</label>
-                    <div class="mws-form-item large">
-                        <input name="ex_invname"  class="mws-textinput" type="text" value="<?=isset($obj->ex_invname)?$obj->ex_invname:'';?>" >
-                        <div style="color:red;">(eg: 多个监考教师用空格分隔)</div>
-                    </div>
-                </div>
+                <?php
+                for($i=1;$i<=$obj->ex_invinum;$i++) {
+                    echo('<div class="mws-form-row">');
+                    echo("<label>监考教师$i</label>");
+                    echo('<div class="mws-form-item large">');
+                    $value = isset($obj->ex_invname[$i-1]) ? $obj->ex_invname[$i-1]: '';
+                    echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" >');
+                    echo('</div>');
+                    echo('</div>');
+                }
+                ?>
 
 
 

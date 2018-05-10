@@ -190,8 +190,8 @@
                 <li>
                     <a href="<?=$baseurl?>#" class="mws-i-24 i-balloons">考试模块</a>
                     <ul class="closed">
-                        <li><a href="<?=$url?>nksexam/examlistnotinvbylab">未录入监考老师</a></li>
-                        <li><a href="<?=$url?>nksexam/examlistinvbylab">已录入监考老师</a></li>
+                        <li><a href="<?=$url?>nksexam/examlistnotinvbylab">未录入监考教师</a></li>
+                        <li><a href="<?=$url?>nksexam/examlistinvbylab">已录入监考教师</a></li>
                     </ul>
                 </li>
 
