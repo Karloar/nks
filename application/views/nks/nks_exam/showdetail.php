@@ -58,12 +58,6 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>考试地点</label>
-                    <div class="mws-form-item large">
-                        <input name="pl_id" class="mws-textinput" value="<?=isset($obj->pl_place)?$obj->pl_place:'其它';?>"  readonly="readonly">
-                    </div>
-                </div>
-                <div class="mws-form-row">
                     <label>学院</label>
                     <div class="mws-form-item large">
                         <input name="ac_id" class="mws-textinput" value="<?=isset($obj->ac_name)?$obj->ac_name:'其它';?>"  readonly="readonly">
@@ -79,6 +73,12 @@
                     <label>班级</label>
                     <div class="mws-form-item large">
                         <input name="class_id" class="mws-textinput"  value="<?=isset($obj->class_name)?$obj->class_name:'其它';?>"  readonly="readonly">
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label>考试地点</label>
+                    <div class="mws-form-item large">
+                        <input name="pl_id" class="mws-textinput" value="<?=isset($obj->pl_place)?$obj->pl_place:'其它';?>"  readonly="readonly">
                     </div>
                 </div>
                 <div class="mws-form-row">

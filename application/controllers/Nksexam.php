@@ -103,6 +103,18 @@ class Nksexam extends Nksmanager
             $arr['ex_lab'] = $this->manageExam($arr);
             $this->load->model('nks/nks_exam');
             $res = $this->nks_exam->insert($arr);
+            $obj = array(
+                'ex_name' => $arr['ex_name'],
+                'ex_grade' => $arr['ex_grade'],
+                'ex_date' => $arr['ex_date'],
+                'nt_id' => $arr['nt_id'],
+                'ex_mode' => $arr['ex_mode'],
+                'tm_id' => $arr['tm_id'],
+                'ac_id' => $arr['ac_id'],
+                'mj_id' => $arr['mj_id']
+            );
+            $_SESSION['obj'] = (object)$obj;
+
             $this->handle_res($res, 'nksexam/examlist', 'nksexam/examadd');
         }
 
@@ -114,26 +126,30 @@ class Nksexam extends Nksmanager
             'us_img' => $user->us_img,
             'form_ac' => 'nksexam/examadd'
         );
-        $obj = array();
-        if(isset($_POST['ex_name'])) {
-            $obj['ex_name'] = $_POST['ex_name'];
+        if(isset($_SESSION['obj'])) {
+            $data['obj'] = $_SESSION['obj'];
+        } else {
+            $obj = array();
+            if(isset($_POST['ex_name'])) {
+                $obj['ex_name'] = $_POST['ex_name'];
+            }
+            if(isset($_POST['ex_grade'])) {
+                $obj['ex_grade'] = $_POST['ex_grade'];
+            }
+            if(isset($_POST['ex_date'])) {
+                $obj['ex_date'] = $_POST['ex_date'];
+            }
+            if(isset($_POST['ex_stunum'])) {
+                $obj['ex_stunum'] = $_POST['ex_stunum'];
+            }
+            if(isset($_POST['ex_invinum'])) {
+                $obj['ex_invinum'] = $_POST['ex_invinum'];
+            }
+            if(isset($_POST['ex_maininv'])) {
+                $obj['ex_maininv'] = $_POST['ex_maininv'];
+            }
+            $data['obj'] = (object)$obj;
         }
-        if(isset($_POST['ex_grade'])) {
-            $obj['ex_grade'] = $_POST['ex_grade'];
-        }
-        if(isset($_POST['ex_date'])) {
-            $obj['ex_date'] = $_POST['ex_date'];
-        }
-        if(isset($_POST['ex_stunum'])) {
-            $obj['ex_stunum'] = $_POST['ex_stunum'];
-        }
-        if(isset($_POST['ex_invinum'])) {
-            $obj['ex_invinum'] = $_POST['ex_invinum'];
-        }
-        if(isset($_POST['ex_maininv'])) {
-            $obj['ex_maininv'] = $_POST['ex_maininv'];
-        }
-        $data['obj'] = (object)$obj;
 
 
         $this->load->model('nks/nks_academy');

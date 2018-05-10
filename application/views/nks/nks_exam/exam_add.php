@@ -110,28 +110,6 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>考试地点</label>
-                    <div class="mws-form-item large">
-                        <select name="pl_id">
-                            <?php
-                            echo("<option value='0'></option>");
-                            foreach($place_arr as $row) {
-                                if(isset($obj->pl_id) && $obj->pl_id == $row->pl_id) {
-                                    echo("<option value='$row->pl_id' selected>$row->pl_place</option>");
-                                } else {
-                                    echo("<option value='$row->pl_id'>$row->pl_place</option>");
-                                }
-                            }
-                            if(isset($showExLab) && $showExLab && (is_null($obj->pl_id) || $obj->pl_id == 0 || $obj->pl_id == '')) {
-                                echo("<option value='0' selected>其它</option>");
-                            } else {
-                                echo("<option value='0'>其它</option>");
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="mws-form-row">
                     <label>学院</label>
                     <div class="mws-form-item large">
                         <select name="ac_id" id="ac_id" onchange="ac_change();">
@@ -183,6 +161,28 @@
                                 }
                             }
                             if(isset($showExLab) && $showExLab && (is_null($obj->class_id) || $obj->class_id == 0 || $obj->class_id == '')) {
+                                echo("<option value='0' selected>其它</option>");
+                            } else {
+                                echo("<option value='0'>其它</option>");
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label>考试地点</label>
+                    <div class="mws-form-item large">
+                        <select name="pl_id">
+                            <?php
+                            echo("<option value='0'></option>");
+                            foreach($place_arr as $row) {
+                                if(isset($obj->pl_id) && $obj->pl_id == $row->pl_id) {
+                                    echo("<option value='$row->pl_id' selected>$row->pl_place</option>");
+                                } else {
+                                    echo("<option value='$row->pl_id'>$row->pl_place</option>");
+                                }
+                            }
+                            if(isset($showExLab) && $showExLab && (is_null($obj->pl_id) || $obj->pl_id == 0 || $obj->pl_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");
