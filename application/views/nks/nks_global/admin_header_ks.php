@@ -153,7 +153,7 @@
             <!-- Username and Functions -->
             <div id="mws-user-functions">
                 <div id="mws-username" style="font-size:25px">
-                    Hello, <?=isset($us_name)?$us_name:'管理员';?>
+                    Hello, <?=isset($us_name) && $us_name != "" ?$us_name:'管理员';?>
                 </div>
             </div>
         </div>
