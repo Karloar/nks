@@ -1,0 +1,373 @@
+/*------------------------------------------------------------------
+[reset-重置默认-20180104-]
+project:       自然语言处理研究组
+version:       
+primary use:   jludanfer  Art
+-------------------------------------------------------------------*/
+* {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	border:0px;
+	font-family:"微软雅黑","宋体",Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+html {
+	overflow-y:scroll;
+}
+body {
+	background-color:#ffffff;
+	background-repeat:no-repeat;
+	background-position: center top;
+}
+hr {
+	width:100%;
+	border-top:1px solid #ccc;
+	margin-bottom:10px;
+}
+
+html, body, div, h1, h2, h3, h4, h5, h6, ul, li, ol, dl, dt, dd, blockquote, pre, form, fieldset, table, th, td, span, p, label, input, select, textarea, header, hgroup, main, nav, section, article, aside, footer, figure, figcaption, menu, button {
+	padding: 0px;
+	margin: 0px;
+	text-decoration: none;
+}
+
+/*----------------------|reset--other|-------------------------*/
+/* 文本 */
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	text-align: left;
+}
+p {
+	font-size: 14px;
+	line-height: 1.8em;
+}
+p.indent {
+	text-indent: 2em;
+}
+q:before, q:after {
+	content: '';
+}
+b, strong {
+	font-weight: bold;
+}
+i, em, address, th {
+	font-style: normal;
+	font-weight: normal;
+}
+/*-------------------------------------------*/
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
+}
+audio, canvas, progress, video {
+	display: inline-block;
+	vertical-align: baseline;
+}
+/*-------------------------------------------*/
+input {
+	border: none;
+	font-size: 13px;
+}
+input, button, select, textarea {
+	outline: none;
+}
+input, select, textarea {
+	vertical-align: middle;
+ *font-size: 100%;
+	outline: none;
+}
+button {
+	-webkit-appearance: none;
+	border: 0;
+	background: none;
+	overflow: visible;
+}
+button, select {
+	text-transform: none;
+}
+/*-------------------------------------------*/
+ul, li {
+	list-style: none;
+}
+/*-------------------------------------------*/
+img {
+	border: none;
+	vertical-align: top;
+	-ms-interpolation-mode: bicubic;
+}
+/*-------------------------------------------*/
+table {
+	border: 0px;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+caption, th, li, dt, dd, p {
+	text-align: left;
+}
+td, th {
+	font: 14px;
+	color: #000;
+	height: 30px;
+}
+/*-------------------------------------------*/
+a {
+	display: block;
+	text-decoration: none;
+	color: #333;
+}
+a:link, a:visited, a:hover {
+	text-decoration: none;
+	outline: 0;
+	color: #000;
+}
+a:active, a:focus {
+	outline: none;
+ star: expression(this.onFocus=this.blur());
+}
+/*----------------------|reset--other|-------------------------*/
+/* 浮动 */
+.fl {
+	float: left;
+	display: inline;
+}
+.fr {
+	float: right;
+	display: inline;
+}
+.fn {
+	float: none;
+	display: inline;
+}
+/*----------------------|reset--other|-------------------------*/
+/* 清除浮动 */
+.cl:after {
+	clear: both;
+	display: block;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	overflow: hidden;
+	content: ".";
+	visibility: hidden;
+}
+.cl {
+ 　 display:inline-block;
+	zoom: 1;
+}
+* html .cl {
+	height: 1%;
+}
+.cll {
+	clear: left;
+}
+.clr {
+	clear: right;
+}
+.clt {
+	clear: both;
+}
+/*----------------------|reset--other|-------------------------*/
+/* 隐藏 */
+.hide {
+	display: none;
+}
+/*----------------------|reset--other|-------------------------*/
+/* 隐藏文字 */
+.hide-text {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+}
+/*----------------------|reset--other|-------------------------*/
+/* 显示 */
+.show {
+	display: block;
+}
+/* 对齐 */
+.tc {
+	text-align: center;
+}
+.tl {
+	text-align: left;
+}
+.tr {
+	text-align: right;
+}
+/* 多行文本固定高度的垂直居中 */
+.v-align {
+	display: table; /* 子元素垂直居中必须 */
+}
+.v-align .mc {
+	display: table-cell; /* 垂直居中必须 */
+	vertical-align: middle;
+}
+/*----------------------|reset--other|-------------------------*/
+/* 文字 */
+.emp_english {
+	font-family: Verdana, Geneva, sans-serif;
+}
+.emp_g {
+	color: #7EB016;
+}
+.emp_r {
+	color: #F00;
+}
+.emp_bl {
+	color: #19AABD;
+}
+.emp_or {
+	color: #FF7E29;
+}
+.pertain {
+	color: #ccc;
+}
+.line-through {
+	text-decoration: line-through;
+}
+.f32 {
+	font: 32px/32px "微软雅黑";
+}
+.f30 {
+	font: 30px/30px "微软雅黑";
+}
+.f28 {
+	font: 28px/28px "微软雅黑";
+}
+.f26 {
+	font: 26px/26px "微软雅黑";
+}
+.f24 {
+	font: 24px/24px "微软雅黑";
+}
+.f22 {
+	font: 22px/22px "微软雅黑";
+}
+.f20 {
+	font: 20px/20px "微软雅黑";
+}
+.f18 {
+	font: 18px/18px "微软雅黑";
+}
+.f16 {
+	font: 16px/16px "微软雅黑";
+}
+.f14 {
+	font: 14px/14px "微软雅黑";
+}
+.f12 {
+	font: 12px/12px "微软雅黑";
+}
+/*----------------------|reset--other|-------------------------*/
+/* margin */
+.mt-5 {
+	margin-top: 5px;
+}
+.mt-10 {
+	margin-top: 10px;
+}
+.mt-15 {
+	margin-top: 15px;
+}
+.mt-20 {
+	margin-top: 20px;
+}
+.mt-25 {
+	margin-top: 25px;
+}
+.mt-30 {
+	margin-top: 30px;
+}
+.mt-40 {
+	margin-top: 40px;
+}
+.mb-5 {
+	margin-bottom: 5px;
+}
+.mb-10 {
+	margin-bottom: 10px;
+}
+.mb-15 {
+	margin-bottom: 15px;
+}
+.mb-20 {
+	margin-bottom: 20px;
+}
+.mb-25 {
+	margin-bottom: 25px;
+}
+.mb-30 {
+	margin-bottom: 30px;
+}
+.ml-5 {
+	margin-left: 5px;
+}
+.ml-10 {
+	margin-left: 10px;
+}
+.ml-15 {
+	margin-left: 15px;
+}
+.ml-20 {
+	margin-left: 20px;
+}
+.ml-25 {
+	margin-left: 25px;
+}
+.ml-30 {
+	margin-left: 30px;
+}
+.mr-5 {
+	margin-right: 5px;
+}
+.mr-10 {
+	margin-right: 10px;
+}
+.mr-15 {
+	margin-right: 15px;
+}
+.mr-20 {
+	margin-right: 20px;
+}
+.mr-25 {
+	margin-right: 25px;
+}
+.mr-30 {
+	margin-right: 30px;
+}
+/*----------------------|reset--other|-------------------------*/
+/* width */
+.wh-30 {
+	display: inline-block;
+	width: 30%;
+}
+.wh-35 {
+	display: inline-block;
+	width: 32.7%;
+}
+.wh-50 {
+	display: inline-block;
+	width: 50%;
+}
+.wh-100 {
+	display: inline-block;
+	width: 95%;
+}
+/*----------------------|reset--other|-------------------------*/
+/* 默认按钮 */
+.btn {
+	display: block;
+	background-position: left top;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-ms-transition: background 0.2s;
+	-o-transition: background 0.2s;
+	transition: background 0.2s;
+}

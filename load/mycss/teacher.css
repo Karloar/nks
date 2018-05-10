@@ -1,0 +1,188 @@
+/*------------------------------------------------------------------
+[reset-重置默认-20180104-]
+project:       自然语言处理研究组
+version:       
+primary use:   jludanfer  Art
+-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------*/
+#teacher {
+	overflow:auto;
+	width:1200px;
+	margin:0px auto;
+	border:0px #0f0 dotted;
+	background-color:#FFF;
+}
+#teacher .hz{
+	margin:auto;
+	height:3px;
+	background:#999; /*#BFA25A*/
+	border-left:#800 solid 15px;
+}
+
+/*--------------------------------[sidebar]--------------------------------*/
+#teacher .left {	
+    float:left;
+	margin-right:10px;
+	padding-top:5px;
+	width:240px;
+	background-color:#fff;
+	border:0px solid #D14143;
+}
+#teacher .left .tit {
+	margin:5px;
+	padding:0px;
+	padding-left:10px;
+	border:0px solid  #dddddd;
+	border-left:5px #002B6E solid ;
+	background-color:#eee;
+	height:26px;
+	line-height:26px;
+	font-size:13px;
+	font-weight:bold;
+	color:#000;
+
+}
+#teacher .left .con {
+	border:1px dotted #dddddd;
+	margin:5px;
+	padding:5px;
+	line-height:25px;
+	font-size:13px;
+}
+#teacher .left .con a {
+	text-align:center;
+	line-height:25px;
+	color:#666;
+	font-size:13px;
+}
+#teacher .left .con a:hover {
+	color:#fff;
+	background-color:#800002;
+}
+/*--------------------------------------------info unit------------------------------------------------------------*/
+#teacher .center {
+	float:right;
+	width:690px;
+	height:auto;
+	margin-top:5px;
+	margin-bottom:5px;
+	border:0px dotted #000000;
+	padding-bottom:10px;
+}
+
+#teacher .center .info_t {
+	margin:5px;
+	padding:0px;
+	padding-left:10px;
+	height:26px;
+	line-height:26px;
+	border:0px solid  #dddddd;
+	border-top:1px #122452 dotted ;
+	background-color:#42659B;
+	font-size:13px;
+	font-weight:bold;
+	color:#fff;
+}
+#teacher .center .info_c {
+	background-color:#fff;
+	margin-top:0px;
+	margin-bottom:5px;
+	margin-left:5px;
+	margin-right:5px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+	color:#333;
+	font-size:13px;
+	line-height:30px;
+	border:1px dotted #B3B3B3;
+}
+
+#teacher .center .info_c a {
+	margin-right:5px;
+	padding:5px;
+	color:#333333;
+}
+#teacher .center .info_c a:hover {
+	color:#a4540e;/*74b404*/
+}
+
+/*******my**********/
+#teacher .right {
+	float:left;
+	margin-right:10px;
+	padding-top:5px;
+	width:940px;
+	background-color:#fff;
+	border:0px solid #D14143;
+}
+#teacher .right .tit {
+	margin:5px;
+	padding:0px;
+	padding-left:10px;
+	border:0px solid  #dddddd;
+	border-left:5px #002B6E solid ;
+	background-color:#eee;
+	height:26px;
+	line-height:26px;
+	font-size:13px;
+	font-weight:bold;
+	color:#000;
+
+}
+#teacher .right .con {
+	border:1px dotted #dddddd;
+	margin:5px;
+	padding:5px;
+	line-height:25px;
+	font-size:13px;
+}
+#teacher .right .con a {
+	text-align:center;
+	line-height:25px;
+	color:#666;
+	font-size:13px;
+}
+#teacher .right .con a:hover {
+	color:#fff;
+	background-color:#800002;
+}
+
+#teacher .right .info_t {
+	margin:5px;
+	padding:0px;
+	padding-left:10px;
+	height:26px;
+	line-height:26px;
+	border:0px solid  #dddddd;
+	border-top:1px #122452 dotted ;
+	background-color:#42659B;
+	font-size:13px;
+	font-weight:bold;
+	color:#fff;
+}
+#teacher .center .info_c {
+	background-color:#fff;
+	margin-top:0px;
+	margin-bottom:5px;
+	margin-left:5px;
+	margin-right:5px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+	color:#333;
+	font-size:13px;
+	line-height:30px;
+	border:1px dotted #B3B3B3;
+}
+
+#teacher .center .info_c a {
+	margin-right:5px;
+	padding:5px;
+	color:#333333;
+}
+#teacher .center .info_c a:hover {
+	color:#a4540e;/*74b404*/
+}

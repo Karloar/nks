@@ -1,0 +1,35 @@
+
+东北地区地震大数据分中心建设完成，包括四个模块，分别是超融合存储、高速并行云计算、应用整合、应用示范，每个模块负责不同的任务。超融合存储模块负责实现地震大数据的收集和持久化存储任务，完成标准化的多元数据采集软件和工业大数据存储和管理软件。高速并行云计算模块负责实现海量数据的高速运算和分析决策地震数据的任务，完成高速运算数据的模型。应用整合模块负责为地震预警开展机器学习、人工智能的研究和应用提供支撑的任务，应用示范模块负责将上述结果运用到东北地区的地震大数据中的任务。同时需要完成地震监测的大数据可视化软件，能够清晰看到各部分的运转情况。
+
+完成东北地区地震大数据分析方法，包括台站数据规则化与重建方法、地震数据去噪和弱信号提取方法、稀疏最小而成偏移建模方法。这部分中我们可能会发布成果的有：
+临震预测指导方法、随机森林算法预测成果、循环神经网络分析成果、黏弹性计算分析成果、卷积神经网络分析成果、迁移算法分析成果、面波尾波干涉分析成果、地震情况下断层撕裂概率图、液化危险概率图、地震大数据分析方法和软件。
+
+能够根据数据准确的做出地震危险性评价图，实时对每个地区的地震危险性概率做出评估，对于抗震救灾、人口密集区的优化设计等减少地震损失的工作有着极为重要的指导意义。
+
+在东北地区地震大数据云服务平台建设方面，国家国防科工局高分辨率对地观测系统吉林数据与应用中心、国家天元东北数学中心、吉林大学大数据研究、吉林省高性能计算中心互相配合、合作，增强数据处理能力。同时吉林大学建设了地学部、理学部、信息学部，具有完备的专业和学科基础，完备的人才队伍，从事地震大数据分析。
+
+
+国家国防科工局高分辨率对地观测系统吉林数据与应用中心、国家天元东北数学中心、吉林大学大数据研究、吉林省高性能计算中心
+
+
+31. Ying Wang, Wanli Zuo, Tao Peng*, Yifei Sun. Semi-automatic ontology construction based on text learning. Journal of Information and Computational Science, 7(2): 495-501, 2010. (EI: 20102112950388)
+32. Wanli Zuo*, Ying Wang, Xin Wang, Dandan Zhang, Tao Peng. Automatic classification of Deep Web databases based on centroid and WordNet. Journal of Computational Information Systems, v 6, n 1, p 63-70, 2010. (EI: 20102713062693)
+
+33. Wanli Zuo, Ying Wang, Xin Wang, Wenyan Ji, Tao Peng*. Ontology-based filling forms of deep web entries automatically. Journal of Computational Information Systems, v 5, n 6, p 1553-1560, December 2009. (EI: 20102713062648)
+34. 朱会峰, 左万利*, 赫枫龄, 彭涛, 纪文彦.一种基于本体的文本聚类方法. 吉林大学学报（理学版）, 48(2): 277-283, 2010.
+
+
+35. 孟宇*, 李文辉, 彭涛. 基于DEMD 的视频分割方法及其在视频水印中的应用. 计算机研究与发展，45(8):1386-1394, 2008. (EI: 20084111636170)
+36. Ying Wang*, Tao Peng, Wanli Zuo, Fengling He, Dong Wang. Semantic document clustering based on ontology. Journal of Computational Information Systems, 5(3): 1437-1444, 2009. (EI: 20094412411925)
+37. Tao Peng*, Wanli Zuo, Changli Zhang, Dong Wang. SVM Classifier-Guided For Domain-specific Resource Discovery Based on HTML Tag Tree. Journal of Computational Information Systems. 3(3): 981-986, 2007.(EI: 20072610674369)
+38. 王冬, 左万利*, 赫枫龄, 彭涛, 张长利. 一种增量倒排索引结构的设计与实现. 吉林大学学报(理学版). 45(6), 953-958, 2007.
+39. 彭涛*，左万利，赫枫龄，张长利. 基于粒子群优化算法的网页分类技术. 计算机研究与发展. Vol 43 Suppl. Nov. 2006. 33-38.
+40. Tao Peng, Fengling He, Wanli Zuo*. A New Framework for Focused Web Crawling. 武汉大学学报（英文版）Vol.11 No.5 P.1394-1397, 2006. 
+41. 彭涛*，赫枫龄，左万利，张长利. 基于FP-Growth算法的DDoS检测. 计算机研究与发展. 43, 492-497, 2006.
+42. 彭涛*，左万利，赫枫龄. 基于链接上下文的分类器主题爬行技术. 计算机科学. 2006 Vol. 33 No.11 (增刊) 12-16.
+43. Tao Peng*, Wanli Zuo. Data Mining for Network Intrusion Detection System in Real Time. International Journal of Computer Science and Network Security, Vol. 6 No.2, 173-177, 2006.
+(2)会议论文：
+44. Tao Peng, Delong Zhang, Wanli Zuo*, Xiaoming Liu. Central Author Mining from Co-authorship Network. Proceedings of 2013 Sixth International Symposium on Computational Intelligence and Design (ISCID 2013), p: 228-232, 2013. (EI: 20142217758343)
+45. Junhua Wang, Xianglin Zuo, Wanli Zuo, Tao Peng. Subjective Bayes Method for Word Semantic Similarity Measurement. IEEE 13th International Conference on Data Mining (ICDM), Dallas, DEC 07-10, 2013. 2013 IEEE 13TH INTERNATIONAL CONFERENCE ON DATA MINING WORKSHOPS (ICDMW), IEEE International Conference on Data Mining, pp: 971-977, 2013. (EI: 20141617588843) (ISTP) (WOS:000343602800133)
+
+

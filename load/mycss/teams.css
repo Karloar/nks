@@ -1,0 +1,781 @@
+/*------------------------------------------------------------------
+[reset-重置默认-20180104-]
+project:       自然语言处理研究组
+version:       
+primary use:   jludanfer  Art
+-------------------------------------------------------------------*/
+/*---------------------------[工作-信息一级]--------------------------*/
+#teams {
+	overflow:auto;
+	width:1200px;
+	margin:0px auto;
+	border:0px #0f0 dotted;
+	background-color:#FFF;
+}
+#teams .hz {
+	margin: auto;
+	height: 3px;
+	background: #999;
+	border-left: #800002 solid 15px;
+}
+#teams a[title=more] {
+	margin: 0px 0px 0px 0px;
+	padding: 5px 15px 5px 5px;
+	height: 20px;
+	line-height: 20px;
+	border-bottom: 1px #122452 dotted;
+	text-align: right;
+	color: #000;
+	background-color: #eee;
+}
+#teams a[title=more]:hover {
+	background-color: #122452;
+	color: #fff;
+}
+/*----------------------------------[#teams——左边导航钮]---------------------------------------------*/	
+#teams .nav1 {
+	float: left;
+	width: 230px;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+#teams .nav1 a {
+	width: auto;
+	padding: 0px 10px 0px 10px;
+	line-height: 30px;
+	text-align: center;
+	color: #910b0b;
+	border-bottom: 1px #333 dotted;
+}
+#teams .nav1 a:hover {
+	background-color: #910b0b;
+	color: #fff;
+}
+/*----------------------------------[#teams——翻页钮]---------------------------------------------*/	
+#teams .page {
+	overflow: auto;
+	width: 1188px;
+	margin: 5px auto;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+#teams .page a {
+	float: right;
+	width: auto;
+	padding: 0px 10px 0px 10px;
+	line-height: 30px;
+	text-align: center;
+	color: #122452;
+	border-right: 1px #333 dotted;
+}
+#teams .page a:hover {
+	background-color: #122452;
+	color: #fff;
+}
+/*----------------------------------[#teams——part]---------------------------------------------*/	
+#teams .part {
+	margin:auto;
+	margin-top:15px;
+	margin-bottom: 5px;
+	width: 1200px;
+	height: auto;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+#teams .part ul {
+	margin-top: 0px;
+	padding-top:5px;
+	border: 1px dotted #B3B3B3;
+	border-top: 1px dotted #888;
+	width: 1198px;
+	float: left;
+}
+#teams .part ul li a {
+	display: block;
+	color: #333;
+	font-size: 14px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-left: 20px;
+	height: 30px;
+	line-height: 30px;
+}
+#teams .part ul li a:hover {
+	background-color: #42659B;
+	color: #fff;
+	border-left: 2px solid #1D3A84;
+}
+#teams .part .con {
+	overflow: auto;
+	margin-top: 15px;
+	margin-bottom:15px;
+
+	padding: 10px;
+	width: 1178px;
+	color: #333;
+	font-size: 15px;
+	text-align: justify;
+	line-height: 28px;
+	text-indent: 2em;
+	border: 1px #666 dotted;
+ border-top:;
+}
+#teams .part .con .tit {
+	width: auto;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 36px;
+	text-align: center;
+	color: #333;
+	border-bottom: 1px #122452 double;
+}
+#teams .part pre {
+	font-size: 14px;
+	white-space: pre-wrap;
+	text-align: justify;
+}
+#teams .part .con a {
+	clear: right;
+	line-height: 20px;
+	padding: 5px;
+	color: #333;
+	font-size: 13px;
+}
+#teams .part .con a:hover, a:active {
+	color: #fff;
+	background: #ADADAD;
+	border-left: 2px solid #122452;
+}
+#teams .part .pd {
+	float: left;
+	width: 80px;
+	height: auto;
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+	padding: 5px;
+	color: #fff;
+	background-color: #5579B3;
+	border: 1px dotted #ccc;
+	border-left: 3px solid #122452;
+}
+#teams .part .date {
+	float: left;
+	width: 80px;
+	height: auto;
+	text-align: center;
+	margin: 0px 0px 0px 5px;
+	padding: 5px;
+	color: #333;
+	background-color: #EBEBEB;
+	border: 1px dotted #ccc;
+	border-left: 3px solid #122452;
+}
+/*---------------------------[工作-信息一级结束]--------------------------*/
+
+/*----------------------------------[teams_info table]------------------------------------------*/
+#teams .part .con table {
+	margin: 5px auto;
+	height: auto;
+	border-left: 1px dotted #333;
+	border-top: 1px dotted #333;
+	border-bottom: 1px dotted #333;
+}
+#teams .part .con table tr td {
+	margin: 0px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #333;
+	font-size: 12px;
+	border-bottom: 1px dotted #333;
+	border-right: 1px dotted #333;
+}
+/*---------------------------[teacher1]--------------------------------------*/
+#teams .part .con_t {
+	overflow: auto;
+	margin-top: 15px;
+	margin-left: 0px;
+	padding: 5px;
+	width: 1178px;
+	color: #333;
+	text-align: justify;
+	border: 1px #666 dotted;
+ background-color:;
+}
+#teams .part .con_t a {
+	float: left;
+	margin: 0px;
+	padding: 5px 20px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	color: #000;
+}
+#teams .part .con_t a:hover {
+	color: #fff;
+	background: #BFA85C;
+}
+#teams .part .con_t .tit {
+	clear: both;
+	margin-bottom: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: auto;
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	font-weight: bold;
+	text-indent: 20px;
+	text-align: left;
+	color: #333;
+	border-top: 1px #122452 dotted;
+	background-color: #fefefe;
+}
+/*-----------------------------------------------------------------*/
+.teams_nav2 {
+	overflow: auto;
+	width: 1188px;
+	margin: 5px auto;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+.teams_nav2 input[type=Text] {
+	width: 150px;
+	padding-left: 20px;
+	line-height: 28px;
+	color: #666;
+	border: 1px #ccc dotted;
+}
+.teams_nav2 input[type=Submit] {
+	width: 90px;
+	padding: 0px;
+	line-height: 28px;
+	background: #333;
+	color: #eee;
+	border: outset;
+}
+.teams_nav2 select {
+	width: 150px;
+	height: 28px;
+	padding: 0px 5px 0px 5px;
+	background: transparent;
+	-webkit-appearance: none; /*for chrome*/
+	color: #333;
+	border: 1px solid #ccc;
+}
+/*--------------------[.teams_info]----------------------------------------------------*/
+.teams_info {
+	overflow: hidden;
+	clear: both;
+	width: 1130px;
+	height: auto;
+	margin: 0px auto;
+	padding: 10px;
+	border: 1px #ccc dotted;
+}
+/*------------------------------------------------------------------------*/
+.teams_info .titdm {
+	float: left;
+	width: 960px;
+	height: 30px;
+	margin-bottom: 11px;
+	margin-left: 10px;
+	padding-left: 10px;
+	border-bottom: dotted #CCC 1px;
+	line-height: 30px;
+	font-size: 13px;
+	color: #000;
+}
+/*------------------------------------------------------------------------*/
+.teams_info .pt {
+	clear: both;
+	width: 1130px;
+	height: 27px;
+	margin: 10px 0px;
+	border-bottom: 1px #ccc dotted;
+}
+.teams_info .pt a {
+	float: left;
+	padding: 5px 10px;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+}
+.teams_info .pt a[title=tlist] {
+	background-color: #951919;
+}
+/*------------------------------------------------------------------------*/
+.teams_info .pd {
+	float: left;
+	width: 140px;
+	height: auto;
+	margin: 0px 25px 20px 0px;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+.teams_info .pd .img {
+	width: 140px;
+	height: 180px;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	background: #ccc;
+}
+.teams_info .pd .tit {
+	width: 130px;
+	height: 25px;
+	margin-top: 0px;
+	padding-left: 10px;
+	border-right: 0px #999 dotted;
+	border-top: 1px #aaa dotted;
+	color: #666;
+	text-align: left;
+	line-height: 24px;
+}
+.teams_info .pd .tit1 {
+	margin-top: 0px;
+	padding-left: 10px;
+	width: 130px;
+	height: auto;
+	background-color: #fff;
+	border-right: 0px #999 dotted;
+	border-top: 1px #aaa dotted;
+	color: #666;
+	text-align: left;
+	line-height: 24px;
+}
+/*------------------------------------------------------------------------*/
+.teams_info .showimg {
+	float: left;
+	margin: 5px 5px 5px 5px;
+	width: 210px;
+	height: auto;
+	overflow: hidden;
+	border: 5px #FFF solid;
+}
+.teams_info .showimg img {
+	width: inherit;
+	height: auto;
+}
+.teams_info .showimg .tit {
+	width: auto;
+	height: 25px;
+	line-height: 25px;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	background-color: #fafafa;
+	color: #333;
+}
+/*------------------------------------------------------------------------*/
+.teams_info .titfw {
+	margin-top: 10px;
+	margin-right: 100px;
+	margin-left: 10px;
+	margin-bottom: 0px;
+	color: #333333;
+	font-size: 13px;
+	line-height: 30px;
+}
+.teams_info .titfw span {
+	color: #ed610c;
+	font-size: 14px;
+	padding-left: 20px;
+}
+.teams_info .titfw em {
+	font-style: normal;
+	color: #f03;
+}
+/*------------------------------------------------------------------------*/
+.teams_info form input, .teams_info form select {
+	outline: none;
+	border: 1px solid #ccc;
+	width: 250px;
+	height: 30px;
+	color: #666;
+	padding: 0px 0px 0px 8px;
+}
+.teams_info form select {
+	width: 100px;
+	height: 30px;
+}
+.teams_info form input[type=radio] {
+	margin-left: 40px;
+	width: 10px;
+	height: 10px;
+}
+.teams_info form input[type=submit] {
+	width: 120px;
+	height: 35px;
+	padding: 0px;
+	background-color: #000;
+	color: #fff;
+	border: outset;
+}
+.teams_info form textarea {
+	width: 1000px;
+	height: 50px;
+	padding: 10px;
+	margin: 10px 0px;
+	background-color: #fff;
+	line-height: 25px;
+	border-radius: 0px;
+	text-align: left;
+	color: #666;
+	border: 1px solid #dcdcdc;
+}
+/*----------------------------------[.teams_info table]------------------------------------------*/
+.teams_info table {
+	margin: 20px auto;
+	width: 1000px;
+	height: auto;
+	border-left: 1px dotted #999;
+	border-top: 4px solid #CCC;
+	border-bottom: 1px solid #999;
+}
+.teams_info table tr td {
+	margin: 0px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #333;
+	font-size: 12px;
+	border-bottom: 1px dotted #333;
+	border-right: 1px dotted #333;
+}
+/*-----------------------------------------[popup bigpic]------------------------------------------------------*/
+.popup-bigic {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #eee;
+	overflow: hidden;
+	z-index: 999;
+}
+.popup-bigic .loading-bigic {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 24px;
+	height: 24px;
+	margin-left: -12px;
+	margin-top: -12px;
+}
+.popup-bigic .img-bigic {
+	position: absolute;
+}
+.option-bigic {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	z-index: 1;
+}
+.option-bigic span {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin-right: 20px;
+	text-indent: -999px;
+	overflow: hidden;
+	cursor: pointer;
+	border-radius: 5px;
+	background-image: url(../images/icons.png);
+	background-repeat: no-repeat;
+	background-color: #fff;
+	opacity: .5;
+}
+.option-bigic span:hover {
+	opacity: 1;
+}
+.option-bigic span.change-bigic {
+	display: none;
+	background-position: -52px 3px;
+}
+.option-bigic span.max-bigic {
+	display: none;
+	background-position: -119px 3px;
+}
+.option-bigic span.close-bigic {
+	background-position: 8px 8px;
+}
+/*-------------------------------[teacher-1]-------------------------------------------*/
+.teacher {
+	margin: auto;
+	width: 1200px;
+	border: 1px #063 solid;
+	font-family: "微软雅黑", "宋体";
+	font-size: 14px;
+	line-height: 25px;
+}
+.teacher .title {
+	margin-top: 5px;
+	width: 1000px;
+ background-color:;
+	border-bottom: 1px dotted #C00;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+.teacher .con_c {
+	width: 1000px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #CCC;
+	overflow: auto;
+}
+.teacher .con_c .t {
+	float: left;
+	display: block;
+	background-color: #a80f42;
+	padding: 5px 10px 5px 10px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFF;
+}
+.teacher .con_c a {
+	display: block;
+	float: left;
+	margin: 0px 5px 0px 5px;
+	padding: 5px 10px 5px 10px;
+	font-size: 14px;
+	color: #000;
+}
+.teacher .con_c a:hover {
+	display: block;
+	background-color: #eee;
+	color: #a80f42;
+	border-left: 1px solid #a80f42;
+}
+
+/***********************************/
+#myteams {
+	overflow:auto;
+	width:100%;
+	margin:0px auto;
+	border:0px #0f0 dotted;
+	background-color:#FFF;
+}
+
+#myteams .hz {
+	margin: auto;
+	height: 3px;
+	background: #999;
+	border-left: #800002 solid 15px;
+}
+#myteams a[title=more] {
+	margin: 0px 0px 0px 0px;
+	padding: 5px 15px 5px 5px;
+	height: 20px;
+	line-height: 20px;
+	border-bottom: 1px #122452 dotted;
+	text-align: right;
+	color: #000;
+	background-color: #eee;
+}
+#myteams a[title=more]:hover {
+	background-color: #122452;
+	color: #fff;
+}
+/*----------------------------------[#teams——左边导航钮]---------------------------------------------*/
+#myteams .nav1 {
+	float: left;
+	width: 230px;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+#myteams .nav1 a {
+	width: auto;
+	padding: 0px 10px 0px 10px;
+	line-height: 30px;
+	text-align: center;
+	color: #910b0b;
+	border-bottom: 1px #333 dotted;
+}
+#myteams .nav1 a:hover {
+	background-color: #910b0b;
+	color: #fff;
+}
+/*----------------------------------[#teams——翻页钮]---------------------------------------------*/
+#myteams .page {
+	overflow: auto;
+	width: 100%px;
+	margin: 5px auto;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+#myteams .page a {
+	float: right;
+	width: auto;
+	padding: 0px 10px 0px 10px;
+	line-height: 30px;
+	text-align: center;
+	color: #122452;
+	border-right: 1px #333 dotted;
+}
+#myteams .page a:hover {
+	background-color: #122452;
+	color: #fff;
+}
+/*----------------------------------[#teams——part]---------------------------------------------*/
+#myteams .part {
+	margin:auto;
+	margin-top:15px;
+	margin-bottom: 5px;
+	width: 100%;
+	height: auto;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+#myteams .part ul {
+	margin-top: 0px;
+	padding-top:5px;
+	border: 1px dotted #B3B3B3;
+	border-top: 1px dotted #888;
+	width: 100%;
+	float: left;
+}
+#myteams .part ul li a {
+	display: block;
+	color: #333;
+	font-size: 14px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-left: 20px;
+	height: 30px;
+	line-height: 30px;
+}
+#myteams .part ul li a:hover {
+	background-color: #42659B;
+	color: #fff;
+	border-left: 2px solid #1D3A84;
+}
+#myteams .part .con {
+	overflow: auto;
+	margin-top: 15px;
+	margin-bottom:15px;
+
+	padding: 10px;
+	width: 1178px;
+	color: #333;
+	font-size: 15px;
+	text-align: justify;
+	line-height: 28px;
+	text-indent: 2em;
+	border: 1px #666 dotted;
+	border-top:;
+}
+#myteams .part .con .tit {
+	width: auto;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 36px;
+	text-align: center;
+	color: #333;
+	border-bottom: 1px #122452 double;
+}
+#myteams .part pre {
+	font-size: 14px;
+	white-space: pre-wrap;
+	text-align: justify;
+}
+#myteams .part .con a {
+	clear: right;
+	line-height: 20px;
+	padding: 5px;
+	color: #333;
+	font-size: 13px;
+}
+#myteams .part .con a:hover, a:active {
+	color: #fff;
+	background: #ADADAD;
+	border-left: 2px solid #122452;
+}
+#myteams .part .pd {
+	float: left;
+	width: 80px;
+	height: auto;
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+	padding: 5px;
+	color: #fff;
+	background-color: #5579B3;
+	border: 1px dotted #ccc;
+	border-left: 3px solid #122452;
+}
+#myteams .part .date {
+	float: left;
+	width: 80px;
+	height: auto;
+	text-align: center;
+	margin: 0px 0px 0px 5px;
+	padding: 5px;
+	color: #333;
+	background-color: #EBEBEB;
+	border: 1px dotted #ccc;
+	border-left: 3px solid #122452;
+}
+/*---------------------------[工作-信息一级结束]--------------------------*/
+
+/*----------------------------------[teams_info table]------------------------------------------*/
+#myteams .part .con table {
+	margin: 5px auto;
+	height: auto;
+	border-left: 1px dotted #333;
+	border-top: 1px dotted #333;
+	border-bottom: 1px dotted #333;
+}
+#myteams .part .con table tr td {
+	margin: 0px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #333;
+	font-size: 12px;
+	border-bottom: 1px dotted #333;
+	border-right: 1px dotted #333;
+}
+/*---------------------------[teacher1]--------------------------------------*/
+#myteams .part .con_t {
+	overflow: auto;
+	margin-top: 15px;
+	margin-left: 0px;
+	padding: 5px;
+	width: 1178px;
+	color: #333;
+	text-align: justify;
+	border: 1px #666 dotted;
+	background-color:;
+}
+#myteams .part .con_t a {
+	float: left;
+	margin: 0px;
+	padding: 5px 20px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	color: #000;
+}
+#myteams .part .con_t a:hover {
+	color: #fff;
+	background: #BFA85C;
+}
+#myteams .part .con_t .tit {
+	clear: both;
+	margin-bottom: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: auto;
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	font-weight: bold;
+	text-indent: 20px;
+	text-align: left;
+	color: #333;
+	border-top: 1px #122452 dotted;
+	background-color: #fefefe;
+}

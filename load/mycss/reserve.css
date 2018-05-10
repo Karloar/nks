@@ -1,0 +1,141 @@
+/*------------------------------------------------------------------
+[reset-重置默认-20180104-]
+project:       自然语言处理研究组
+version:       
+primary use:   jludanfer  Art
+-------------------------------------------------------------------*/
+/* box */
+.box {
+	width:1200px;
+	height:auto;
+	margin:15px auto;
+	border:1px solid #ccc;
+	background-color:#FFF;
+}
+/*--------------------[.box_info]----------------------------------------------------*/
+.box_info {
+	overflow:hidden;
+	clear:both;
+	width:1130px;
+	height:auto;
+	margin:0px auto 10px auto;
+	padding:10px;
+	border:1px #ccc dotted;
+}
+/*------------------------------------------------------------------------*/
+.box_info form input, .box_info form select {
+	outline:none;
+	border:1px solid #ccc;
+	width:250px;
+	height:30px;
+	color:#666;
+	padding:0px 0px 0px 8px;
+}
+.box_info form select {
+	width:100px;
+	height:30px;
+}
+.box_info form input[type=radio] {
+	margin-left:40px;
+	width:10px;
+	height:10px;
+}
+.box_info form input[type=submit] {
+	width:120px;
+	height:35px;
+	padding:0px;
+	background-color:#000;
+	color:#fff;
+	border:outset;
+}
+.box_info form textarea{
+	width:1000px;
+	height:50px;
+	padding:10px;
+	margin:10px 0px;
+	background-color:#fff;
+	line-height:25px;
+	border-radius:0px;
+	text-align:left;
+	color:#666;
+	border:1px solid #dcdcdc;
+}
+/*-----------------------------------------------------------------------------------------------------*/
+.box_info .pt {
+	clear:both;
+	width:1130px;
+	height:27px;
+	margin:10px 0px;
+	border-bottom:1px #ccc dotted;
+}
+.box_info .pt a {
+	float:left;
+	padding:5px 10px;
+	color:#fff;
+	font-size:12px;
+	font-weight:600;
+}
+.box_info .pt a[title=tlist] {
+	background-color:#951919;
+}
+/*---------------------------------------------------------------------------------------------------------*/
+.box_info .titfw {
+	margin-top:10px;
+	margin-right:100px;
+	margin-left:10px;
+	margin-bottom:0px;
+	color:#333333;
+	font-size:13px;
+	line-height:30px;
+	font-weight:;
+}
+.box_info .titfw span {
+	color:#ed610c;
+	font-size:14px;
+	padding-left:20px;
+}
+.box_info .titfw em {
+	font-style:normal;
+	color:#f03;
+}
+/*---------------------------------------------------------------------------------------------------------*/
+
+.box_info .peiz{
+	float:left;
+	width:100px;
+	height:142px;
+	border:5px solid #fff;
+}
+.box_info .peiz[title=hej]{
+	float:right;
+	margin-left:10px;
+	padding-left:10px;
+	width:160px;
+	line-height:30px;
+	color:#f03;
+	font-weight:600;
+	border:1px solid #ccc;
+}
+.box_info .peiz[title=btn]{
+	display:block;
+	float:right;
+	margin-right:20px;
+	margin-left:10px;
+	padding:0px;
+	border-radius:0px;
+}
+.box_info .peiz[title=btn] a{
+	position:relative;
+	top:50px;
+	color:#fff;
+	font-size:12px;
+	text-align:center;
+	font-weight:700;	
+	line-height:30px;	
+	background:#910b0b;
+	width:auto;
+	height:auto;
+}
+.box_info .peiz[title=btn] a:hover{
+	background-color:#f03;
+}

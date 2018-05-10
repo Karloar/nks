@@ -1,0 +1,11 @@
+A PHP Error was encountered
+
+Severity: Notice
+
+Message: Undefined index: 0/1
+
+Filename: controllers/Manager.php
+
+Line Number: 277
+
+Backtrace:

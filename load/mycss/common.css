@@ -1,0 +1,226 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+[reset-重置默认-20180104-]
+project:       自然语言处理研究组
+version:       
+primary use:   jludanfer  Art
+-------------------------------------------------------------------*/
+/*-----------------------------new20180106 update-------------------------------------------------*/
+@import "reset.css";
+@import "extension.css";
+@import "banner.css";
+@import "mylogin.css";
+@import "teams.css";
+@import "teacher.css";
+/*
+@import "reserve.css";
+*/
+/*======================================================[general framework]======================================================*/
+#head1 {
+	margin:auto;
+	height:5px;
+	//background:#aaa;
+}
+/*------------------------------------------------------------------------------*/
+#head2 {
+	margin:auto;
+	width:1200px;
+	height:140px;
+	background:#fff;
+}
+#head2 #logo {
+	float:left;
+	width:350px;
+	height:140px;
+	background-image:url(../images/logo_jlu.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	border:0px #999 solid;
+}
+#head2 #search {
+	float:left;
+	width:745px;
+	height:auto;
+}
+#head2 #search input[type=Text] {
+	position:relative;
+	top:80px;
+	left:100px;
+	width:300px;
+	line-height:28px;
+	padding-left:20px;
+	border:1px #910b0b dotted;
+	color:#aaa;
+}
+#head2 #search input[type=Submit] {
+	position:relative;
+	top:79px;
+	left:100px;
+	width:90px;
+	line-height:26px;
+	padding:0px;
+	background-color:#880A3D;
+	color:#eee;
+	border: outset;
+}
+/*--------------------------------[nav 导航条设定]--------------------------------*/
+#nav {
+	margin:auto;
+	margin-top:10px;
+	width:1200px;
+	height:35px;
+	background-color:#eee;
+}
+#nav a {
+	float:left;
+	padding-left:20px;
+	padding-right:20px;
+	text-align:center;
+	line-height:35px;
+	color:#333;
+	font-size:13px;
+	border-right:1px #999 dotted;
+}
+#nav a:hover, #nav a.active {
+	background-color:#880A3D;
+	color:#FFF;
+}
+#nav a[name=login] {
+	float:right;
+	padding-left:20px;
+	padding-right:20px;
+	color:#122452;
+	font-size:13px;
+	border-left:1px #122452 dotted;
+	border-right:0px #122452 dotted;
+}
+#nav a[name=login]:hover, #nav a[name=login].active {
+	background-color:#122452;
+	color:#FFF;
+}
+#nav a[name=reserve] {
+	float:right;
+	padding-left:20px;
+	padding-right:20px;
+	color:#fff;
+	background:#820016;
+	font-size:13px;
+	border-left:1px #133509 dotted;
+	border-right:0px #133509 dotted;
+}
+#nav a[name=reserve]:hover, #nav a[name=reserve].active {
+	background-color:#ca0022;
+	color:#FFF;
+}
+/*------------------------------------------------------------------------------*/
+#head3 {
+	margin:5px auto;
+	width:1200px;
+	height:300px;
+	background:#fff;
+	border:1px solid #ccc;
+}
+/*------------------------------------------------------------------------------*/
+.text {
+	width:1180px;	
+	margin:5px auto;
+	padding:10px;
+	line-height:35px;
+	color:#333;
+	border-bottom:1px solid #ccc;
+}
+/*------------------------------------------------------------------------------*/
+.jg_t{
+	margin:0px auto 10px auto;
+	width:1170px;
+	height:5px;
+	background-color:#ddd;
+	border-left:20px solid  #122452;
+	border-right:10px solid #910b0b;
+}
+
+/*-----------------------[footer content ]----------------------------------------*/
+
+#footer {
+	clear:both;
+	margin:20px auto 0px auto;
+	width:1200px;
+	height:190px;
+	color:#333;
+}
+/*--------------------------------[f-nav 导航条设定]--------------------------------*/
+#f_nav {
+	margin:auto;
+	width:1200px;
+	height:30px;
+	border:0px solid #333;
+}
+#f_nav a {
+	float:left;
+	padding-left:15px;
+	padding-right:15px;
+	text-align:center;
+	line-height:30px;
+	color:#333;
+	font-size:12px;
+	border-right:1px #999 dotted;
+}
+#f_nav a:hover, #f_nav a.active {
+	background-color:#122452;
+	color:#FFF;
+}
+#footer #f_contact1 {
+	margin:5px auto 10px auto;
+	width:1200px;
+	height:auto;
+	line-height:50px;
+	text-align:center;
+	border:1px #ccc solid;
+}
+#footer span[title=qingc] {
+	color:#777;
+	font-size:12px;
+	font-weight:300;
+}
+
+/*-----------------------[footer content end]----------------------------------------*/
+	
+/*-----------------------[f_page 分页设定]-----------------------------*/
+#f_page {
+	margin:80px auto;
+	width:500px;
+	height:30px;
+}
+#f_page li {
+	float: left;
+	width: 30px;
+	height:30px;
+	list-style:none;
+	border:1px dotted #666;
+}
+#f_page a {
+	display:block;
+	width:30px;
+	height:30px;
+	font-size:15px;
+	line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+	color:#666;
+	text-decoration:none;
+	font-weight:700;
+}
+#f_page li a:hover {
+	font-size:25px;
+	line-height:40px;
+	width:35px;
+	height:40px;
+	position:absolute;
+	z-index:10;
+	margin: -5px 0 0 -5px;
+	font-weight: bold;
+	color:#9e0f0f;
+	border: 1px dotted #666666;
+	background: #eeeeee;
+}
+/*-----------------------------------------------------------[end mainarea 主内容区域结束]-------------------------------------------------------*/

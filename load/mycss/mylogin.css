@@ -1,0 +1,240 @@
+/*------------------------------------------------------------------
+[reset-重置默认-20180104-]
+project:       自然语言处理研究组
+version:       
+primary use:   jludanfer  Art
+-------------------------------------------------------------------*/
+/*-------------------------------用户登录----------------------------------------------------------------------*/
+.loginleft {
+	float:left;
+}
+/*------------------------------------------------------------------------*/
+.loginright {
+	float:right;
+	width:480px;
+	padding-left:10px;
+	border-left:1px dotted #999;
+}
+.loginname {
+	float:left;
+	width:460px;
+	margin-top:10px;
+	margin-left:5px;
+	margin-bottom:0px;
+	border:0px solid #F00;
+}
+.loginright .loginname label {
+	float:left;	
+	width:80px;
+	height:30px;
+	line-height:32px;
+	font-size:13px;
+	color:#333;
+	font-weight:bold;
+	text-align:center;
+	border:0px solid #1D3A84;
+
+}
+.loginright .loginname input {
+	clear:right;
+	color:#B3B3B3;
+	font-size:14px;
+	width:325px;
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	border:1px dotted #565555;
+}
+.loginright .loginname input.text {/*验证码*/
+	width:170px;
+}
+.loginright .loginname input[type=checkbox] {
+	float:left;
+	width:15px;
+	height:15px;
+	margin:10px 10px 10px 5px;
+}
+.loginright .loginname input[type=radio] {
+	float:left;
+	width:15px;
+	height:15px;
+	margin:10px 10px 10px 90px;
+}
+.loginright .loginname a[charset=argee] {
+	float:left;	
+	width:100px;
+	height:30px;
+	line-height:32px;
+	font-size:13px;
+	color:#666;
+	font-weight:bold;
+	text-align:center;
+	border:1px  dotted #1D3A84;
+}
+/*-------------------------------------用户登录按钮---------------------------------------------------------------*/
+.loginright .sure {
+	float:left;
+	width:330px;
+	height:35px;
+	margin-top:15px;
+	margin-left:80px;
+	line-height:35px;	
+	background:#122452;
+}
+.loginright .sure a {
+	line-height:35px;
+	font-size:13px;
+	color:#FFF;
+	font-size:13px;
+	text-align:center;
+}
+.loginright .sure a:hover {
+	background:#2e5bce;
+}
+/*----------------------------------------------------------------------------------------------------*/
+.loginrightlg {
+	margin-top:0px;
+}
+.loginright .loginzh {
+	float:right;
+	width:330px;
+	margin-bottom:0px;
+	margin-right:70px;
+}
+.loginright .loginzh input {
+	width:290px;
+	height:50px;
+	line-height:50px;
+	background:url(../images/reg_login.png) no-repeat 10px ;
+	padding-left:40px;
+}
+.loginright .loginpass input {
+	border-top:1px dotted #333;
+	background:url(../images/reg_login1.png) no-repeat 10px ;
+}
+.loginright .loginzh input[type=radio] {
+	height:15px;
+	line-height:15px;
+	font-size:13px;
+	font-weight:bold;
+}
+.loginright .loginzh1 {
+	float:right;
+	width:318px;
+	margin-top:10px;
+	margin-bottom:0px;
+	margin-right:70px;
+	border:1px dotted #333;
+	padding:5px;
+}
+.loginright .loginzh1 a{
+	float:left;
+	padding:5px 10px;
+	margin-right:20px;
+	font-size:13px;
+	line-height:20px;
+	color:#333;
+	border-lift:1px dotted #333;
+	border-right:1px dotted #333;
+}
+.loginright .loginzh1 a:hover{
+	background-color:#343f91;
+	color:#eee;
+}
+/*-----------------------------------------------------------------------------------------*/
+
+/*------------------------------------新用户注册------------------------------------*/
+.reg_content {
+	overflow:hidden;
+	width:850px;
+	height:auto;
+	margin:0 auto;
+	padding:15px;
+	border:0px solid #090;
+}
+.regleft {
+	float:left;
+}
+.regright {
+	float:right;
+	width:480px;
+	padding-left:10px;
+	border-left:1px dotted #999;
+}
+.regname {
+	float:left;
+	width:460px;
+	margin-top:10px;
+	margin-left:5px;
+	margin-bottom:0px;
+	border:0px solid #F00;
+}
+.regright .regname label {
+	float:left;	
+	width:100px;
+	height:30px;
+	line-height:32px;
+	font-size:13px;
+	color:#333;
+	font-weight:bold;
+	text-align:right;
+	border:0px solid #1D3A84;
+
+}
+.regright .regname input {
+	clear:right;
+	color:#B3B3B3;
+	font-size:14px;
+	width:325px;
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	border:1px dotted #565555;
+}
+.regright .regname input.text {/*验证码*/
+	width:170px;
+}
+.regright .regname input[type=checkbox] {
+	float:left;
+	width:15px;
+	height:15px;
+	margin:10px 10px 10px 5px;
+}
+.regright .regname input[type=radio] {
+	float:left;
+	width:15px;
+	height:15px;
+	margin:10px 10px 10px 80px;
+}
+.regright .regname a[charset=argee] {
+	float:left;	
+	width:100px;
+	height:30px;
+	line-height:32px;
+	font-size:13px;
+	color:#666;
+	font-weight:bold;
+	text-align:center;
+	border:1px  dotted #1D3A84;
+}
+.regright .sure {/*新用户注册*/
+	float:left;
+	width:335px;
+	height:35px;
+	margin-top:15px;
+	margin-left:105px;
+	line-height:35px;	
+	background:#122452;
+}
+.regright .sure a {
+	line-height:35px;
+	font-size:13px;
+	color:#FFF;
+	font-size:13px;
+	text-align:center;
+}
+.regright .sure a:hover {
+	background:#2e5bce;
+}
+
+
