@@ -349,7 +349,7 @@ class Nksuser extends CI_Controller
     }
     private function check_session() {
         if(isset($_SESSION['expiretime']) && $_SESSION['expiretime'] < time()) {
-            unsert($_SESSION['expiretime']);
+            unset($_SESSION['expiretime']);
             redirect('nksuser/logout');
         } else {
             $_SESSION['expiretime'] = time() + 3600;

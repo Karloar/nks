@@ -73,7 +73,7 @@ if(isset($message))
                 <div class="mws-form-row">
                     <div class="mws-form-item large">
                         <?php
-                        echo "<a href='JavaScript:updateCaptcha()' style='text-decoration: none'><img id='CaptchaImg' src='".$baseurl.'images/captcha/'.$cap_imgname."' style='width:150px;height30px;border:0px'></a>"."<a href='".$url."user/findpass' style='padding-left:20px;color:#ffffff;text-decoration:none' href=''>忘记密码？</a>";
+                        echo "<a href='JavaScript:updateCaptcha()' style='text-decoration: none'><img id='CaptchaImg' src='".$baseurl.'images/captcha/'.$cap_imgname."' style='width:150px;height30px;border:0px'></a>"."<a href='#' style='padding-left:20px;color:#ffffff;text-decoration:none'>忘记密码？</a>";
                         ?>
                     </div>
                 </div>
