@@ -24,7 +24,7 @@
                 <div class="mws-form-row">
                     <label>考试科目</label>
                     <div class="mws-form-item large">
-                        <input name="ex_name"  class="mws-textinput" type="text" value="<?=isset($obj->ex_name)?$obj->ex_name:'';?>" >
+                        <input name="ex_name" required class="mws-textinput" type="text" value="<?=isset($obj->ex_name)?$obj->ex_name:'';?>" >
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -84,7 +84,7 @@
                 <div class="mws-form-row">
                     <label>考试日期</label>
                     <div class="mws-form-item large">
-                        <input name="ex_date" class="mws-textinput" type="date" value="<?=isset($obj->ex_date)?$obj->ex_date:'';?>" >
+                        <input name="ex_date" required class="mws-textinput" type="date" value="<?=isset($obj->ex_date)?$obj->ex_date:'';?>" >
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -210,8 +210,19 @@
                 <div class="mws-form-row">
                     <label>监考人数</label>
                     <div class="mws-form-item large">
-                        <input name="ex_invinum" class="mws-textinput" value="<?=isset($obj->ex_invinum)?$obj->ex_invinum:''?>" type="number">
-                        <div style="color:red;">必填</div>
+                        <select name="ex_invinum" required>
+                            <option value=""></option>
+                            <?php
+                            for($i=1;$i<=5;$i++) {
+                                if(isset($obj->ex_invinum) && $i == $obj->ex_invinum) {
+                                    echo("<option value='$i' selected='selected'>$i</option>");
+                                } else {
+                                    echo("<option value='$i'>$i</option>");
+                                }
+                            }
+                            ?>
+                        </select>
+                        <div style="color:red;">必选</div>
                     </div>
                 </div>
                 <div class="mws-form-row">
