@@ -106,6 +106,25 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
+                    <label>不监考教研室</label>
+                    <div class="mws-form-item large">
+                        <?php
+                        $ex_not_lab = '';
+                        if(isset($obj->ex_not_lab) && $obj->ex_not_lab != '') {
+                            foreach(explode('-', $obj->ex_not_lab) as $r) {
+                                foreach($lab_arr as $lab) {
+                                    if($lab->lb_id == $r) {
+                                        $ex_not_lab .= $lab->lb_name . '<br />';
+                                    }
+                                }
+                            }
+                        }
+                        $ex_not_lab = trim($ex_not_lab);
+                        ?>
+                        <div class="mws-textinput"><?php echo($ex_not_lab); ?></div>
+                    </div>
+                </div>
+                <div class="mws-form-row">
                     <label>监考教师所属实验室</label>
                     <div class="mws-form-item large">
                         <input name="ex_lab" class="mws-textinput" value="<?=isset($obj->lb_name)?$obj->lb_name:''?>" readonly="readonly">

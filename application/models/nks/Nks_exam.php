@@ -30,6 +30,7 @@ class Nks_exam extends CI_Model {
     public $ex_note;
     public $ex_lab = 0;
     public $ex_input_date;
+    public $ex_not_lab = '';
 
 
 
@@ -60,6 +61,7 @@ class Nks_exam extends CI_Model {
         $this->ex_note = $arr['ex_note'];
         $this->ex_lab = isset($arr['ex_lab']) ? $arr['ex_lab']: $this->ex_lab;
         $this->ex_input_date = $arr['ex_input_date'];
+        $this->ex_not_lab = $arr['ex_not_lab'];
         return $this->db->insert(Nks_exam::_table, $this);
     }
 
@@ -205,6 +207,7 @@ class Nks_exam extends CI_Model {
             'ex_note' => $arr['ex_note'],
             'ex_lab' => isset($arr['ex_lab']) ? $arr['ex_lab']: $this->getExamById($this->ex_id)->ex_lab,
             'ex_input_date' => $arr['ex_input_date'],
+            'ex_not_lab' => $arr['ex_not_lab'],
         );
 
         return $this->db->where('ex_id', $arr['ex_id'])->update(Nks_exam::_table, $data);

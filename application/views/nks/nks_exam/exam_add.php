@@ -192,6 +192,29 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
+                    <label>不监考教研室</label>
+                    <div class="mws-form-item large">
+                        <select multiple="multiple" class="chzn-select" name="ex_not_lab[]">
+                            <?php
+                            foreach($lab_arr as $row) {
+                                if(isset($obj->ex_not_lab) && $obj->ex_not_lab != '' && in_array($row->lb_id, explode('-', $obj->ex_not_lab))) {
+                                    echo("<option value='$row->lb_id' selected>$row->lb_name</option>");
+                                } else {
+                                    echo("<option value='$row->lb_id'>$row->lb_name</option>");
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label>监考人数</label>
+                    <div class="mws-form-item large">
+                        <input name="ex_invinum" class="mws-textinput" value="<?=isset($obj->ex_invinum)?$obj->ex_invinum:''?>" type="number">
+                        <div style="color:red;">必填</div>
+                    </div>
+                </div>
+                <div class="mws-form-row">
                     <label>学生人数</label>
                     <div class="mws-form-item large">
                         <input name="ex_stunum" class="mws-textinput" value="<?=isset($obj->ex_stunum)?$obj->ex_stunum:'';?>" type="number">
@@ -210,13 +233,7 @@
                         <div style="color:red;">多个以空格分隔</div>
                     </div>
                 </div>
-                <div class="mws-form-row">
-                    <label>监考人数</label>
-                    <div class="mws-form-item large">
-                        <input name="ex_invinum" class="mws-textinput" value="<?=isset($obj->ex_invinum)?$obj->ex_invinum:''?>" type="number">
-                        <div style="color:red;">必填</div>
-                    </div>
-                </div>
+
                 <?php
                 if(isset($showExLab) && $showExLab) {
                     echo('<div class="mws-form-row">');

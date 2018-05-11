@@ -99,6 +99,11 @@ class Nksexam extends Nksmanager
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note'));
+            $arr['ex_not_lab'] = '';
+            foreach($_POST['ex_not_lab'] as $r) {
+                $arr['ex_not_lab'] .= $r . '-';
+            }
+            $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
             $arr['ex_lab'] = $this->manageExam($arr);
             $this->load->model('nks/nks_exam');
@@ -158,11 +163,13 @@ class Nksexam extends Nksmanager
         $this->load->model('nks/nks_class');
         $this->load->model('nks/nks_nature');
         $this->load->model('nks/nks_major');
+        $this->load->model('nks/nks_lab');
         $academies = $this->nks_academy->getAllAcademies();
         $data['place_arr'] = $this->nks_place->getAllPlaces();
         $data['time_arr'] = $this->nks_time->getAllTime();
         $data['class_arr'] = $this->nks_class->getAllClasses();
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
+        $data['lab_arr'] = $this->nks_lab->getAllLabs();
         $data['academy_arr'] = $academies;
         if(count($academies) > 0) {
             $data['major_arr'] = $this->nks_major->getMajorsByAcId($academies[0]->ac_id);
@@ -214,6 +221,13 @@ class Nksexam extends Nksmanager
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note', 'ex_lab'));
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
+            $arr['ex_not_lab'] = '';
+            if(isset($_POST['ex_not_lab'])) {
+                foreach($_POST['ex_not_lab'] as $r) {
+                    $arr['ex_not_lab'] .= $r . '-';
+                }
+            }
+            $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
             $arr['ex_id'] = $ex_id;
             $ex = $this->nks_exam->getExamById($ex_id);
             $lab = $this->nks_lab->getLabById($ex->ex_lab);
@@ -242,11 +256,13 @@ class Nksexam extends Nksmanager
         $this->load->model('nks/nks_class');
         $this->load->model('nks/nks_nature');
         $this->load->model('nks/nks_major');
+        $this->load->model('nks/nks_lab');
         $academies = $this->nks_academy->getAllAcademies();
         $data['place_arr'] = $this->nks_place->getAllPlaces();
         $data['time_arr'] = $this->nks_time->getAllTime();
         $data['class_arr'] = $this->nks_class->getAllClasses();
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
+        $data['lab_arr'] = $this->nks_lab->getAllLabs();
         $data['lab_arr'] = $this->nks_lab->getAllLabs();
         $data['academy_arr'] = $academies;
         if(count($academies) > 0) {
@@ -317,6 +333,7 @@ class Nksexam extends Nksmanager
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
         $this->load->model('nks/nks_exam');
+        $this->load->model('nks/nks_lab');
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
@@ -325,6 +342,7 @@ class Nksexam extends Nksmanager
             'us_img' => $user->us_img,
         );
         $data['obj'] = $this->nks_exam->getExamById($ex_id);
+        $data['lab_arr'] = $this->nks_lab->getAllLabs();
         if($user->us_admin == 2) {
             $this->load->view("nks/nks_global/admin_header_ks", $data);
         } else {
@@ -356,9 +374,9 @@ class Nksexam extends Nksmanager
             $arr = $this->myinput->getBykeys($post_arr);
             $arr['ex_invname'] = '';
             for($i=1;$i<$obj->ex_invinum;$i++) {
-                $arr['ex_invname'] .= $arr['ex_invname' . $i] . ' ';
+                $arr['ex_invname'] .= trim($arr['ex_invname' . $i]) . ' ';
             }
-            $arr['ex_invname'] .= $arr['ex_invname' . $i];
+            $arr['ex_invname'] .= trim($arr['ex_invname' . $i]);
             $obj->ex_invname = $arr['ex_invname'];
             $obj->ex_input_date = date('Y-m-d H:i:s');
             $res = $this->nks_exam->update((array)$obj);
