@@ -32,7 +32,7 @@ class Nksexam extends Nksmanager
             $firstResult = 0;
         }
         $total_num = $this->nks_exam->getExamNum();
-        $this->myinput->load_page($total_num, 'nkslab/examlist', $per_page_num);
+        $this->myinput->load_page($total_num, 'nksexam/examlist', $per_page_num);
         $data['result'] = $this->nks_exam->getExamsByPage($firstResult, $per_page_num);
         $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_exam/examlist");
