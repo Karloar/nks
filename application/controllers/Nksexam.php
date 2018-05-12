@@ -7,6 +7,7 @@
  */
 require_once('Nksmanager.php');
 
+
 class Nksexam extends Nksmanager
 {
     public function __construct()
@@ -440,6 +441,32 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_exam/addinv");
         $this->load->view("nks/nks_global/footer_man");
     }
+
+    public function printexamlist() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+            $this->load->model('nks/nks_exam');
+            $data['exam_list'] = $this->nks_exam->getExamsBetweenDateByPage($_POST['begin_date'], $_POST['end_date'], 0, $this->nks_exam->getExamNum());
+
+            $this->load->view('nks/nks_exam/exambigtable', $data);
+
+            return 0;
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择考试时间范围',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/printexamlist'
+        );
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/printdate");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+
 
     public function examprint($ex_id) {
         $this->check_admin(2);

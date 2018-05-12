@@ -197,10 +197,11 @@
                 <li>
                     <a href="<?=$baseurl?>#" class="mws-i-24 i-balloons">考试模块</a>
                     <ul class="closed">
+                        <li><a href="<?=$url?>nksexam/examadd">添加考试</a></li>
                         <li><a href="<?=$url?>nksexam/examlist">全部考试列表</a></li>
                         <li><a href="<?=$url?>nksexam/examlistinv">已录入监考教师</a></li>
                         <li><a href="<?=$url?>nksexam/examlistnotinv">未录入监考教师</a></li>
-                        <li><a href="<?=$url?>nksexam/examadd">添加考试</a></li>
+                        <li><a href="<?=$url?>nksexam/printexamlist">打印考试列表</a></li>
 
                     </ul>
                 </li>
