@@ -106,7 +106,7 @@ class Nksexam extends Nksmanager
             }
             $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
-            $arr['ex_lab'] = $this->manageExam($arr);
+            $arr['ex_lab'] = $this->manageExam($arr, $_POST['ex_not_lab']);
             $this->load->model('nks/nks_exam');
             $res = $this->nks_exam->insert($arr);
             $obj = array(
@@ -183,11 +183,14 @@ class Nksexam extends Nksmanager
     }
 
 
-    private function manageExam($arr) {
+    private function manageExam($arr, $lab_arr) {
         $this->load->model('nks/nks_lab');
         $this->load->model('nks/nks_exam');
         $lab_list = $this->nks_lab->getLabsOrderByExnum();
         foreach($lab_list as $lab) {
+            if(isset($lab_arr) && count($lab_arr) > 0 && in_array($lab->lb_id, $lab_arr)) {
+                continue;
+            }
             if($lab->lb_num / 4 + 1 > $arr['ex_invinum']) {
                 $flag = true;
                 $exam_list = $this->nks_exam->getExamsByLabByPage($lab->lb_id, 0, $this->nks_exam->getExamNumByLabId($lab->lb_id));
