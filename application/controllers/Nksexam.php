@@ -231,6 +231,9 @@ class Nksexam extends Nksmanager
             $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
             $arr['ex_id'] = $ex_id;
             $ex = $this->nks_exam->getExamById($ex_id);
+            if($ex->ex_invname != '') {
+                $arr['ex_invname'] = $ex->ex_invname;
+            }
             $lab = $this->nks_lab->getLabById($ex->ex_lab);
             $lab->lb_ex_num --;
             $this->nks_lab->update((array)$lab);
@@ -480,7 +483,13 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
-
+    public function printnotice($ex_id) {
+        $this->check_admin(2);
+        $this->load->model('nks/nks_exam');
+        $obj = $this->nks_exam->getExambyId($ex_id);
+        $data['obj'] = $obj;
+        $this->load->view('nks/nks_manager/kstzd', $data);
+    }
 
     public function examprint($ex_id) {
         $this->check_admin(2);

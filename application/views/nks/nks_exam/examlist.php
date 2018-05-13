@@ -56,11 +56,7 @@
                 $del_url = $url . 'nksexam/examdelete/' . $row->ex_id;
                 $print_url = $url . 'nksexam/examprint/' . $row->ex_id;
                 echo("<td>");
-                if($row->ex_invname == '') {
-                    echo("<a href='$up_url' class='mws-button blue small'>修改</a>");
-                } else {
-                    echo("<a href='$print_url' class='mws-button green small'>打印试卷卷封</a>");
-                }
+                echo("<a href='$up_url' class='mws-button blue small'>修改</a>");
                 echo("<a href='$del_url' class='mws-button red small'>删除</a>");
                 echo("</td>");
                 echo("</tr>");

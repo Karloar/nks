@@ -54,11 +54,13 @@
 
                 $print_url = $url . 'nksexam/examprint/' . $row->ex_id;
                 $detail = $url . 'nksexam/showdetail/' . $row->ex_id;
+                $print_notice = $url . 'nksexam/printnotice/' . $row->ex_id;
 
                 echo('<td>');
-                echo("<a href='$detail' class='mws-button blue small'>详细信息</a>");
+                echo("<a href='$detail' class='mws-button blue small'>详细</a>");
+                echo("<a href='$print_notice' class='mws-button orange small'>通知单</a>");
 
-                echo("<a href='$print_url' class='mws-button green small'>打印试卷卷封</a></td>");
+                echo("<a href='$print_url' class='mws-button green small'>卷封</a></td>");
                 echo("</tr>");
             }
             ?>
