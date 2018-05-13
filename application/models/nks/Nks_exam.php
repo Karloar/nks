@@ -183,11 +183,11 @@ class Nks_exam extends CI_Model {
     }
 
     public function getInvExamNum() {
-        return $this->db->where('ex_invname !=', '')->count_all(Nks_exam::_table);
+        return $this->db->where('ex_invname !=', '')->get(self::_table)->num_rows();
     }
 
     public function getNotInvExamNum() {
-        return $this->db->where('ex_invname', '')->count_all(Nks_exam::_table);
+        return $this->db->where('ex_invname', '')->get(self::_table)->num_rows();
     }
 
     public function getExamNumByLabId($lb_id) {
