@@ -459,6 +459,9 @@ class Nksexam extends Nksmanager
                 $b = $i * $perpage;
                 $page[$i] = $this->nks_exam->getExamsBetweenDateByPage($_POST['begin_date'], $_POST['end_date'], $b, $perpage);
             }
+            if($total_num == 0) {
+                $page[0] = array();
+            }
             $data['page'] = $page;
             $this->load->view('nks/nks_exam/exambigtable', $data);
 
