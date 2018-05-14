@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : JLUNLP
+ Source Server         : MySQL
  Source Server Type    : MySQL
- Source Server Version : 50173
- Source Host           : bdm256143399.my3w.com:3306
+ Source Server Version : 50719
+ Source Host           : localhost:3306
  Source Schema         : bdm256143399_db
 
  Target Server Type    : MySQL
- Target Server Version : 50173
+ Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 10/05/2018 20:51:08
+ Date: 14/05/2018 15:39:37
 */
 
 SET NAMES utf8mb4;
@@ -75,17 +75,26 @@ CREATE TABLE `nks_exam`  (
   `ex_xunkao` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ex_note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ex_lab` int(11) NULL DEFAULT 0,
-  `ex_input_date` datetime NULL DEFAULT NULL,
+  `ex_input_date` datetime(0) NULL DEFAULT NULL,
+  `ex_not_lab` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ex_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nks_exam
 -- ----------------------------
-INSERT INTO `nks_exam` VALUES (1, '高等数学AIII', '2018', 1, 1, '2018-01-12', 3, 5, 1, 1, 2, 125, 0, 3, '', '闫昭 张雪松 王英', '', '', 1, '2018-05-07 15:39:13');
-INSERT INTO `nks_exam` VALUES (2, '计算机导论', '2017', 2, 1, '2018-01-09', 3, 5, 1, 1, 4, 123, 0, 3, '张浩', '', '', '', 7, '2018-05-07 14:03:15');
-INSERT INTO `nks_exam` VALUES (5, '模拟电子技术基础', '2017', 1, 0, '2018-01-08', 6, 7, 1, 11, 4, 123, 0, 5, '申铉京', '刘大有 欧阳继红 王生生 杨博 虞强源', '', '', 2, '2018-05-07 18:43:29');
-INSERT INTO `nks_exam` VALUES (6, '线性代数A', '2018', 3, 0, '2019-08-10', 5, 4, 1, 12, 5, 41, 0, 5, '', '胡亮 徐高潮 魏晓辉 张猛 赵永哲', '', '', 13, '2018-05-07 19:51:20');
+INSERT INTO `nks_exam` VALUES (1, '高等数学AIII', '2018', 1, 1, '2018-01-12', 3, 5, 1, 1, 2, 125, 0, 3, '', '闫昭 张雪松 王英', '', '', 1, '2018-05-07 15:39:13', NULL);
+INSERT INTO `nks_exam` VALUES (2, '计算机导论', '2017', 2, 1, '2018-01-09', 3, 5, 1, 1, 4, 123, 0, 3, '张浩', '', '', '', 7, '2018-05-07 14:03:15', NULL);
+INSERT INTO `nks_exam` VALUES (5, '模拟电子技术基础', '2017', 1, 0, '2018-01-08', 6, 7, 1, 11, 4, 123, 0, 5, '申铉京', '刘大有 欧阳继红 王生生 杨博 虞强源', '', '', 2, '2018-05-13 16:06:23', '');
+INSERT INTO `nks_exam` VALUES (6, '线性代数A', '2018', 3, 0, '2019-08-10', 5, 4, 1, 12, 5, 41, 0, 5, '', '', '', '', 13, '2018-05-13 16:03:57', '');
+INSERT INTO `nks_exam` VALUES (7, '离散数学II', '2016', 1, 0, '2018-01-08', 3, 4, 1, 1, 3, 123, 0, 5, '', '', '', '', 4, '2018-05-11 12:00:20', '2-5-');
+INSERT INTO `nks_exam` VALUES (8, '离散数学II', '2017', 1, 0, '2018-01-08', 3, 7, 1, 1, 1, 123, 0, 2, '', '', '', '', 14, '2018-05-10 22:03:03', NULL);
+INSERT INTO `nks_exam` VALUES (9, '人工智能', '2037', 1, 0, '2018-05-10', 2, 3, 1, 10, 4, 454, 0, 12, '', '彭涛 谢文慧 邱旭光 周世奇 靖思婷 张林 崔海 梁琪 王碧琳 刘姝秀 于洪江 王磊', '', '', 1, '2018-05-13 16:33:34', '6-');
+INSERT INTO `nks_exam` VALUES (10, '可计算性与计算复杂性', '2018', 1, 0, '2018-05-19', 5, 5, 1, 12, 0, 123, 0, 8, '', '彭涛 谢文慧 周世奇 崔海 宋健 邱旭光 杨妮亚 王岩', '', '', 1, '2018-05-13 16:29:11', '7-8-10-');
+INSERT INTO `nks_exam` VALUES (11, '人工智能', '2016', 1, 0, '2018-05-27', 3, 3, 1, 10, 3, 103, 32, 3, '', '', '', '', 6, '2018-05-11 18:20:06', '5-');
+INSERT INTO `nks_exam` VALUES (12, '测试考试', '2015', 3, 1, '2018-05-09', 5, 4, 1, 10, 1, 454, 0, 1, '', '', '', '', 12, '2018-05-13 16:03:08', '1-3-');
+INSERT INTO `nks_exam` VALUES (13, '测试考试2', '2017', 3, 0, '2018-05-09', 3, 3, 1, 10, 4, 123, 0, 3, '哈哈', '', '', '', 8, '2018-05-13 16:24:14', '1-3-5-');
+INSERT INTO `nks_exam` VALUES (14, '测试考试23', '2017', 3, 0, '2018-05-09', 3, 7, 1, 10, 5, 234, 0, 4, 'aaaa', '', '', '', 5, '2018-05-13 16:25:21', '1-6-10-');
 
 -- ----------------------------
 -- Table structure for nks_lab
@@ -103,20 +112,20 @@ CREATE TABLE `nks_lab`  (
 -- ----------------------------
 -- Records of nks_lab
 -- ----------------------------
-INSERT INTO `nks_lab` VALUES (1, '数据库与WEB智能', 5, 7, 1);
+INSERT INTO `nks_lab` VALUES (1, '数据库与WEB智能', 5, 7, 3);
 INSERT INTO `nks_lab` VALUES (2, '知识科学与知识工程', 6, 20, 1);
 INSERT INTO `nks_lab` VALUES (3, '计算智能', 7, 12, 0);
-INSERT INTO `nks_lab` VALUES (4, '智能信息处理', 8, 23, 0);
-INSERT INTO `nks_lab` VALUES (5, '智能工程', 9, 13, 0);
-INSERT INTO `nks_lab` VALUES (6, '软件形式化', 10, 11, 0);
+INSERT INTO `nks_lab` VALUES (4, '智能信息处理', 8, 23, 1);
+INSERT INTO `nks_lab` VALUES (5, '智能工程', 9, 13, 1);
+INSERT INTO `nks_lab` VALUES (6, '软件形式化', 10, 11, 1);
 INSERT INTO `nks_lab` VALUES (7, '计算机图形学与数字媒体', 11, 7, 1);
-INSERT INTO `nks_lab` VALUES (8, '计算机图像和虚拟现实技术', 12, 11, 0);
+INSERT INTO `nks_lab` VALUES (8, '计算机图像和虚拟现实技术', 12, 11, 1);
 INSERT INTO `nks_lab` VALUES (9, '移动通信与网络系统', 13, 12, 0);
 INSERT INTO `nks_lab` VALUES (10, '计算机协同工作技术', 14, 11, 0);
 INSERT INTO `nks_lab` VALUES (11, '智能控制与嵌入式系统', 15, 11, 0);
-INSERT INTO `nks_lab` VALUES (12, '数据库与智能网络', 16, 7, 0);
+INSERT INTO `nks_lab` VALUES (12, '数据库与智能网络', 16, 7, 1);
 INSERT INTO `nks_lab` VALUES (13, '网格计算与网络安全', 17, 22, 1);
-INSERT INTO `nks_lab` VALUES (14, '生物识别与信息安全技术', 18, 6, 0);
+INSERT INTO `nks_lab` VALUES (14, '生物识别与信息安全技术', 18, 6, 1);
 INSERT INTO `nks_lab` VALUES (15, '传感器网络与环境智能', 19, 8, 0);
 INSERT INTO `nks_lab` VALUES (16, '软件工程', 20, 11, 0);
 INSERT INTO `nks_lab` VALUES (17, '通信软件与协议工程', 21, 11, 0);
