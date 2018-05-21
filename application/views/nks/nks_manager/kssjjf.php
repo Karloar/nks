@@ -222,7 +222,7 @@
                         ?>
                     </td>
                     <td id="实考人数" colspan="5">实考人数</td>
-                    <td id="实考人数填写" colspan="5"><?=  $obj->ex_stunum-$obj->ex_absence ?></td>
+                    <td id="实考人数填写" colspan="5"></td>
                 </tr>
                 <tr id="第六行">
                     <td id="考试地点">考试地点</td>

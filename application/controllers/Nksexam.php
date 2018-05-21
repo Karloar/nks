@@ -501,7 +501,12 @@ class Nksexam extends Nksmanager
         $obj = $this->nks_exam->getExamById($ex_id);
         $data['major_arr'] = $this->nks_major->getMajorsByAcId($obj->ac_id);
         $data['obj'] = $obj;
-        $this->load->view('nks/nks_manager/kssjjf', $data);
+        $cl_name = $obj->class_name;
+        $cl_name = explode('-', $cl_name);
+        for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
+            $data['nc'] = $i;
+            $this->load->view('nks/nks_manager/kssjjf2', $data);
+        }
     }
 
     public function examdelete() {
