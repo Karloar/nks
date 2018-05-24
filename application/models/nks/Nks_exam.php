@@ -191,15 +191,15 @@ class Nks_exam extends CI_Model {
     }
 
     public function getExamNumByLabId($lb_id) {
-        return $this->db->where('ex_lab', $lb_id)->count_all(Nks_exam::_table);
+        return $this->db->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
     public function getInvExamNumByLabId($lb_id) {
-        return $this->db->where('ex_invname !=', '')->where('ex_lab', $lb_id)->count_all(Nks_exam::_table);
+        return $this->db->where('ex_invname !=', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
     public function getNotInvExamNumByLabId($lb_id) {
-        return $this->db->where('ex_invname', '')->where('ex_lab', $lb_id)->count_all(Nks_exam::_table);
+        return $this->db->where('ex_invname', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
     public function update($arr) {

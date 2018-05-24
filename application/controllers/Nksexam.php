@@ -526,8 +526,8 @@ class Nksexam extends Nksmanager
     }
 
     public function academychange($ac_id) {
-        $this->load->model('nks/nks_major');
-        $res = $this->nks_major->getMajorsbyAcId($ac_id);
-        echo(json_encode($res));
-    }
+    $this->load->model('nks/nks_major');
+    $res = $this->nks_major->getMajorsbyAcId($ac_id);
+    echo(json_encode($res));
+}
 }
