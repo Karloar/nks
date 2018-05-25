@@ -1017,7 +1017,7 @@ width:22pt'>
   </td>
   <td colspan=5 class=xl6927817 style='border-left:none'>缺 考 人 数</td>
   <td colspan=6 class=xl6927817 style='border-right:1.0pt solid black;
-  border-left:none'><?=  $obj->ex_absence ?></td>
+  border-left:none'></td>
  </tr>
  <tr height=40 style='mso-height-source:userset;height:30.0pt'>
   <td height=40 class=xl6927817 style='height:30.0pt;border-top:none;
@@ -1038,8 +1038,9 @@ width:22pt'>
  <tr height=40 style='mso-height-source:userset;height:30.0pt'>
   <td height=40 class=xl6927817 style='height:30.0pt;border-top:none;
   border-left:none'>监 考 教 师</td>
-  <td colspan=22 class=xl7727817 style='text-align:center;border-right:1.0pt solid black;
-  border-left:none'><?php echo($obj->ex_invname); ?></td>
+     <td colspan=22 class=xl7727817 style='border-right:1.0pt solid black;
+  border-left:none'>（签 名）</td>
+ </tr>
  </tr>
  <tr class=xl6427817 height=46 style='mso-height-source:userset;height:35.1pt'>
   <td rowspan=6 height=352 class=xl7927817 width=34 style='border-bottom:1.0pt solid black;
@@ -1221,6 +1222,32 @@ width:22pt'>
   <td class=xl1527817></td>
   <td class=xl1527817></td>
  </tr>
+    <tr height=19 style='height:14.25pt'>
+        <td height=19 class=xl1527817 style='height:14.25pt'></td>
+        <td class=xl6427817></td>
+        <td class=xl6427817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl6427817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+        <td class=xl1527817></td>
+    </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
   <td width=34 style='width:26pt'></td>

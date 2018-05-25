@@ -92,72 +92,13 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-generic-font-family:auto;
 	mso-font-charset:134;
 	mso-number-format:General;
-	text-align:center;
-	vertical-align:middle;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:nowrap;}
-.xl6612210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:11.0pt;
-	font-weight:400;
-	font-style:normal;
-	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:left;
-	vertical-align:top;
-	border:.5pt solid windowtext;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:normal;}
-.xl6712210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:11.0pt;
-	font-weight:400;
-	font-style:normal;
-	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:center;
-	vertical-align:middle;
-	border:.5pt solid windowtext;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:nowrap;}
-.xl6812210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:11.0pt;
-	font-weight:400;
-	font-style:normal;
-	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
-	mso-font-charset:134;
-	mso-number-format:General;
 	text-align:general;
 	vertical-align:middle;
 	border:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6912210
+.xl6612210
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -180,7 +121,53 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl7012210
+.xl6712210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6812210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6912210
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -196,10 +183,26 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-number-format:General;
 	text-align:center;
 	vertical-align:middle;
-	border-top:.5pt solid windowtext;
-	border-right:none;
-	border-bottom:none;
-	border-left:.5pt solid windowtext;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl7012210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:10.5pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
@@ -217,7 +220,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-generic-font-family:auto;
 	mso-font-charset:134;
 	mso-number-format:General;
-	text-align:center;
+	text-align:general;
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
 	border-right:none;
@@ -242,10 +245,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-number-format:General;
 	text-align:center;
 	vertical-align:middle;
-	border-top:.5pt solid windowtext;
-	border-right:.5pt solid windowtext;
-	border-bottom:none;
-	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
@@ -255,20 +254,15 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	padding-left:1px;
 	mso-ignore:padding;
 	color:black;
-	font-size:11.0pt;
-	font-weight:400;
+	font-size:20.0pt;
+	font-weight:700;
 	font-style:normal;
 	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
+	font-family:新宋体, monospace;
 	mso-font-charset:134;
 	mso-number-format:General;
-	text-align:general;
+	text-align:center;
 	vertical-align:middle;
-	border-top:.5pt solid windowtext;
-	border-right:.5pt solid windowtext;
-	border-bottom:none;
-	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
@@ -278,20 +272,15 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	padding-left:1px;
 	mso-ignore:padding;
 	color:black;
-	font-size:11.0pt;
-	font-weight:400;
+	font-size:26.0pt;
+	font-weight:700;
 	font-style:normal;
 	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
+	font-family:新宋体, monospace;
 	mso-font-charset:134;
 	mso-number-format:General;
 	text-align:center;
 	vertical-align:middle;
-	border-top:.5pt solid windowtext;
-	border-right:none;
-	border-bottom:.5pt solid windowtext;
-	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
@@ -313,11 +302,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
 	border-right:none;
-	border-bottom:.5pt solid windowtext;
-	border-left:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:nowrap;}
+	white-space:normal;}
 .xl7612210
 	{padding-top:1px;
 	padding-right:1px;
@@ -335,12 +324,12 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	text-align:center;
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
-	border-right:.5pt solid windowtext;
-	border-bottom:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
 	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:nowrap;}
+	white-space:normal;}
 .xl7712210
 	{padding-top:1px;
 	padding-right:1px;
@@ -355,15 +344,15 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-generic-font-family:auto;
 	mso-font-charset:134;
 	mso-number-format:General;
-	text-align:general;
+	text-align:center;
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
 	border-right:.5pt solid windowtext;
-	border-bottom:.5pt solid windowtext;
+	border-bottom:none;
 	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:nowrap;}
+	white-space:normal;}
 .xl7812210
 	{padding-top:1px;
 	padding-right:1px;
@@ -386,7 +375,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:nowrap;}
+	white-space:normal;}
 .xl7912210
 	{padding-top:1px;
 	padding-right:1px;
@@ -409,7 +398,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:nowrap;}
+	white-space:normal;}
 .xl8012210
 	{padding-top:1px;
 	padding-right:1px;
@@ -432,7 +421,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:nowrap;}
+	white-space:normal;}
 .xl8112210
 	{padding-top:1px;
 	padding-right:1px;
@@ -450,7 +439,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	text-align:center;
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
-	border-right:none;
+	border-right:.5pt solid windowtext;
 	border-bottom:none;
 	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
@@ -472,10 +461,10 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-number-format:General;
 	text-align:center;
 	vertical-align:middle;
-	border-top:.5pt solid windowtext;
-	border-right:none;
-	border-bottom:none;
-	border-left:none;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
+	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:normal;}
@@ -496,12 +485,12 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	text-align:center;
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
-	border-right:.5pt solid windowtext;
+	border-right:none;
 	border-bottom:none;
-	border-left:none;
+	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:normal;}
+	white-space:nowrap;}
 .xl8412210
 	{padding-top:1px;
 	padding-right:1px;
@@ -518,60 +507,14 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-number-format:General;
 	text-align:center;
 	vertical-align:middle;
-	border-top:none;
+	border-top:.5pt solid windowtext;
 	border-right:none;
-	border-bottom:.5pt solid windowtext;
-	border-left:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:normal;}
+	white-space:nowrap;}
 .xl8512210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:11.0pt;
-	font-weight:400;
-	font-style:normal;
-	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:center;
-	vertical-align:middle;
-	border-top:none;
-	border-right:none;
-	border-bottom:.5pt solid windowtext;
-	border-left:none;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:normal;}
-.xl8612210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:11.0pt;
-	font-weight:400;
-	font-style:normal;
-	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:center;
-	vertical-align:middle;
-	border-top:none;
-	border-right:.5pt solid windowtext;
-	border-bottom:.5pt solid windowtext;
-	border-left:none;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:normal;}
-.xl8712210
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -590,10 +533,56 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	border-top:.5pt solid windowtext;
 	border-right:.5pt solid windowtext;
 	border-bottom:none;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl8612210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
 	border-left:.5pt solid windowtext;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:normal;}
+	white-space:nowrap;}
+.xl8712210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
 .xl8812210
 	{padding-top:1px;
 	padding-right:1px;
@@ -613,66 +602,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	border-top:none;
 	border-right:.5pt solid windowtext;
 	border-bottom:.5pt solid windowtext;
-	border-left:.5pt solid windowtext;
+	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
-	white-space:normal;}
+	white-space:nowrap;}
 .xl8912210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:20.0pt;
-	font-weight:700;
-	font-style:normal;
-	text-decoration:none;
-	font-family:新宋体, monospace;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:center;
-	vertical-align:middle;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:nowrap;}
-.xl9012210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:26.0pt;
-	font-weight:700;
-	font-style:normal;
-	text-decoration:none;
-	font-family:新宋体, monospace;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:center;
-	vertical-align:middle;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:nowrap;}
-.xl9112210
-	{padding-top:1px;
-	padding-right:1px;
-	padding-left:1px;
-	mso-ignore:padding;
-	color:black;
-	font-size:10.5pt;
-	font-weight:700;
-	font-style:normal;
-	text-decoration:none;
-	font-family:宋体;
-	mso-generic-font-family:auto;
-	mso-font-charset:134;
-	mso-number-format:General;
-	text-align:general;
-	vertical-align:middle;
-	mso-background-source:auto;
-	mso-pattern:auto;
-	white-space:nowrap;}
-.xl9212210
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -691,6 +625,72 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
+.xl9012210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:top;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl9112210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl9212210
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:宋体;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
 .xl9312210
 	{padding-top:1px;
 	padding-right:1px;
@@ -705,11 +705,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-generic-font-family:auto;
 	mso-font-charset:134;
 	mso-number-format:General;
-	text-align:general;
+	text-align:center;
 	vertical-align:middle;
 	border-top:.5pt solid windowtext;
-	border-right:none;
-	border-bottom:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
 	border-left:none;
 	mso-background-source:auto;
 	mso-pattern:auto;
@@ -760,66 +760,69 @@ rt
  <col width=105 style='mso-width-source:userset;mso-width-alt:3360;width:79pt'>
  <col width=15 style='mso-width-source:userset;mso-width-alt:480;width:11pt'>
  <tr height=25 style='mso-height-source:userset;height:18.75pt'>
-  <td colspan=17 rowspan=2 height=49 class=xl8912210 width=666
+  <td colspan=17 rowspan=2 height=49 class=xl7312210 width=666
   style='height:36.75pt;width:501pt'>吉林大学考试通知单</td>
  </tr>
  <tr class=xl6312210 height=24 style='mso-height-source:userset;height:18.0pt'>
  </tr>
  <tr class=xl6312210 height=40 style='mso-height-source:userset;height:30.0pt'>
-  <td height=40 class=xl6912210 style='height:30.0pt'>　</td>
-  <td colspan=4 class=xl7012210 style='border-right:.5pt solid black;
+  <td height=40 class=xl6612210 style='height:30.0pt'>　</td>
+  <td colspan=4 class=xl8312210 style='border-right:.5pt solid black;
   border-left:none'>考试科目</td>
-  <td colspan=8 class=xl7112210 style='border-right:.5pt solid black'><?= isset($obj->ex_name)? $obj->ex_name: '' ?></td>
-  <td colspan=2 class=xl7012210 style='border-right:.5pt solid black;
+  <td colspan=8 class=xl8412210 style='border-right:.5pt solid black'><?= isset($obj->ex_name)? $obj->ex_name: '' ?></td>
+  <td colspan=2 class=xl8312210 style='border-right:.5pt solid black;
   border-left:none'>考试时间</td>
-  <td class=xl7312210 style="text-align:center;">
+  <td class=xl6712210 style="text-align: center;font-size:10px;">
       <?= isset($obj->ex_date)? $obj->ex_date: '' ?><br />
       <?= isset($obj->tm_time)? $obj->tm_time: '' ?>
   </td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=40 style='mso-height-source:userset;height:30.0pt'>
-  <td height=40 class=xl6912210 style='height:30.0pt'>　</td>
-  <td colspan=4 class=xl7412210 style='border-right:.5pt solid black;
+  <td height=40 class=xl6612210 style='height:30.0pt'>　</td>
+  <td colspan=4 class=xl9112210 style='border-right:.5pt solid black;
   border-left:none'>主考教师</td>
-  <td colspan=2 class=xl7412210 style='border-right:.5pt solid black;
+  <td colspan=2 class=xl9112210 style='border-right:.5pt solid black;
   border-left:none'><?= isset($obj->ex_maininv)? $obj->ex_maininv: '' ?></td>
-  <td colspan=2 class=xl7512210 style='border-right:.5pt solid black'>监考教师</td>
-  <td colspan=4 class=xl7512210 style='border-right:.5pt solid black; font-size:10px;text-align: center;'>　
+  <td colspan=2 class=xl9212210 style='border-right:.5pt solid black'>监考教师</td>
+  <td colspan=4 class=xl9212210 style='border-right:.5pt solid black;font-size:10px;'>
       <?php
       echo($obj->lb_name . '<br />' . $obj->ex_invinum . '人');
       ?>
   </td>
-  <td colspan=2 class=xl7412210 style='border-right:.5pt solid black;
+  <td colspan=2 class=xl9112210 style='border-right:.5pt solid black;
   border-left:none'>考试地点</td>
-  <td class=xl6812210 style='border-left:none;text-align: center;'>
+  <td class=xl6512210 style='border-left:none;text-align: center;'>
       <?php
       if(isset($obj->pl_id) && $obj->pl_id != 0) {
           $p = explode('-', $obj->pl_place);
           echo($p[0]. '楼 ' . $p[1]);
       }
-      ?></td>
+      ?>
+  </td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=40 style='mso-height-source:userset;height:30.0pt'>
-  <td height=40 class=xl6912210 style='height:30.0pt'>　</td>
-  <td colspan=4 class=xl7412210 style='border-right:.5pt solid black;
+  <td height=40 class=xl6612210 style='height:30.0pt'>　</td>
+  <td colspan=4 class=xl9112210 style='border-right:.5pt solid black;
   border-left:none'>考试班级、专业</td>
-  <td colspan=4 class=xl7412210 style='border-right:.5pt solid black;
-  border-left:none'><?= isset($obj->mj_name)? $obj->mj_name: '' ?>
-      <?= isset($obj->class_name)? $obj->class_name: '' ?></td>
-  <td class=xl6712210 style='border-top:none;border-left:none'>学生人数</td>
-  <td colspan=3 class=xl7512210 style='border-right:.5pt solid black'><?= isset($obj->ex_stunum)? $obj->ex_stunum: '' ?></td>
-  <td colspan=2 class=xl7412210 style='border-right:.5pt solid black;
+  <td colspan=4 class=xl9112210 style='border-right:.5pt solid black;
+  border-left:none'>
+      <?= isset($obj->mj_name)? $obj->mj_name: '' ?>
+      <?= isset($obj->class_name)? $obj->class_name: '' ?>
+  </td>
+  <td class=xl6912210 style='border-top:none;border-left:none'>学生人数</td>
+  <td colspan=3 class=xl9212210 style='border-right:.5pt solid black'><?= isset($obj->ex_stunum)? $obj->ex_stunum: '' ?></td>
+  <td colspan=2 class=xl9112210 style='border-right:.5pt solid black;
   border-left:none'>应试人数</td>
-  <td class=xl7712210 style='border-top:none'>　</td>
+  <td class=xl6812210 style='border-top:none'>　</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=40 style='mso-height-source:userset;height:30.0pt'>
-  <td height=40 class=xl6912210 style='height:30.0pt'>　</td>
-  <td colspan=4 class=xl7812210 style='border-right:.5pt solid black;
+  <td height=40 class=xl6612210 style='height:30.0pt'>　</td>
+  <td colspan=4 class=xl8612210 style='border-right:.5pt solid black;
   border-left:none'>请假学生姓名</td>
-  <td colspan=11 class=xl7912210 style='border-right:.5pt solid black'>　</td>
+  <td colspan=11 class=xl8712210 style='border-right:.5pt solid black'>　</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=19 style='mso-height-source:userset;height:14.25pt'>
@@ -851,7 +854,7 @@ rt
   <td class=xl6412210></td>
   <td class=xl6412210></td>
   <td class=xl6412210></td>
-  <td colspan=6 class=xl6512210>教学秘书（签字）：</td>
+  <td colspan=6 class=xl7212210>教学秘书（签字）：</td>
   <td class=xl6412210></td>
   <td class=xl6412210></td>
  </tr>
@@ -866,23 +869,18 @@ rt
   <td class=xl6412210></td>
   <td class=xl6412210></td>
   <td class=xl6412210></td>
-     <?php
-     $dt = explode('-', $obj->ex_date);
-     ?>
-  <td colspan=5 class=xl6512210>
-     <?php
-     $dt = explode('-', $obj->ex_date);
-     echo($dt[0] . " 年<span style='mso-spacerun:yes'>   </span>"
-     . $dt[1] . " 月<span style='mso-spacerun:yes'>    </span>"
-     . $dt[2] . " 日");
-     ?>
-  </td>
+  <td colspan=5 class=xl7212210>   <?php
+      $dt = explode('-', $obj->ex_date);
+      echo($dt[0] . " 年<span style='mso-spacerun:yes'>   </span>"
+          . $dt[1] . " 月<span style='mso-spacerun:yes'>    </span>"
+          . $dt[2] . " 日");
+      ?></td>
   <td class=xl6412210></td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=30 style='mso-height-source:userset;height:23.1pt'>
   <td height=30 class=xl6412210 style='height:23.1pt'></td>
-  <td colspan=5 class=xl6512210>（以上项目由教学秘书填写）</td>
+  <td colspan=5 class=xl7212210>（以上项目由教学秘书填写）</td>
   <td class=xl6412210></td>
   <td class=xl6412210></td>
   <td class=xl6412210></td>
@@ -915,55 +913,55 @@ rt
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=16 style='mso-height-source:userset;height:12.0pt'>
-  <td height=16 class=xl9312210 style='height:12.0pt'>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
-  <td class=xl9312210>　</td>
+  <td height=16 class=xl7112210 style='height:12.0pt'>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
+  <td class=xl7112210>　</td>
  </tr>
  <tr class=xl6312210 height=17 style='mso-height-source:userset;height:12.75pt'>
-  <td colspan=17 rowspan=2 height=55 class=xl9012210 style='height:41.25pt'>考<span
-  style='mso-spacerun:yes'>  </span>场<span style='mso-spacerun:yes'> 
-  </span>记<span style='mso-spacerun:yes'>  </span>录</td>
+  <td colspan=17 rowspan=2 height=55 class=xl7412210 style='height:41.25pt'>考<span
+  style='mso-spacerun:yes'>&nbsp; </span>场<span style='mso-spacerun:yes'>&nbsp;
+  </span>记<span style='mso-spacerun:yes'>&nbsp; </span>录</td>
  </tr>
  <tr class=xl6312210 height=38 style='mso-height-source:userset;height:28.5pt'>
  </tr>
  <tr class=xl6312210 height=40 style='mso-height-source:userset;height:30.0pt'>
   <td height=40 class=xl6412210 style='height:30.0pt'></td>
-  <td colspan=4 class=xl6712210>实际考试人数</td>
-  <td class=xl6812210 style='border-left:none'>　</td>
-  <td colspan=3 class=xl6712210 style='border-left:none'>缺考人数</td>
-  <td colspan=2 class=xl6712210 style='border-left:none'>　</td>
-  <td colspan=4 class=xl6712210 style='border-left:none'>收回试卷份数</td>
-  <td class=xl6812210 style='border-left:none'>　</td>
+  <td colspan=4 class=xl6912210>实际考试人数</td>
+  <td class=xl6512210 style='border-left:none'>　</td>
+  <td colspan=3 class=xl6912210 style='border-left:none'>缺考人数</td>
+  <td colspan=2 class=xl6912210 style='border-left:none'>　</td>
+  <td colspan=4 class=xl6912210 style='border-left:none'>收回试卷份数</td>
+  <td class=xl6512210 style='border-left:none'>　</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=40 style='mso-height-source:userset;height:30.0pt'>
   <td height=40 class=xl6412210 style='height:30.0pt'></td>
-  <td colspan=4 class=xl6712210>缺考学生姓名</td>
-  <td class=xl6812210 style='border-top:none;border-left:none'>　</td>
-  <td colspan=3 class=xl6712210 style='border-left:none'>　</td>
-  <td colspan=2 class=xl6712210 style='border-left:none'>　</td>
-  <td colspan=4 class=xl6712210 style='border-left:none'>　</td>
-  <td class=xl6812210 style='border-top:none;border-left:none'>　</td>
+  <td colspan=4 class=xl6912210>缺考学生姓名</td>
+  <td class=xl6512210 style='border-top:none;border-left:none'>　</td>
+  <td colspan=3 class=xl6912210 style='border-left:none'>　</td>
+  <td colspan=2 class=xl6912210 style='border-left:none'>　</td>
+  <td colspan=4 class=xl6912210 style='border-left:none'>　</td>
+  <td class=xl6512210 style='border-top:none;border-left:none'>　</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=30 style='mso-height-source:userset;height:23.1pt'>
   <td height=30 class=xl6412210 style='height:23.1pt'></td>
-  <td colspan=15 rowspan=4 class=xl6612210 width=636 style='width:479pt'><br>
-    <span style='mso-spacerun:yes'>    </span>违纪情况记录：</td>
+  <td colspan=15 rowspan=4 class=xl9012210 width=636 style='width:479pt'><br>
+    <span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>违纪情况记录：</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=30 style='mso-height-source:userset;height:23.1pt'>
@@ -980,8 +978,8 @@ rt
  </tr>
  <tr class=xl6312210 height=30 style='mso-height-source:userset;height:23.1pt'>
   <td height=30 class=xl6412210 style='height:23.1pt'></td>
-  <td colspan=15 rowspan=6 class=xl6612210 width=636 style='width:479pt'><br>
-    <span style='mso-spacerun:yes'>    </span>考试情况记录：</td>
+  <td colspan=15 rowspan=6 class=xl9012210 width=636 style='width:479pt'><br>
+    <span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>考试情况记录：</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=30 style='mso-height-source:userset;height:23.1pt'>
@@ -1006,19 +1004,19 @@ rt
  </tr>
  <tr class=xl6312210 height=28 style='mso-height-source:userset;height:21.0pt'>
   <td height=28 class=xl6412210 style='height:21.0pt'></td>
-  <td colspan=3 rowspan=2 class=xl8112210 width=83 style='border-right:.5pt solid black;
+  <td colspan=3 rowspan=2 class=xl7512210 width=83 style='border-right:.5pt solid black;
   border-bottom:.5pt solid black;width:63pt'>主考<br>
     （签字）</td>
-  <td colspan=3 rowspan=2 class=xl8112210 width=140 style='border-right:.5pt solid black;
+  <td colspan=3 rowspan=2 class=xl7512210 width=140 style='border-right:.5pt solid black;
   border-bottom:.5pt solid black;width:105pt'>　</td>
-  <td rowspan=2 class=xl8712210 width=72 style='border-bottom:.5pt solid black;
+  <td rowspan=2 class=xl8112210 width=72 style='border-bottom:.5pt solid black;
   border-top:none;width:54pt'>监考<br>
     （签字）</td>
-  <td colspan=4 rowspan=2 class=xl8112210 width=132 style='border-right:.5pt solid black;
+  <td colspan=4 rowspan=2 class=xl7512210 width=132 style='border-right:.5pt solid black;
   border-bottom:.5pt solid black;width:99pt'>　</td>
-  <td colspan=3 rowspan=2 class=xl7012210 style='border-right:.5pt solid black;
+  <td colspan=3 rowspan=2 class=xl8312210 style='border-right:.5pt solid black;
   border-bottom:.5pt solid black'>考试时间</td>
-  <td rowspan=2 class=xl8712210 width=105 style='border-bottom:.5pt solid black;
+  <td rowspan=2 class=xl8112210 width=105 style='border-bottom:.5pt solid black;
   border-top:none;width:79pt'>　</td>
   <td class=xl6412210></td>
  </tr>
@@ -1028,53 +1026,55 @@ rt
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210>注：</td>
-  <td class=xl9112210>1、</td>
-  <td colspan=13 class=xl9212210>在考试前教学秘书应将考试通知单发放给主考教师。</td>
+  <td class=xl7012210>注：</td>
+  <td class=xl7012210>1、</td>
+  <td colspan=13 class=xl8912210>在考试前教学秘书应将考试通知单发放给主考教师。</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210></td>
-  <td class=xl9112210>2、</td>
-  <td colspan=13 class=xl9112210>考试结束后，请主监考认真填写考场记录，并送交任课教研室作为评卷的参考依据，评</td>
+  <td class=xl7012210></td>
+  <td class=xl7012210>2、</td>
+  <td colspan=13 class=xl7012210>考试结束后，请主监考认真填写考场记录，并送交任课教研室作为评卷的参考依据，评</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210></td>
-  <td class=xl9112210></td>
-  <td colspan=13 class=xl9112210>卷结束后交教学秘书。</td>
+  <td class=xl7012210></td>
+  <td class=xl7012210></td>
+  <td colspan=13 class=xl7012210>卷结束后交教学秘书。</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210></td>
-  <td class=xl9112210>3、</td>
-  <td colspan=13 class=xl9112210>教学秘书应妥善保存考试记录。</td>
+  <td class=xl7012210></td>
+  <td class=xl7012210>3、</td>
+  <td colspan=13 class=xl7012210>教学秘书应妥善保存考试记录。</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210></td>
-  <td class=xl9112210>4、</td>
-  <td colspan=13 class=xl9112210>主考、监考教师应认真阅读《吉林大学考试监考人员守则》(附后)。</td>
+  <td class=xl7012210></td>
+  <td class=xl7012210>4、</td>
+  <td colspan=13 class=xl7012210>主考、监考教师应认真阅读《吉林大学考试监考人员守则》(附后)。</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210></td>
-  <td class=xl9112210>5、</td>
-  <td colspan=13 class=xl9112210>开考前主考、监考教师要认真向参加考试的学生宣读《吉林大学本(专)科学生考试纪律</td>
+  <td class=xl7012210></td>
+  <td class=xl7012210>5、</td>
+  <td colspan=13 class=xl7012210>开考前主考、监考教师要认真向参加考试的学生宣读《吉林大学本(专)科学生考试纪律</td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=26 style='mso-height-source:userset;height:20.1pt'>
   <td height=26 class=xl6412210 style='height:20.1pt'></td>
-  <td class=xl9112210></td>
-  <td class=xl9112210></td>
-  <td colspan=13 class=xl9112210>规范》(附后)。</td>
+  <td class=xl7012210></td>
+  <td class=xl7012210></td>
+  <td colspan=13 class=xl7012210>规范》(附后)。</td>
   <td class=xl6412210></td>
  </tr>
+<tr class=xl6312210 height=30>
+</tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
   <td width=15 style='width:11pt'></td>
