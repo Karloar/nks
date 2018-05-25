@@ -293,6 +293,7 @@ class Nksexam extends Nksmanager
         } else {
             $data['major_arr'] = $this->nks_major->getAllMajors();
         }
+
         $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_exam/exam_add");
         $this->load->view("nks/nks_global/footer_man");

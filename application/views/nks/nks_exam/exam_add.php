@@ -131,6 +131,7 @@
                         <select name="mj_id" id="mj_id" class="chzn-select">
                             <?php
                             echo("<option value='0'></option>");
+
                             foreach($major_arr as $row) {
                                 if(isset($obj->mj_id) && $obj->mj_id == $row->mj_id) {
                                     echo("<option value='$row->mj_id' selected>$row->mj_name</option>");
