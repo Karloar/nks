@@ -812,7 +812,7 @@ rt
       <?= isset($obj->class_name)? $obj->class_name: '' ?>
   </td>
   <td class=xl6912210 style='border-top:none;border-left:none'>学生人数</td>
-  <td colspan=3 class=xl9212210 style='border-right:.5pt solid black'><?= isset($obj->ex_stunum)? $obj->ex_stunum: '' ?></td>
+  <td colspan=3 class=xl9212210 style='border-right:.5pt solid black'><?= isset($obj->ex_stunum) && $obj->ex_stunum != 0 ? $obj->ex_stunum: '' ?></td>
   <td colspan=2 class=xl9112210 style='border-right:.5pt solid black;
   border-left:none'>应试人数</td>
   <td class=xl6812210 style='border-top:none'>　</td>

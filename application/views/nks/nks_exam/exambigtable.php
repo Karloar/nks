@@ -181,16 +181,16 @@ rt
 
         foreach($p as $row) {
             echo("<tr height=24 style='mso-height-source:userset;height:18.0pt'>");
-            $invname = '';
-            if($row->ex_invname != '') {
-                $invname = explode(' ', $row->ex_invname)[0];
-                $invname .= $row->ex_invinum . '人';
-            }
+
             echo("<td height=24 class=xl6417734 style='height:18.0pt;border-top:none'>$row->ac_name</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_grade</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->pl_place</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_maininv</td>");
+            $invname = $row->us_name . ' ' . $row->ex_invinum . ' 人';
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$invname</td>");
+            if($row->ex_stunum == 0) {
+                $row->ex_stunum = '';
+            }
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_stunum</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_name</td>");
             $ex_mode = array('闭卷', '开卷');

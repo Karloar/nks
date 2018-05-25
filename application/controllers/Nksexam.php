@@ -95,8 +95,7 @@ class Nksexam extends Nksmanager
         $user = $_SESSION['nks_user'];
 
         if(isset($_POST['ex_name']) && $_POST['ex_name'] != '' && isset($_POST['ex_grade']) && $_POST['ex_grade'] != ''
-            && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_stunum']) && $_POST['ex_stunum'] != ''
-            && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
+            && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note'));
@@ -482,7 +481,7 @@ class Nksexam extends Nksmanager
             'form_ac' => 'nksexam/printexamlist'
         );
         $this->load->view("nks/nks_global/admin_header_ks", $data);
-        $this->load->view("nks/nks_exam/printdate");
+        $this->load->view("nks/nks_exam/printargs");
         $this->load->view("nks/nks_global/footer_man");
     }
 

@@ -981,7 +981,7 @@ width:22pt'>
   </td>
   <td colspan=5 class=xl7527817 style='border-left:none'>应 考 人 数</td>
   <td colspan=6 class=xl6927817 style='border-right:1.0pt solid black;
-  border-left:none'><?=  $obj->ex_stunum ?></td>
+  border-left:none'><?=  $obj->ex_stunum==0? '': $obj->ex_stunum ?></td>
  </tr>
  <tr class=xl6327817 height=78 style='mso-height-source:userset;height:58.5pt'>
   <td height=78 class=xl6927817 style='height:58.5pt;border-top:none;

@@ -84,7 +84,7 @@
                 <div class="mws-form-row">
                     <label>学生人数</label>
                     <div class="mws-form-item large">
-                        <input name="ex_stunum" class="mws-textinput" value="<?=isset($obj->ex_stunum)?$obj->ex_stunum:'';?>" type="number" readonly="readonly">
+                        <input name="ex_stunum" class="mws-textinput" value="<?=isset($obj->ex_stunum) && $obj->ex_stunum!=0?$obj->ex_stunum:'';?>" type="number" readonly="readonly">
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -120,6 +120,9 @@
                             }
                         }
                         $ex_not_lab = trim($ex_not_lab);
+                        if($ex_not_lab == '') {
+                            $ex_not_lab = '<br />';
+                        }
                         ?>
                         <div class="mws-textinput"><?php echo($ex_not_lab); ?></div>
                     </div>

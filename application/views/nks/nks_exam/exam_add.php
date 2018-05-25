@@ -90,7 +90,7 @@
                 <div class="mws-form-row">
                     <label>考试时间</label>
                     <div class="mws-form-item large">
-                        <select name="tm_id">
+                        <select name="tm_id" class="chzn-select">
                             <?php
                             echo("<option value='0'></option>");
                             foreach($time_arr as $row) {
@@ -112,7 +112,7 @@
                 <div class="mws-form-row">
                     <label>学院</label>
                     <div class="mws-form-item large">
-                        <select name="ac_id" id="ac_id" onchange="ac_change();">
+                        <select name="ac_id" id="ac_id" onchange="ac_change();" class="chzn-select">
                             <?php
                             foreach($academy_arr as $row) {
                                 if(isset($obj->ac_id) && $obj->ac_id == $row->ac_id) {
@@ -128,7 +128,7 @@
                 <div class="mws-form-row">
                     <label>考试专业</label>
                     <div class="mws-form-item large">
-                        <select name="mj_id" id="mj_id">
+                        <select name="mj_id" id="mj_id" class="chzn-select">
                             <?php
                             echo("<option value='0'></option>");
                             foreach($major_arr as $row) {
@@ -150,7 +150,7 @@
                 <div class="mws-form-row">
                     <label>班级</label>
                     <div class="mws-form-item large">
-                        <select name="class_id">
+                        <select name="class_id" class="chzn-select">
                             <?php
                             echo("<option value='0'></option>");
                             foreach($class_arr as $row) {
@@ -172,7 +172,7 @@
                 <div class="mws-form-row">
                     <label>考试地点</label>
                     <div class="mws-form-item large">
-                        <select name="pl_id">
+                        <select name="pl_id" class="chzn-select">
                             <?php
                             echo("<option value='0'></option>");
                             foreach($place_arr as $row) {
@@ -210,7 +210,7 @@
                 <div class="mws-form-row">
                     <label>监考人数</label>
                     <div class="mws-form-item large">
-                        <select name="ex_invinum" required>
+                        <select name="ex_invinum" class="chzn-select" required="required">
                             <option value=""></option>
                             <?php
                             for($i=1;$i<=5;$i++) {
@@ -228,7 +228,7 @@
                 <div class="mws-form-row">
                     <label>学生人数</label>
                     <div class="mws-form-item large">
-                        <input name="ex_stunum" class="mws-textinput" value="<?=isset($obj->ex_stunum)?$obj->ex_stunum:'';?>" type="number">
+                        <input name="ex_stunum" class="mws-textinput" value="<?=isset($obj->ex_stunum) && $obj->ex_stunum != 0?$obj->ex_stunum:'';?>" type="number">
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -250,7 +250,7 @@
                     echo('<div class="mws-form-row">');
                     echo('<label>监考教师所属实验室</label>');
                     echo('<div class="mws-form-item large">');
-                    echo('<select name="ex_lab">');
+                    echo('<select name="ex_lab" class="chzn-select">');
                         foreach($lab_arr as $row) {
                             if($obj->ex_lab == $row->lb_id) {
                                 echo("<option value='$row->lb_id' selected>$row->lb_name</option>");
