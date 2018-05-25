@@ -74,6 +74,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->get(Nks_exam::_table);
         return $query->result()[0];
     }
@@ -86,6 +87,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
         return $query->result();
@@ -99,6 +101,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
             ->limit($maxResults, $firstResult)->order_by('ex_date, ex_name, ex_grade')
@@ -114,6 +117,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname', '')
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
@@ -128,6 +132,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname !=', '')
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
@@ -142,6 +147,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('lb_id', $lb_id)
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
@@ -156,6 +162,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname !=', '')
             ->where('lb_id', $lb_id)
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
@@ -171,6 +178,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname', '')
             ->where('lb_id', $lb_id)
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')

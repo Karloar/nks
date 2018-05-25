@@ -787,7 +787,7 @@ rt
   <td colspan=2 class=xl9212210 style='border-right:.5pt solid black'>监考教师</td>
   <td colspan=4 class=xl9212210 style='border-right:.5pt solid black;font-size:10px;'>
       <?php
-      echo($obj->lb_name . '<br />' . $obj->ex_invinum . '人');
+      echo($obj->us_name . ' 教研室<br />' . $obj->ex_invinum . '人');
       ?>
   </td>
   <td colspan=2 class=xl9112210 style='border-right:.5pt solid black;
