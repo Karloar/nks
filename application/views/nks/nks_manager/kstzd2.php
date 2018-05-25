@@ -1073,7 +1073,11 @@ rt
   <td colspan=13 class=xl7012210>规范》(附后)。</td>
   <td class=xl6412210></td>
  </tr>
-<tr class=xl6312210 height=30>
+    <?php
+    if(isset($some)) {
+        echo("<tr class=xl6312210 height=30></tr>");
+    }
+    ?>
 </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>

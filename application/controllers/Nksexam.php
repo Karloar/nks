@@ -492,6 +492,7 @@ class Nksexam extends Nksmanager
         $obj = $this->nks_exam->getExambyId($ex_id);
         $data['obj'] = $obj;
         $this->load->view('nks/nks_manager/kstzd2', $data);
+
     }
 
     public function examprint($ex_id) {
