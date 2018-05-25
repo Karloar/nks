@@ -30,7 +30,7 @@
                     echo("<label>监考教师$i</label>");
                     echo('<div class="mws-form-item large">');
                     $value = isset($obj->ex_invname[$i-1]) ? $obj->ex_invname[$i-1]: '';
-                    echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" >');
+                    echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'"  required="required">');
                     echo('</div>');
                     echo('</div>');
                 }

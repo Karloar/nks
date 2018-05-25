@@ -10,6 +10,8 @@
             major.append("<option value='"+majors[i]['mj_id']+"'>"+majors[i]['mj_name']+"</option>");
         }
     }
+
+
 </script>
 <div class="mws-panel grid_1"></div>
 
@@ -264,11 +266,11 @@
                     echo('</div>');
 
                     for($i=1;$i<=$obj->ex_invinum;$i++) {
-                        echo('<div class="mws-form-row">');
+                        echo('<div class="mws-form-row" id="ex_invname">');
                         echo("<label>监考教师$i</label>");
                         echo('<div class="mws-form-item large">');
                         $value = isset($obj->ex_invname[$i-1]) ? $obj->ex_invname[$i-1]: '';
-                        echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" >');
+                        echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" required="required">');
                         echo('</div>');
                         echo('</div>');
                     }
