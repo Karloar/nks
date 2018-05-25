@@ -261,7 +261,19 @@
                     echo('</select>');
                     echo('</div>');
                     echo('</div>');
+
+                    for($i=1;$i<=$obj->ex_invinum;$i++) {
+                        echo('<div class="mws-form-row">');
+                        echo("<label>监考教师$i</label>");
+                        echo('<div class="mws-form-item large">');
+                        $value = isset($obj->ex_invname[$i-1]) ? $obj->ex_invname[$i-1]: '';
+                        echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" >');
+                        echo('</div>');
+                        echo('</div>');
+                    }
+
                 }
+
                 ?>
 
                 <div class="mws-form-row">

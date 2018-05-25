@@ -217,8 +217,7 @@ class Nksexam extends Nksmanager
         $this->load->model('nks/nks_exam');
         $this->load->model('nks/nks_lab');
         if(isset($_POST['ex_name']) && $_POST['ex_name'] != '' && isset($_POST['ex_grade']) && $_POST['ex_grade'] != ''
-            && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_stunum']) && $_POST['ex_stunum'] != ''
-            && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
+            && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
 
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
@@ -233,12 +232,29 @@ class Nksexam extends Nksmanager
             $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
             $arr['ex_id'] = $ex_id;
             $ex = $this->nks_exam->getExamById($ex_id);
-            if($ex->ex_invname != '') {
-                $arr['ex_invname'] = $ex->ex_invname;
+            $flag = true;
+            for($i=1;$i<=$ex->ex_invinum;$i++) {
+                if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
+                    $flag = false;
+                    break;
+                }
+            }
+            if($flag) {
+                $post_arr = array();
+                for($i=1;$i<=$ex->ex_invinum;$i++) {
+                    $post_arr[$i-1] = 'ex_invname' . $i;
+                }
+                $arr2 = $this->myinput->getBykeys($post_arr);
+                $arr['ex_invname'] = '';
+                for($i=1;$i<$ex->ex_invinum;$i++) {
+                    $arr['ex_invname'] .= $arr2['ex_invname' . $i] . ' ';
+                }
+                $arr['ex_invname'] .= $arr2['ex_invname' . $i];
             }
             $lab = $this->nks_lab->getLabById($ex->ex_lab);
             $lab->lb_ex_num --;
             $this->nks_lab->update((array)$lab);
+            //var_dump($arr);
             $nlab = $this->nks_lab->getLabById($arr['ex_lab']);
             $nlab->lb_ex_num ++;
             $this->nks_lab->update((array)$nlab);
@@ -256,6 +272,7 @@ class Nksexam extends Nksmanager
         );
         $data['showExLab'] = true;
         $data['obj'] = $this->nks_exam->getExamById($ex_id);
+        $data['obj']->ex_invname = explode(' ', $data['obj']->ex_invname);
         $this->load->model('nks/nks_academy');
         $this->load->model('nks/nks_place');
         $this->load->model('nks/nks_time');
