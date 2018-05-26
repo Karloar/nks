@@ -774,7 +774,7 @@ rt
   border-left:none'>考试时间</td>
   <td class=xl6712210 style="text-align: center;font-size:10px;">
       <?= isset($obj->ex_date)? $obj->ex_date: '' ?><br />
-      <?= isset($obj->tm_time)? $obj->tm_time: '' ?>
+      <?= isset($obj->tm_time)? $obj->tm_time: '&nbsp;' ?>
   </td>
   <td class=xl6412210></td>
  </tr>

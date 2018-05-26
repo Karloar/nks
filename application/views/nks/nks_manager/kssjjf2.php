@@ -997,6 +997,8 @@ width:22pt'>
 
           echo('&nbsp;' . $begin_time[0] . ' 时 ' . $begin_time[1] . '分—— '
               . $end_time[0] . ' 时 ' . $end_time[1] . '分');
+      } else {
+          echo('&nbsp;');
       }
       ?>
   </td>
