@@ -196,7 +196,7 @@ rt
             $ex_mode = array('闭卷', '开卷');
             $em = $ex_mode[$row->ex_mode];
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$em</td>");
-            echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_date</td>");
+            echo("<td class=xl6417734 style='border-top:none;border-left:none;vnd.ms-excel.numberformat:yyyy-mm-dd'>$row->ex_date</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->tm_time</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->pl_place</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_maininv</td>");

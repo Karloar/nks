@@ -637,18 +637,10 @@ class Nksexam extends Nksmanager
             $examList = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
         }
         $data['p'] = $examList;
-        $filename 		= 'excel-doc';
-        header("Pragma: public");
-        header("Expires: 0");
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-        header("Content-Type: application/force-download");
-        header("Content-Type: application/octet-stream");
-        header("Content-Type: application/download");;
+        $filename = 'excel-doc';
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition: attachment;filename=$filename.xls");
-        header("Content-Transfer-Encoding: binary ");
         $this->load->view('nks/nks_exam/examtoexcel', $data);
-
     }
 
 
