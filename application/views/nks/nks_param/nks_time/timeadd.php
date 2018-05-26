@@ -21,7 +21,7 @@
                     <label>考试时间</label>
                     <div class="mws-form-item large">
                         <input name="tm_time"  class="mws-textinput" type="text" value="<?=isset($obj->tm_time)?$obj->tm_time:'';?>" >
-                        <div style="color:red;">(eg: 8:30-11:30)</div>
+                        <div style="color:red;">(eg: 08:30-11:30)</div>
                     </div>
                 </div>
 

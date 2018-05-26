@@ -384,6 +384,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    显示教研室已录入监考教师的考试列表
     public function examlistinvbylab() {
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
@@ -411,6 +412,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    显示考试详细信息
     public function showdetail($ex_id) {
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
@@ -434,6 +436,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    教研室负责人添加监考教师
     public function addinv($ex_id) {
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
@@ -479,6 +482,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+    // 教研室负责人修改监考教师
     public function updateinv($ex_id) {
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
@@ -523,43 +527,130 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
-    public function printexamlist() {
+
+    // 打印功能
+    public function printexam() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
         if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
-            $this->load->model('nks/nks_exam');
-            $examList = $this->nks_exam->getExamsBetweenDateByPage($_POST['begin_date'], $_POST['end_date'], 0, $this->nks_exam->getExamNum());
-            $total_num = count($examList);
-            $perpage = 40;
-            $pages = floor($total_num / $perpage);
-            if($total_num % $perpage != 0) {
-                $pages ++;
-            }
-            $page = array();
-            for($i=0;$i<$pages;$i++) {
-                $b = $i * $perpage;
-                $page[$i] = $this->nks_exam->getExamsBetweenDateByPage($_POST['begin_date'], $_POST['end_date'], $b, $perpage);
-            }
-            if($total_num == 0) {
-                $page[0] = array();
-            }
-            $data['page'] = $page;
-            $this->load->view('nks/nks_exam/exambigtable', $data);
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $ex_name = $_POST['ex_name'];
+            $_SESSION['print_args'] = array('begin_date' => $begin_date, 'end_date' => $end_date, 'ex_name' => $ex_name);
+            redirect('nksexam/showPrintExamList');
 
-            return 0;
         }
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
-            'title' => '选择考试时间范围',
+            'title' => '选择考试时间范围以及考试科目',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
-            'form_ac' => 'nksexam/printexamlist'
+            'form_ac' => 'nksexam/printexam'
         );
         $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_exam/printargs");
         $this->load->view("nks/nks_global/footer_man");
     }
+
+//    显示打印列表与打印选项
+    public function showPrintExamList() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $printArgs = $_SESSION['print_args'];
+        $this->load->model('nks/nks_exam');
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '打印考试列表',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+        );
+        $per_page_num = 13;
+        $firstResult = $this->uri->segment(3);
+        if(!isset($firstResult) || $firstResult == '') {
+            $firstResult = 0;
+        }
+        if($printArgs['ex_name'] == '') {
+            $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
+            $this->myinput->load_page($total_num, 'nksexam/showPrintExamList', $per_page_num);
+            $data['result'] = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], $firstResult, $per_page_num);
+        } else {
+            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
+            $this->myinput->load_page($total_num, 'nksexam/showPrintExamList', $per_page_num);
+            $data['result'] = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], $firstResult, $per_page_num);
+        }
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/showprintexamlist");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+
+//    打印考试大表
+    public function printExamBigTable() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $printArgs = $_SESSION['print_args'];
+        $this->load->model('nks/nks_exam');
+        if($printArgs['ex_name'] == '') {
+            $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
+            $examList = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], 0, $total_num);
+        } else {
+            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
+            $examList = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
+        }
+
+        $perpage = 40;
+        $pages = floor($total_num / $perpage);
+        if($total_num % $perpage != 0) {
+            $pages ++;
+        }
+        $page = array();
+        for($i=0;$i<$pages;$i++) {
+            $b = $i * $perpage;
+            if($printArgs['ex_name'] == '') {
+                $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
+                $page[$i] = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], $b, $perpage);
+            } else {
+                $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
+                $page[$i] = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], $b, $perpage);
+            }
+        }
+        if($total_num == 0) {
+            $page[0] = array();
+        }
+        $data['page'] = $page;
+        $this->load->view('nks/nks_exam/exambigtable', $data);
+
+    }
+
+    public function exportExcel() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $printArgs = $_SESSION['print_args'];
+        $this->load->model('nks/nks_exam');
+        if($printArgs['ex_name'] == '') {
+            $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
+            $examList = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], 0, $total_num);
+        } else {
+            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
+            $examList = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
+        }
+        $data['p'] = $examList;
+        $filename 		= 'excel-doc';
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");;
+        header("Content-type:application/vnd.ms-excel");
+        header("Content-Disposition: attachment;filename=$filename.xls");
+        header("Content-Transfer-Encoding: binary ");
+        $this->load->view('nks/nks_exam/examtoexcel', $data);
+
+    }
+
 
     public function printnotice($ex_id) {
         $this->check_admin(2);
