@@ -213,7 +213,7 @@
                 <div class="mws-form-row">
                     <label>监考人数</label>
                     <div class="mws-form-item large">
-                        <select name="ex_invinum" class="chzn-select" required="required">
+                        <select name="ex_invinum" class="chzn-select" required>
                             <option value=""></option>
                             <?php
                             for($i=1;$i<=5;$i++) {
@@ -254,26 +254,33 @@
                     echo('<label>监考教师所属实验室</label>');
                     echo('<div class="mws-form-item large">');
                     echo('<select name="ex_lab" class="chzn-select">');
-                        foreach($lab_arr as $row) {
-                            if($obj->ex_lab == $row->lb_id) {
-                                echo("<option value='$row->lb_id' selected>$row->lb_name</option>");
-                            } else {
-                                echo("<option value='$row->lb_id'>$row->lb_name</option>");
-                            }
+                    foreach($lab_arr as $row) {
+                        if($obj->ex_lab == $row->lb_id) {
+                            echo("<option value='$row->lb_id' selected>$row->lb_name</option>");
+                        } else {
+                            echo("<option value='$row->lb_id'>$row->lb_name</option>");
                         }
+                    }
+                    if((is_null($obj->ex_lab) || $obj->ex_lab == 0 || $obj->ex_lab == '')) {
+                        echo("<option value='0' selected></option>");
+                    } else {
+                        echo("<option value='0'>其它</option>");
+                    }
                     echo('</select>');
                     echo('</div>');
                     echo('</div>');
-
-                    for($i=1;$i<=$obj->ex_invinum;$i++) {
-                        echo('<div class="mws-form-row" id="ex_invname">');
-                        echo("<label>监考教师$i</label>");
-                        echo('<div class="mws-form-item large">');
-                        $value = isset($obj->ex_invname[$i-1]) ? $obj->ex_invname[$i-1]: '';
-                        echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" required="required">');
-                        echo('</div>');
-                        echo('</div>');
+                    if(!(is_null($obj->ex_lab) || $obj->ex_lab == 0 || $obj->ex_lab == '')) {
+                        for($i=1;$i<=$obj->ex_invinum;$i++) {
+                            echo('<div class="mws-form-row" id="ex_invname">');
+                            echo("<label>监考教师$i</label>");
+                            echo('<div class="mws-form-item large">');
+                            $value = isset($obj->ex_invname[$i-1]) ? $obj->ex_invname[$i-1]: '';
+                            echo('<input name="ex_invname'.$i .'"  class="mws-textinput" type="text" value="'.$value.'" required="required">');
+                            echo('</div>');
+                            echo('</div>');
+                        }
                     }
+
 
                 }
 
