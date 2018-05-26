@@ -76,8 +76,8 @@
         <div class="actionBar">
             <a href="<?php echo($url); ?>nksexam/printExamBigTable" class="mws-button blue large">打印考试大表</a>
             <a href="<?php echo($url); ?>nksexam/exportExcel" class="mws-button black large">导出大表Excel</a>
-            <a href="<?php echo($url); ?>nksexam/#" class="mws-button orange large">打印通知单</a>
-            <a href="<?php echo($url); ?>nksexam/#" class="mws-button green large">打印全部卷封</a>
+            <a href="<?php echo($url); ?>nksexam/printAllNotice" class="mws-button orange large">打印通知单</a>
+            <a href="<?php echo($url); ?>nksexam/printAllFaces" class="mws-button green large">打印全部卷封</a>
 
         </div>
     </div>

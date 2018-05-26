@@ -623,7 +623,7 @@ class Nksexam extends Nksmanager
         $this->load->view('nks/nks_exam/exambigtable', $data);
 
     }
-
+// 导出考试大表的Excel
     public function exportExcel() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -652,6 +652,7 @@ class Nksexam extends Nksmanager
     }
 
 
+//    打印单张通知单
     public function printnotice($ex_id) {
         $this->check_admin(2);
         $this->load->model('nks/nks_exam');
@@ -661,6 +662,28 @@ class Nksexam extends Nksmanager
 
     }
 
+//    打印全部通知单
+    public function printAllNotice() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $printArgs = $_SESSION['print_args'];
+        $this->load->model('nks/nks_exam');
+        if($printArgs['ex_name'] == '') {
+            $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
+            $examList = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], 0, $total_num);
+        } else {
+            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
+            $examList = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
+        }
+        foreach($examList as $exam) {
+            $data['obj'] = $exam;
+            $data['some'] = true;
+            $this->load->view('nks/nks_manager/kstzd2', $data);
+        }
+    }
+
+
+//    打印单个试卷卷封（按班级)
     public function examprint($ex_id) {
         $this->check_admin(2);
         $this->load->model('nks/nks_exam');
@@ -669,13 +692,52 @@ class Nksexam extends Nksmanager
         $data['major_arr'] = $this->nks_major->getMajorsByAcId($obj->ac_id);
         $data['obj'] = $obj;
         $cl_name = $obj->class_name;
-        $cl_name = explode('-', $cl_name);
-        for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
-            $data['nc'] = $i;
+        if($cl_name != '') {
+            $cl_name = explode('-', $cl_name);
+            for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
+                $data['nc'] = $i;
+                $this->load->view('nks/nks_manager/kssjjf2', $data);
+            }
+        } else {
+            $data['nc'] = '';
             $this->load->view('nks/nks_manager/kssjjf2', $data);
         }
     }
 
+//    打印全部试卷卷封
+    public function printAllFaces() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $printArgs = $_SESSION['print_args'];
+        $this->load->model('nks/nks_exam');
+        if($printArgs['ex_name'] == '') {
+            $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
+            $examList = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], 0, $total_num);
+        } else {
+            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
+            $examList = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
+        }
+        $this->load->model('nks/nks_major');
+        foreach($examList as $exam) {
+            $data['obj'] = $exam;
+            $data['major_arr'] = $this->nks_major->getMajorsByAcId($exam->ac_id);
+            $data['obj'] = $exam;
+            $cl_name = $exam->class_name;
+            if($cl_name != '') {
+                $cl_name = explode('-', $cl_name);
+                for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
+                    $data['nc'] = $i;
+                    $this->load->view('nks/nks_manager/kssjjf2', $data);
+                }
+            } else {
+                $data['nc'] = '';
+                $this->load->view('nks/nks_manager/kssjjf2', $data);
+            }
+        }
+    }
+
+
+//    删除考试
     public function examdelete() {
         $this->check_admin(2);
         $ex_id = $this->uri->segment(3);

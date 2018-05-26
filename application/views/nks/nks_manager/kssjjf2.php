@@ -678,7 +678,7 @@ width:10pt'>
     <col width=29 span=2 style='mso-width-source:userset;mso-width-alt:928;
 width:22pt'>
     <col width=53 style='mso-width-source:userset;mso-width-alt:1696;width:40pt'>
- <tr height=254 style='mso-height-source:userset;height:190.5pt'>
+ <tr height=254 style='mso-height-source:userset;height:200.5pt'>
   <td height=254 class=xl1527817 width=34 style='height:190.5pt;width:26pt'></td>
   <td class=xl6427817 width=121 style='width:91pt'></td>
   <td class=xl6427817 width=65 style='width:49pt'></td>
@@ -1196,7 +1196,7 @@ width:22pt'>
   <td class=xl1527817></td>
   <td class=xl1527817></td>
  </tr>
- <tr height=19 style='height:14.25pt'>
+ <tr height=19 style='height:16.25pt'>
   <td height=19 class=xl1527817 style='height:14.25pt'></td>
   <td class=xl6427817></td>
   <td class=xl6427817></td>
@@ -1222,32 +1222,7 @@ width:22pt'>
   <td class=xl1527817></td>
   <td class=xl1527817></td>
  </tr>
-    <tr height=19 style='height:14.25pt'>
-        <td height=19 class=xl1527817 style='height:14.25pt'></td>
-        <td class=xl6427817></td>
-        <td class=xl6427817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl6427817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-        <td class=xl1527817></td>
-    </tr>
+
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
   <td width=34 style='width:26pt'></td>
