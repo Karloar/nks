@@ -52,7 +52,7 @@
                 echo("<td>$row->ex_invinum</td>");
                 echo("<td>$row->lb_name</td>");
 
-                $print_url = $url . 'nksexam/examprint/' . $row->ex_id;
+                $print_cover = $url . 'nksexam/printcover/' . $row->ex_id;
                 $detail = $url . 'nksexam/showdetail/' . $row->ex_id;
                 $print_notice = $url . 'nksexam/printnotice/' . $row->ex_id;
 
@@ -60,7 +60,7 @@
                 echo("<a href='$detail' class='mws-button blue small'>详细</a>");
                 echo("<a href='$print_notice' class='mws-button orange small'>通知单</a>");
 
-                echo("<a href='$print_url' class='mws-button green small'>卷封</a></td>");
+                echo("<a href='$print_cover' class='mws-button green small'>卷封</a></td>");
                 echo("</tr>");
             }
             ?>

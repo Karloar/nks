@@ -21,6 +21,7 @@ class Nksexam extends Nksmanager
         parent::__construct();
     }
 
+//  显示所有考试列表
     public function examlist() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -44,6 +45,8 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_exam/examlist");
         $this->load->view("nks/nks_global/footer_man");
     }
+
+//  显示所有已录入监考教师的考试列表
     public function examlistinv() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -69,6 +72,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//  显示所有没有录入监考教师的考试列表
     public function examlistnotinv() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -95,7 +99,7 @@ class Nksexam extends Nksmanager
     }
 
 
-
+//  添加考试信息
     public function examadd(){
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -186,6 +190,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    分配监考教师按钮
     public function assignteacher() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -212,6 +217,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    执行分配监考教师
     public function executeAssignTeacher() {
         $this->check_admin(2);
         if(isset($_SESSION['assign_exams'])) {
@@ -264,6 +270,7 @@ class Nksexam extends Nksmanager
 //    }
 
 
+//  修改考试信息
     public function examupdate() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -357,6 +364,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    显示教研室没有录入监考教师的考试列表
     public function examlistnotinvbylab() {
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
@@ -528,7 +536,7 @@ class Nksexam extends Nksmanager
     }
 
 
-    // 打印功能
+    // 菜单中的打印功能
     public function printexam() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -623,6 +631,7 @@ class Nksexam extends Nksmanager
         $this->load->view('nks/nks_exam/exambigtable', $data);
 
     }
+
 // 导出考试大表的Excel
     public function exportExcel() {
         $this->check_admin(2);
@@ -676,7 +685,7 @@ class Nksexam extends Nksmanager
 
 
 //    打印单个试卷卷封（按班级)
-    public function examprint($ex_id) {
+    public function printcover($ex_id) {
         $this->check_admin(2);
         $this->load->model('nks/nks_exam');
         $this->load->model('nks/nks_major');
@@ -697,7 +706,7 @@ class Nksexam extends Nksmanager
     }
 
 //    打印全部试卷卷封
-    public function printAllFaces() {
+    public function printAllCovers() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
         $printArgs = $_SESSION['print_args'];
@@ -748,6 +757,7 @@ class Nksexam extends Nksmanager
 
     }
 
+//    添加或修改考试时，当学院变化时，专业选项也变化
     public function academychange($ac_id) {
         $this->load->model('nks/nks_major');
         $res = $this->nks_major->getMajorsbyAcId($ac_id);
