@@ -53,7 +53,7 @@
                 echo("<td>$row->lb_name</td>");
 
                 $detail = $url . 'nksexam/showdetail/' . $row->ex_id;
-                $up_url = $url . 'nksexam/examupdate/' . $row->ex_id;
+                $up_url = $url . 'nksexam/examupdatenotinv/' . $row->ex_id;
                 echo('<td>');
                 echo("<a href='$detail' class='mws-button blue small'>详细信息</a>");
                 echo("<a href='$up_url' class='mws-button green small'>修改考试</a>");
