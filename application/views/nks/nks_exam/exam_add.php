@@ -254,7 +254,7 @@
                     echo('<label>监考教师所属实验室</label>');
                     echo('<div class="mws-form-item large">');
                     echo('<select name="ex_lab" class="chzn-select">');
-                    foreach($lab_arr as $row) {
+                    foreach($update_lab_arr as $row) {
                         if($obj->ex_lab == $row->lb_id) {
                             echo("<option value='$row->lb_id' selected>$row->lb_name</option>");
                         } else {

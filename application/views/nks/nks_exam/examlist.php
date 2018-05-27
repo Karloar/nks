@@ -54,8 +54,9 @@
 
                 $up_url = $url . 'nksexam/examupdate/' . $row->ex_id;
                 $del_url = $url . 'nksexam/examdelete/' . $row->ex_id;
-                $print_url = $url . 'nksexam/examprint/' . $row->ex_id;
+                $detail = $url . 'nksexam/showdetail/' . $row->ex_id;
                 echo("<td>");
+                echo("<a href='$detail' class='mws-button black small'>详细</a>");
                 echo("<a href='$up_url' class='mws-button blue small'>修改</a>");
                 echo("<a href='$del_url' class='mws-button red small'>删除</a>");
                 echo("</td>");

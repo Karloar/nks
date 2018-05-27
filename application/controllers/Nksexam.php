@@ -7,9 +7,12 @@
  */
 require_once('Nksmanager.php');
 
-function lb_ex_num_cmp($a, $b) {
-    return $a->lb_ex_num < $b->lb_ex_num;
+// 按照教研室老师人数排序
+function lb_num_cmp($a, $b) {
+    return $a->lb_num < $b->lb_num;
 }
+
+// 按照考试监考教师排序
 function ex_invinum_cmp($a, $b) {
     return $a->ex_invinum < $b->ex_invinum;
 }
@@ -221,26 +224,117 @@ class Nksexam extends Nksmanager
     public function executeAssignTeacher() {
         $this->check_admin(2);
         if(isset($_SESSION['assign_exams'])) {
-            $exams = $_SESSION['assign_exams'];
-            $total_teacher = 0;
-            foreach($exams as $ex) {
-                $total_teacher += $ex->ex_invinum;
-            }
+            $exam_arr = $_SESSION['assign_exams'];
             $this->load->model('nks/nks_lab');
-            $labs = $this->nks_lab->getAllLabs();
-            $lab_teachers = 0;
-            foreach($labs as $lab) {
-                $lab_teachers += $lab->lb_num;
+            $this->load->model('nks/nks_exam');
+            $lab_arr = $this->nks_lab->getAllLabs();
+            $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
+            usort($exam_arr, 'ex_invinum_cmp');
+            usort($lab_arr, 'lb_num_cmp');
+            $exam_num = count($exam_arr);
+            $exam_copy = $exam_arr;
+            foreach($exam_arr as $exam) {
+                foreach($lab_arr as $lab) {
+                    if(!$this->isInNotLab($lab, $exam) && !$this->hasExamCurrentDay($lab, $exam)
+                        && $this->teacherEnough($lab, $exam) && $invinum_arr[$lab->lb_id] >= $exam->ex_invinum) {
+                        $exam->ex_lab = $lab->lb_id;
+                        $invinum_arr[$lab->lb_id] -= $exam->ex_invinum;
+                        $exam_num --;
+                        $this->nks_exam->update((array)$exam);
+                        break;
+                    }
+                }
             }
-            foreach($labs as $lab) {
-                $lab->lb_ex_num = intval((floatval($total_teacher) / $lab_teachers) * $lab->lb_num) + 1;
+            if($exam_num == 0) {
+                $res = true;
+            } else {
+                foreach($exam_copy as $exam) {
+                    $exam->ex_lab = 0;
+                    $this->nks_exam->update((array)$exam);
+                }
+                $res = false;
             }
-            usort($labs, 'lb_ex_num_cmp');
-            var_dump($labs);
-
+            $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/assignteacher',
+                '分配成功！', '分配失败');
         }
     }
 
+//    计算每个教研室所出的监考教师人数
+    private function getInvinumOfLab($lab_arr, $exam_arr) {
+        $total_teacher = 0;
+        foreach($exam_arr as $ex) {
+            $total_teacher += $ex->ex_invinum;
+        }
+//        如果总监考教师人数少于50，则按50计算
+        if($total_teacher <= 50) {
+            $total_teacher = 50;
+        }
+        $lab_teachers = 0;
+        foreach($lab_arr as $lab) {
+            $lab_teachers += $lab->lb_num;
+        }
+        $invinum_arr = array();
+        foreach($lab_arr as $lab) {
+            $invinum_arr[$lab->lb_id] = intval((floatval($total_teacher) / $lab_teachers) * $lab->lb_num) + 2;
+        }
+        return $invinum_arr;
+    }
+
+//   判断当前教研室是否在考试的黑名单上
+    private function isInNotLab($lab, $exam) {
+        $notlabarr = explode('-', $exam->ex_not_lab);
+        if(in_array($lab->lb_id, $notlabarr)) {
+            return true;
+        }
+        return false;
+    }
+
+//   判断在当天是否已经安排其它考试
+    private function hasExamCurrentDay($lab, $exam) {
+        $this->load->model('nks/nks_exam');
+        $examArr = $this->nks_exam->getExamsByLabByDate($lab->lb_id, $exam->ex_date);
+        return count($examArr) > 0;
+    }
+
+//   判断教研室的教师人数是否满足要求：监考教师人数 * 4 - 2
+    private function teacherEnough($lab, $exam) {
+        if($lab->lb_num >= $exam->ex_invinum * 4 - 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public function test() {
+        $this->load->model('nks/nks_lab');
+        $this->load->model('nks/nks_exam');
+        $lab_arr = $this->nks_lab->getAllLabs();
+        $exam_arr = $this->nks_exam->getExamsNotLabByPage(0, 9999999);
+        $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
+        usort($exam_arr, 'ex_invinum_cmp');
+        usort($lab_arr, 'lb_num_cmp');
+        foreach($exam_arr as $ex) {
+            echo($ex->ex_invinum . '&nbsp;');
+        }
+        echo('<br />');
+        foreach($exam_arr as $ex) {
+            echo($ex->ex_invinum * 4 -2 . '&nbsp;');
+        }
+        echo('<br />');
+        echo('---------------------------------<br />');
+        foreach ($lab_arr as $lab) {
+            echo($invinum_arr[$lab->lb_id] . '&nbsp;');
+        }
+        echo('<br />');
+        foreach ($lab_arr as $lab) {
+            echo($lab->lb_num . '&nbsp;');
+        }
+        echo('<br />');
+
+//        $examArr = $this->nks_exam->getExamsByPage(0, 1000);
+//        var_dump($examArr);
+//        echo('------------------------------------');
+//        var_dump($this->isInNotLab($labArr[0], $examArr[9]));
+    }
 
 //    private function manageExam($arr, $lab_arr) {
 //        $this->load->model('nks/nks_lab');
@@ -269,14 +363,14 @@ class Nksexam extends Nksmanager
 //        return 0;
 //    }
 
-
-//  修改考试信息
-    public function examupdate() {
+//   由分配监考教师界面修改考试信息
+    public function examupdateassign($ex_id) {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
         $ex_id = $this->uri->segment(3);
         $this->load->model('nks/nks_exam');
         $this->load->model('nks/nks_lab');
+        $exam = $this->nks_exam->getExamById($ex_id);
         if(isset($_POST['ex_name']) && $_POST['ex_name'] != '' && isset($_POST['ex_grade']) && $_POST['ex_grade'] != ''
             && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
 
@@ -292,9 +386,8 @@ class Nksexam extends Nksmanager
             }
             $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
             $arr['ex_id'] = $ex_id;
-            $ex = $this->nks_exam->getExamById($ex_id);
             $flag = true;
-            for($i=1;$i<=$ex->ex_invinum;$i++) {
+            for($i=1;$i<=$exam->ex_invinum;$i++) {
                 if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
                     $flag = false;
                     break;
@@ -302,20 +395,20 @@ class Nksexam extends Nksmanager
             }
             if($flag) {
                 $post_arr = array();
-                for($i=1;$i<=$ex->ex_invinum;$i++) {
+                for($i=1;$i<=$exam->ex_invinum;$i++) {
                     $post_arr[$i-1] = 'ex_invname' . $i;
                 }
                 $arr2 = $this->myinput->getBykeys($post_arr);
                 $arr['ex_invname'] = '';
                 if(count($arr2) > 0) {
-                    for($i=1;$i<$ex->ex_invinum;$i++) {
+                    for($i=1;$i<$exam->ex_invinum;$i++) {
                         $arr['ex_invname'] .= $arr2['ex_invname' . $i] . ' ';
                     }
                     $arr['ex_invname'] .= $arr2['ex_invname' . $i];
                 }
             }
-            if($ex->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
-                $lab = $this->nks_lab->getLabById($ex->ex_lab);
+            if($exam->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
+                $lab = $this->nks_lab->getLabById($exam->ex_lab);
                 $lab->lb_ex_num --;
                 $this->nks_lab->update((array)$lab);
                 //var_dump($arr);
@@ -323,9 +416,9 @@ class Nksexam extends Nksmanager
                 $nlab->lb_ex_num ++;
                 $this->nks_lab->update((array)$nlab);
             }
-            $this->load->model('nks/nks_exam');
+
             $res = $this->nks_exam->update($arr);
-            $this->handle_res($res, 'nksexam/examlist', 'nksexam/examadd');
+            $this->handle_res($res, 'nksexam/assignteacher', 'nksexam/examupdateassign');
         }
         $data = array(
             'url' => base_url(''),
@@ -333,10 +426,10 @@ class Nksexam extends Nksmanager
             'title' => '修改考试信息',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
-            'form_ac' => 'nksexam/examupdate/' . $ex_id
+            'form_ac' => 'nksexam/examupdateassign/' . $ex_id
         );
         $data['showExLab'] = true;
-        $data['obj'] = $this->nks_exam->getExamById($ex_id);
+        $data['obj'] = $exam;
         $data['obj']->ex_invname = explode(' ', $data['obj']->ex_invname);
         $this->load->model('nks/nks_academy');
         $this->load->model('nks/nks_place');
@@ -350,8 +443,118 @@ class Nksexam extends Nksmanager
         $data['time_arr'] = $this->nks_time->getAllTime();
         $data['class_arr'] = $this->nks_class->getAllClasses();
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
-        $data['lab_arr'] = $this->nks_lab->getAllLabs();
-        $data['lab_arr'] = $this->nks_lab->getAllLabs();
+        $lab_arr = $this->nks_lab->getAllLabs();
+        $data['lab_arr'] = $lab_arr;
+        $date['update_lab_arr'] = array();
+        foreach($lab_arr as $lab) {
+            if(!$this->isInNotLab($lab, $exam) && !$this->hasExamCurrentDay($lab, $exam) && $this->teacherEnough($lab, $exam)) {
+                $data['update_lab_arr'][] = $lab;
+            } else if($lab->lb_id == $exam->lb_id) {
+                $data['update_lab_arr'][] = $lab;
+            }
+        }
+        $data['academy_arr'] = $academies;
+        if(count($academies) > 0) {
+            $data['major_arr'] = $this->nks_major->getMajorsByAcId($data['obj']->ac_id);
+        } else {
+            $data['major_arr'] = $this->nks_major->getAllMajors();
+        }
+
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/exam_add");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+//  修改考试信息
+    public function examupdate() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $ex_id = $this->uri->segment(3);
+        $this->load->model('nks/nks_exam');
+        $this->load->model('nks/nks_lab');
+        $exam = $this->nks_exam->getExamById($ex_id);
+        if(isset($_POST['ex_name']) && $_POST['ex_name'] != '' && isset($_POST['ex_grade']) && $_POST['ex_grade'] != ''
+            && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
+
+            $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
+                'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
+                'ex_note', 'ex_lab'));
+            $arr['ex_input_date'] = date('Y-m-d H:i:s');
+            $arr['ex_not_lab'] = '';
+            if(isset($_POST['ex_not_lab'])) {
+                foreach($_POST['ex_not_lab'] as $r) {
+                    $arr['ex_not_lab'] .= $r . '-';
+                }
+            }
+            $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
+            $arr['ex_id'] = $ex_id;
+            $flag = true;
+            for($i=1;$i<=$exam->ex_invinum;$i++) {
+                if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
+                    $flag = false;
+                    break;
+                }
+            }
+            if($flag) {
+                $post_arr = array();
+                for($i=1;$i<=$exam->ex_invinum;$i++) {
+                    $post_arr[$i-1] = 'ex_invname' . $i;
+                }
+                $arr2 = $this->myinput->getBykeys($post_arr);
+                $arr['ex_invname'] = '';
+                if(count($arr2) > 0) {
+                    for($i=1;$i<$exam->ex_invinum;$i++) {
+                        $arr['ex_invname'] .= $arr2['ex_invname' . $i] . ' ';
+                    }
+                    $arr['ex_invname'] .= $arr2['ex_invname' . $i];
+                }
+            }
+            if($exam->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
+                $lab = $this->nks_lab->getLabById($exam->ex_lab);
+                $lab->lb_ex_num --;
+                $this->nks_lab->update((array)$lab);
+                //var_dump($arr);
+                $nlab = $this->nks_lab->getLabById($arr['ex_lab']);
+                $nlab->lb_ex_num ++;
+                $this->nks_lab->update((array)$nlab);
+            }
+
+            $res = $this->nks_exam->update($arr);
+            $this->handle_res($res, 'nksexam/examlist', 'nksexam/examupdate');
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '修改考试信息',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/examupdate/' . $ex_id
+        );
+        $data['showExLab'] = true;
+        $data['obj'] = $exam;
+        $data['obj']->ex_invname = explode(' ', $data['obj']->ex_invname);
+        $this->load->model('nks/nks_academy');
+        $this->load->model('nks/nks_place');
+        $this->load->model('nks/nks_time');
+        $this->load->model('nks/nks_class');
+        $this->load->model('nks/nks_nature');
+        $this->load->model('nks/nks_major');
+        $this->load->model('nks/nks_lab');
+        $academies = $this->nks_academy->getAllAcademies();
+        $data['place_arr'] = $this->nks_place->getAllPlaces();
+        $data['time_arr'] = $this->nks_time->getAllTime();
+        $data['class_arr'] = $this->nks_class->getAllClasses();
+        $data['nature_arr'] = $this->nks_nature->getAllNatures();
+        $lab_arr = $this->nks_lab->getAllLabs();
+        $data['lab_arr'] = $lab_arr;
+        $date['update_lab_arr'] = array();
+        foreach($lab_arr as $lab) {
+            if(!$this->isInNotLab($lab, $exam) && !$this->hasExamCurrentDay($lab, $exam) && $this->teacherEnough($lab, $exam)) {
+                $data['update_lab_arr'][] = $lab;
+            } else if($lab->lb_id == $exam->lb_id) {
+                $data['update_lab_arr'][] = $lab;
+            }
+        }
         $data['academy_arr'] = $academies;
         if(count($academies) > 0) {
             $data['major_arr'] = $this->nks_major->getMajorsByAcId($data['obj']->ac_id);
@@ -759,6 +962,7 @@ class Nksexam extends Nksmanager
 
 //    添加或修改考试时，当学院变化时，专业选项也变化
     public function academychange($ac_id) {
+        $this->check_admin(2);
         $this->load->model('nks/nks_major');
         $res = $this->nks_major->getMajorsbyAcId($ac_id);
         echo(json_encode($res));
