@@ -213,9 +213,9 @@ class Nksuser extends CI_Controller
         if(!isset($firstResult) || $firstResult == '') {
             $firstResult = 0;
         }
-        $total_num = count($this->nks_user->getAllUsers());
+        $total_num = count($this->nks_user->getUsersNotAdmin(2));
         $this->myinput->load_page($total_num, 'nksuser/userlist', $per_page_num);
-        $data['result'] = $this->nks_user->getUsersbyPage($firstResult, $per_page_num);
+        $data['result'] = $this->nks_user->getUsersNotAdminByPage(2, $firstResult, $per_page_num);
 
         $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_user/userlist");

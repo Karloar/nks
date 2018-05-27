@@ -39,20 +39,18 @@
             $style = array('普通用户', '教研室负责人', '管理员');
 
             foreach($result as $row) {
-                if($row->us_admin != 2) {
-                    echo('<tr>');
-                    echo("<td>$row->us_number</td>");
-                    echo("<td>$row->us_name</td>");
-                    echo("<td>$row->us_email</td>");
-                    echo("<td>$row->us_phone</td>");
-                    $s = $style[$row->us_admin];
-                    echo("<td>$s</td>");
-                    $up_url = $url . 'nksuser/userupdate/' . $row->us_id;
-                    $del_url = $url . 'nksuser/userdelete/' . $row->us_id;
-                    echo("<td><a href='$up_url' class='mws-button blue small'>修改</a>");
-                    echo("<a href='$del_url' class='mws-button red small'>删除</a></td>");
-                    echo("</tr>");
-                }
+                echo('<tr>');
+                echo("<td>$row->us_number</td>");
+                echo("<td>$row->us_name</td>");
+                echo("<td>$row->us_email</td>");
+                echo("<td>$row->us_phone</td>");
+                $s = $style[$row->us_admin];
+                echo("<td>$s</td>");
+                $up_url = $url . 'nksuser/userupdate/' . $row->us_id;
+                $del_url = $url . 'nksuser/userdelete/' . $row->us_id;
+                echo("<td><a href='$up_url' class='mws-button blue small'>修改</a>");
+                echo("<a href='$del_url' class='mws-button red small'>删除</a></td>");
+                echo("</tr>");
             }
             ?>
 

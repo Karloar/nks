@@ -71,6 +71,18 @@ class Nks_user extends CI_Model
         return $query->result();
     }
 
+    public function getUsersNotAdmin($us_admin) {
+        $query = $this->db->where('us_admin !=', $us_admin)->get(Nks_user::_table);
+        return $query->result();
+    }
+
+    public function getUsersNotAdminByPage($us_admin, $firstResult, $maxResults) {
+        $query = $this->db->limit($maxResults, $firstResult)
+            ->order_by('us_admin desc, us_number asc')
+            ->where('us_admin !=', $us_admin)
+            ->get(Nks_user::_table);
+        return $query->result();
+    }
 
     public function getUsersByPage($firstResult, $maxResults) {
         $query = $this->db->limit($maxResults, $firstResult)->order_by('us_admin desc, us_number asc')->get(Nks_user::_table);
