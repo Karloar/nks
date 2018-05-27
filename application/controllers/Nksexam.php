@@ -439,16 +439,18 @@ class Nksexam extends Nksmanager
                     $arr['ex_invname'] .= $arr2['ex_invname' . $i];
                 }
             }
-            if($exam->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
-                $lab = $this->nks_lab->getLabById($exam->ex_lab);
-                $lab->lb_ex_num --;
-                $this->nks_lab->update((array)$lab);
-                //var_dump($arr);
-                $nlab = $this->nks_lab->getLabById($arr['ex_lab']);
-                $nlab->lb_ex_num ++;
-                $this->nks_lab->update((array)$nlab);
+//            if($exam->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
+//                $lab = $this->nks_lab->getLabById($exam->ex_lab);
+//                $lab->lb_ex_num --;
+//                $this->nks_lab->update((array)$lab);
+//                //var_dump($arr);
+//                $nlab = $this->nks_lab->getLabById($arr['ex_lab']);
+//                $nlab->lb_ex_num ++;
+//                $this->nks_lab->update((array)$nlab);
+//            }
+            if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
+                $arr['ex_invname'] = '';
             }
-
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/assignteacher', 'nksexam/examupdateassign');
         }
@@ -540,16 +542,9 @@ class Nksexam extends Nksmanager
                     $arr['ex_invname'] .= $arr2['ex_invname' . $i];
                 }
             }
-            if($exam->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
-                $lab = $this->nks_lab->getLabById($exam->ex_lab);
-                $lab->lb_ex_num --;
-                $this->nks_lab->update((array)$lab);
-                //var_dump($arr);
-                $nlab = $this->nks_lab->getLabById($arr['ex_lab']);
-                $nlab->lb_ex_num ++;
-                $this->nks_lab->update((array)$nlab);
+            if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
+                $arr['ex_invname'] = '';
             }
-
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/examupdatenotinv');
         }
@@ -642,16 +637,9 @@ class Nksexam extends Nksmanager
                     $arr['ex_invname'] .= $arr2['ex_invname' . $i];
                 }
             }
-            if($exam->ex_lab != 0 && isset($arr['ex_lab']) && $arr['ex_lab'] != 0) {
-                $lab = $this->nks_lab->getLabById($exam->ex_lab);
-                $lab->lb_ex_num --;
-                $this->nks_lab->update((array)$lab);
-                //var_dump($arr);
-                $nlab = $this->nks_lab->getLabById($arr['ex_lab']);
-                $nlab->lb_ex_num ++;
-                $this->nks_lab->update((array)$nlab);
+            if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
+                $arr['ex_invname'] = '';
             }
-
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/examlist', 'nksexam/examupdate');
         }
