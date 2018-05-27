@@ -230,7 +230,8 @@ class Nksexam extends Nksmanager
             $lab_arr = $this->nks_lab->getAllLabs();
             $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
             usort($exam_arr, 'ex_invinum_cmp');
-            usort($lab_arr, 'lb_num_cmp');
+//            usort($lab_arr, 'lb_num_cmp');
+            shuffle($lab_arr);
             $exam_num = count($exam_arr);
             $exam_copy = $exam_arr;
             foreach($exam_arr as $exam) {
@@ -245,6 +246,7 @@ class Nksexam extends Nksmanager
                     }
                 }
             }
+
             if($exam_num == 0) {
                 $res = true;
             } else {
@@ -254,6 +256,7 @@ class Nksexam extends Nksmanager
                 }
                 $res = false;
             }
+//            return;
             $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/assignteacher',
                 '分配成功！', '分配失败');
         }
@@ -298,8 +301,19 @@ class Nksexam extends Nksmanager
 
 //   判断教研室的教师人数是否满足要求：监考教师人数 * 4 - 2
     private function teacherEnough($lab, $exam) {
-        if($lab->lb_num >= $exam->ex_invinum * 4 - 2) {
-            return true;
+        switch ($exam->ex_invinum) {
+            case 1:
+            case 2:
+            case 3:
+                return true;
+            case 4:
+                if($lab->lb_num >= 10) {
+                    return true;
+                }
+            case 5:
+                if($lab->lb_num >= 20) {
+                    return true;
+                }
         }
         return false;
     }
