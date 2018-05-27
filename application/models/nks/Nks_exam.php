@@ -137,7 +137,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname', '')
             ->where('ex_lab !=', 0)
-            ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
+            ->limit($maxResults, $firstResult)->order_by('ex_date, tm_time, ex_name, ex_grade')
             ->get(Nks_exam::_table);
         return $query->result();
     }

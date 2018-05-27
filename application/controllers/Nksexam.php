@@ -249,6 +249,7 @@ class Nksexam extends Nksmanager
 
             if($exam_num == 0) {
                 $res = true;
+                $_SESSION['assign_exams'] = $exam_arr;
             } else {
                 foreach($exam_copy as $exam) {
                     $exam->ex_lab = 0;
@@ -260,6 +261,25 @@ class Nksexam extends Nksmanager
             $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/assignteacher',
                 '分配成功！', '分配失败');
         }
+    }
+
+//    撤销分配监考教师
+    public function unassignteacher() {
+        $this->check_admin(2);
+        $this->load->model('nks/nks_exam');
+        $exam_arr = $this->nks_exam->getExamsNotInvByPage(0, $this->nks_exam->getNotInvExamNum());
+        $res = true;
+        if(count($exam_arr) > 0) {
+            foreach($exam_arr as $exam) {
+                $exam->ex_lab = 0;
+                if(!$this->nks_exam->update((array)$exam)) {
+                    $res = false;
+                    break;
+                }
+            }
+        }
+        $this->handle_res($res, 'nksexam/assignteacher', 'nksexam/examlistnotiv',
+            '撤销分配成功！', '撤销失败！');
     }
 
 //    计算每个教研室所出的监考教师人数
@@ -318,37 +338,36 @@ class Nksexam extends Nksmanager
         return false;
     }
 
-    public function test() {
-        $this->load->model('nks/nks_lab');
-        $this->load->model('nks/nks_exam');
-        $lab_arr = $this->nks_lab->getAllLabs();
-        $exam_arr = $this->nks_exam->getExamsNotLabByPage(0, 9999999);
-        $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
-        usort($exam_arr, 'ex_invinum_cmp');
-        usort($lab_arr, 'lb_num_cmp');
-        foreach($exam_arr as $ex) {
-            echo($ex->ex_invinum . '&nbsp;');
-        }
-        echo('<br />');
-        foreach($exam_arr as $ex) {
-            echo($ex->ex_invinum * 4 -2 . '&nbsp;');
-        }
-        echo('<br />');
-        echo('---------------------------------<br />');
-        foreach ($lab_arr as $lab) {
-            echo($invinum_arr[$lab->lb_id] . '&nbsp;');
-        }
-        echo('<br />');
-        foreach ($lab_arr as $lab) {
-            echo($lab->lb_num . '&nbsp;');
-        }
-        echo('<br />');
-
+//    public function test() {
+//        $this->load->model('nks/nks_lab');
+//        $this->load->model('nks/nks_exam');
+//        $lab_arr = $this->nks_lab->getAllLabs();
+//        $exam_arr = $this->nks_exam->getExamsNotLabByPage(0, 9999999);
+//        $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
+//        usort($exam_arr, 'ex_invinum_cmp');
+//        usort($lab_arr, 'lb_num_cmp');
+//        foreach($exam_arr as $ex) {
+//            echo($ex->ex_invinum . '&nbsp;');
+//        }
+//        echo('<br />');
+//        foreach($exam_arr as $ex) {
+//            echo($ex->ex_invinum * 4 -2 . '&nbsp;');
+//        }
+//        echo('<br />');
+//        echo('---------------------------------<br />');
+//        foreach ($lab_arr as $lab) {
+//            echo($invinum_arr[$lab->lb_id] . '&nbsp;');
+//        }
+//        echo('<br />');
+//        foreach ($lab_arr as $lab) {
+//            echo($lab->lb_num . '&nbsp;');
+//        }
+//        echo('<br />');
 //        $examArr = $this->nks_exam->getExamsByPage(0, 1000);
 //        var_dump($examArr);
 //        echo('------------------------------------');
 //        var_dump($this->isInNotLab($labArr[0], $examArr[9]));
-    }
+//    }
 
 //    private function manageExam($arr, $lab_arr) {
 //        $this->load->model('nks/nks_lab');
