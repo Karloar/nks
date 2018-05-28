@@ -181,7 +181,7 @@ rt
 
         foreach($p as $row) {
             echo("<tr height=24 style='mso-height-source:userset;height:18.0pt'>");
-
+            $row->pl_place = str_replace('-', '', $row->pl_place);
             echo("<td height=24 class=xl6417734 style='height:18.0pt;border-top:none'>$row->ac_name</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_grade</td>");
             echo("<td class=xl6417734 style='border-top:none;border-left:none'>$row->pl_place</td>");

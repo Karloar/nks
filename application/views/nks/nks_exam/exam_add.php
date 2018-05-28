@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>不监考教研室</label>
+                    <label>不监考研究室</label>
                     <div class="mws-form-item large">
                         <select multiple="multiple" class="chzn-select" name="ex_not_lab[]">
                             <?php
@@ -251,7 +251,7 @@
                 <?php
                 if(isset($showExLab) && $showExLab) {
                     echo('<div class="mws-form-row">');
-                    echo('<label>监考教师所属实验室</label>');
+                    echo('<label>监考教师所属研究室</label>');
                     echo('<div class="mws-form-item large">');
                     echo('<select name="ex_lab" class="chzn-select">');
                     foreach($update_lab_arr as $row) {

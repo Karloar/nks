@@ -230,8 +230,8 @@ class Nksexam extends Nksmanager
             $lab_arr = $this->nks_lab->getAllLabs();
             $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
             usort($exam_arr, 'ex_invinum_cmp');
-//            usort($lab_arr, 'lb_num_cmp');
-            shuffle($lab_arr);
+            usort($lab_arr, 'lb_num_cmp');
+//            shuffle($lab_arr);
             $exam_num = count($exam_arr);
             $exam_copy = $exam_arr;
             foreach($exam_arr as $exam) {
@@ -983,7 +983,7 @@ class Nksexam extends Nksmanager
         $this->load->model('nks/nks_exam');
         $obj = $this->nks_exam->getExambyId($ex_id);
         $data['obj'] = $obj;
-        $this->load->view('nks/nks_manager/kstzd2', $data);
+        $this->load->view('nks/nks_manager/kstzd', $data);
 
     }
 
@@ -1003,7 +1003,7 @@ class Nksexam extends Nksmanager
         foreach($examList as $exam) {
             $data['obj'] = $exam;
             $data['some'] = true;
-            $this->load->view('nks/nks_manager/kstzd2', $data);
+            $this->load->view('nks/nks_manager/kstzd', $data);
         }
     }
 

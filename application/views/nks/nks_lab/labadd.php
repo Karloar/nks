@@ -18,13 +18,13 @@
             <div class="mws-form-inline">
 
                 <div class="mws-form-row">
-                    <label>教研室名称</label>
+                    <label>研究室名称</label>
                     <div class="mws-form-item large">
                         <input name="lb_name"  class="mws-textinput" type="text" value="<?=isset($obj->lb_name)?$obj->lb_name:'';?>"  required="required">
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>教研室负责人</label>
+                    <label>研究室负责人</label>
                     <div class="mws-form-item large">
                         <select name="us_id" required="required">
                             <option value="0"></option>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>教研室人数</label>
+                    <label>研究室人数</label>
                     <div class="mws-form-item large">
                         <input name="lb_num" class="mws-textinput" value="<?=isset($obj->lb_num)?$obj->lb_num:'';?>" type="number" required="required">
                     </div>

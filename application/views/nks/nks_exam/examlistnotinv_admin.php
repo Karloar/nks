@@ -31,7 +31,7 @@
                 <th title="考试日期">考试日期</th>
                 <th title="考试时间">考试时间</th>
                 <th title="监考人数">监考人数</th>
-                <th title="监考老师所属教研室">监考教师所属教研室</th>
+                <th title="监考老师所属研究室">监考教师所属研究室</th>
                 <th title="操作">操作</th>
             </tr>
             </thead>

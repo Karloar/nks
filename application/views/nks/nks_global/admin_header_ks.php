@@ -206,10 +206,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="<?=$baseurl?>#" class="mws-i-24 i-home-2">教研室管理</a>
+                    <a href="<?=$baseurl?>#" class="mws-i-24 i-home-2">研究室管理</a>
                     <ul class="closed">
-                        <li><a href="<?=$url?>nkslab/lablist">教研室列表</a></li>
-                        <li><a href="<?=$url?>nkslab/labadd">添加教研室</a></li>
+                        <li><a href="<?=$url?>nkslab/lablist">研究室列表</a></li>
+                        <li><a href="<?=$url?>nkslab/labadd">添加研究室</a></li>
                     </ul>
                 </li>
                 <li>

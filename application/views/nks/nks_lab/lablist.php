@@ -25,8 +25,8 @@
         <table class="mws-table">
             <thead>
             <tr>
-                <th  title="教研室名称">教研室名称</th>
-                <th  title="教研室人数">教研室人数</th>
+                <th  title="研究室名称">研究室名称</th>
+                <th  title="研究室人数">研究室人数</th>
                 <th title="负责人">负责人</th>
                 <th title="操作">操作</th>
             </tr>
