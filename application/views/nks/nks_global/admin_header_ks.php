@@ -198,7 +198,7 @@
                     <a href="<?=$baseurl?>#" class="mws-i-24 i-balloons">考试管理</a>
                     <ul class="closed">
                         <li><a href="<?=$url?>nksexam/examadd">添加考试</a></li>
-                        <li><a href="<?=$url?>nksexam/assignteacher">分配监考教师</a></li>
+                        <li><a href="<?=$url?>nksexam/chooseAssignDate">分配监考教师</a></li>
                         <li><a href="<?=$url?>nksexam/examlistnotinv">未录入监考教师</a></li>
                         <li><a href="<?=$url?>nksexam/examlist">全部考试列表</a></li>
                         <li><a href="<?=$url?>nksexam/printexam">打印考试信息</a></li>

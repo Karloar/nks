@@ -126,6 +126,7 @@ class Nks_exam extends CI_Model {
         return $query->result();
     }
 
+//    得到没有录入监考教师的考试
     public function getExamsNotInvByPage($firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -142,7 +143,8 @@ class Nks_exam extends CI_Model {
         return $query->result();
     }
 
-    public function getExamsNotInvByDateByPage($begin_date, $end_date, $firstResult, $maxResults) {
+//    根据日期范围得到没有安排监考研究室的考试
+    public function getExamsNotLabByDateByPage($begin_date, $end_date, $firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
             ->join('nks_major', 'nks_exam.mj_id=nks_major.mj_id', 'left')
@@ -153,22 +155,18 @@ class Nks_exam extends CI_Model {
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
-            ->where('ex_invname', '')
-            ->where('ex_lab !=', 0)
+            ->where('ex_lab', 0)
             ->limit($maxResults, $firstResult)->order_by('ex_date, tm_time, ex_name, ex_grade')
             ->get(Nks_exam::_table);
         return $query->result();
     }
 
-    public function getExamsNotInvByDateNum($begin_date, $end_date) {
+    public function getExamNotLabByDateNum($begin_date, $end_date) {
         return $this->db
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
-            ->where('ex_lab !=', 0)
-            ->where('ex_invname', '')
-            ->get(self::_table)->num_rows();
+            ->where('ex_lab', 0)->get(self::_table)->num_rows();
     }
-
 
     public function getExamsInvByPage($firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')

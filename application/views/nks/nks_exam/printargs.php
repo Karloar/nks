@@ -32,13 +32,17 @@
                         <input name="end_date" required="required" class="mws-textinput" type="date" />
                     </div>
                 </div>
-                <div class="mws-form-row">
-                    <label>考试科目</label>
-                    <div class="mws-form-item large">
-                        <input name="ex_name" class="mws-textinput" />
-                        <div style="color:red;">若为空，则代表所有课程</div>
-                    </div>
-                </div>
+                <?php
+                if(isset($showName)) {
+                    echo('<div class="mws-form-row">');
+                    echo('<label>考试科目</label>');
+                    echo('<div class="mws-form-item large">');
+                    echo('<input name="ex_name" class="mws-textinput" />');
+                    echo('<div style="color:red;">若为空，则代表所有课程</div>');
+                    echo('</div>');
+                    echo('</div>');
+                }
+                ?>
                 <div class="mws-button-row">
                     <input type="submit" class="mws-button green" value="提交">
                     <input type="reset" class="mws-button gray" value="重置">

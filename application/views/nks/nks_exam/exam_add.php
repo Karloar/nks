@@ -5,10 +5,12 @@
         var major = $("#mj_id");
         major.empty();
         var majors = eval("(" + htmlobj.responseText + ")");
+        console.log(major);
         major.append("<option value='0'></option>");
         for(var i in majors) {
             major.append("<option value='"+majors[i]['mj_id']+"'>"+majors[i]['mj_name']+"</option>");
         }
+        major.trigger('liszt:updated');
     }
 
     function exlab_change() {
@@ -125,7 +127,7 @@
                                     echo("<option value='$row->tm_id'>$row->tm_time</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && (is_null($obj->tm_id) || $obj->tm_id == 0 || $obj->tm_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->tm_id) || $obj->tm_id == 0 || $obj->tm_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");
@@ -164,7 +166,7 @@
                                     echo("<option value='$row->mj_id'>$row->mj_name</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && (is_null($obj->mj_id) || $obj->mj_id == 0 || $obj->mj_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->mj_id) || $obj->mj_id == 0 || $obj->mj_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");
@@ -186,7 +188,7 @@
                                     echo("<option value='$row->class_id'>$row->class_name</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && (is_null($obj->class_id) || $obj->class_id == 0 || $obj->class_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->class_id) || $obj->class_id == 0 || $obj->class_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");
@@ -208,7 +210,7 @@
                                     echo("<option value='$row->pl_id'>$row->pl_place</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && (is_null($obj->pl_id) || $obj->pl_id == 0 || $obj->pl_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->pl_id) || $obj->pl_id == 0 || $obj->pl_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");

@@ -7,14 +7,24 @@
  */
 require_once('Nksmanager.php');
 
-// 按照教研室老师人数排序
-function lb_num_cmp($a, $b) {
+// 按照教研室老师人数降序排序
+function rlb_num_cmp($a, $b) {
     return $a->lb_num < $b->lb_num;
 }
 
-// 按照考试监考教师排序
-function ex_invinum_cmp($a, $b) {
+// 按照教研室老师人数升序排序
+function lb_num_cmp($a, $b) {
+    return $a->lb_num > $b->lb_num;
+}
+
+// 按照考试监考教师降序排序
+function rex_invinum_cmp($a, $b) {
     return $a->ex_invinum < $b->ex_invinum;
+}
+
+// 按照考试监考教师升序排序
+function ex_invinum_cmp($a, $b) {
+    return $a->ex_invinum > $b->ex_invinum;
 }
 
 class Nksexam extends Nksmanager
@@ -194,6 +204,31 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    分配之前选择考试日期范围
+    public function chooseAssignDate() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $_SESSION['assign_args'] = array('begin_date' => $begin_date, 'end_date' => $end_date);
+            redirect('nksexam/assignteacher');
+
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择考试日期',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/chooseAssignDate'
+        );
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/printargs");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+
 //    分配监考教师按钮
     public function assignteacher() {
         $this->check_admin(2);
@@ -205,20 +240,24 @@ class Nksexam extends Nksmanager
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
         );
-        $this->load->model('nks/nks_exam');
-        $per_page_num = 13;
-        $firstResult = $this->uri->segment(3);
-        if(!isset($firstResult) || $firstResult == '') {
-            $firstResult = 0;
-        }
-        $total_num = $this->nks_exam->getExamNotLabNum();
-        $_SESSION['assign_exams'] = $this->nks_exam->getExamsNotLabByPage(0, $total_num);
-        $this->myinput->load_page($total_num, 'nksexam/assignteacher', $per_page_num);
-        $data['result'] = $this->nks_exam->getExamsNotLabByPage($firstResult, $per_page_num);
+        if(isset($_SESSION['assign_args'])) {
+            $begin_date = $_SESSION['assign_args']['begin_date'];
+            $end_date = $_SESSION['assign_args']['end_date'];
+            $this->load->model('nks/nks_exam');
+            $per_page_num = 13;
+            $firstResult = $this->uri->segment(3);
+            if(!isset($firstResult) || $firstResult == '') {
+                $firstResult = 0;
+            }
+            $total_num = $this->nks_exam->getExamNotLabByDateNum($begin_date, $end_date);
+            $_SESSION['assign_exams'] = $this->nks_exam->getExamsNotLabByDateByPage($begin_date, $end_date, 0, $total_num);
+            $this->myinput->load_page($total_num, 'nksexam/assignteacher', $per_page_num);
+            $data['result'] = $this->nks_exam->getExamsNotLabByDateByPage($begin_date, $end_date, $firstResult, $per_page_num);
 
-        $this->load->view("nks/nks_global/admin_header_ks", $data);
-        $this->load->view("nks/nks_exam/assignteacher");
-        $this->load->view("nks/nks_global/footer_man");
+            $this->load->view("nks/nks_global/admin_header_ks", $data);
+            $this->load->view("nks/nks_exam/assignteacher");
+            $this->load->view("nks/nks_global/footer_man");
+        }
     }
 
 //    执行分配监考教师
@@ -230,8 +269,8 @@ class Nksexam extends Nksmanager
             $this->load->model('nks/nks_exam');
             $lab_arr = $this->nks_lab->getAllLabs();
             $invinum_arr = $this->getInvinumOfLab($lab_arr, $exam_arr);
-            usort($exam_arr, 'ex_invinum_cmp');
-            usort($lab_arr, 'lb_num_cmp');
+            usort($exam_arr, 'rex_invinum_cmp');
+            usort($lab_arr, 'rlb_num_cmp');
 //            shuffle($lab_arr);
             $exam_num = count($exam_arr);
             $exam_copy = $exam_arr;
@@ -857,7 +896,8 @@ class Nksexam extends Nksmanager
             'title' => '选择考试时间范围以及考试科目',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
-            'form_ac' => 'nksexam/printexam'
+            'form_ac' => 'nksexam/printexam',
+            'showName' => true
         );
         $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_exam/printargs");
