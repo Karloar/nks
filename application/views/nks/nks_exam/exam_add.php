@@ -1,15 +1,38 @@
 <script>
     function ac_change() {
         var ac_id = $("#ac_id").val();
-        var htmlobj = $.ajax({url:'<?php echo($url) ?>nksexam/academychange/' + ac_id, async:false});
+        var htmlobj = $.ajax({url:'<?php echo($url); ?>nksexam/academychange/' + ac_id, async:false});
         var major = $("#mj_id");
         major.empty();
-        var majors = eval(htmlobj.responseText);
+        var majors = eval("(" + htmlobj.responseText + ")");
         major.append("<option value='0'></option>");
         for(var i in majors) {
             major.append("<option value='"+majors[i]['mj_id']+"'>"+majors[i]['mj_name']+"</option>");
         }
     }
+
+    function exlab_change() {
+        var ex_lab = $("#ex_lab").val();
+        var exlab_message = $("#exlab_message");
+        var ex_invinum = $("#ex_invinum").val();
+        var ex_date = $("#ex_date").val();
+        if(ex_lab && ex_invinum && ex_date) {
+            var ex_not_lab = $("#ex_not_lab").val();
+            var ex_id = '<?= isset($obj->ex_id) ? $obj->ex_id: '' ?>';
+
+            var mydata = {'ex_lab': ex_lab, 'ex_date': ex_date, 'ex_not_lab': ex_not_lab, 'ex_id': ex_id, 'ex_invinum':ex_invinum};
+            mydata = JSON.stringify(mydata);
+            var htmlobj = $.ajax({url:'<?php echo($url); ?>nksexam/exlab_change/', async:false, data: {'mydata':mydata}});
+            exlab_message.empty();
+            // exlab_message.html(htmlobj.responseText);
+            var rtv = eval("(" + htmlobj.responseText + ")");
+            exlab_message.css({'color': rtv['color']});
+            exlab_message.html(rtv['message']);
+        } else {
+            exlab_message.empty();
+        }
+    }
+
 
 
 </script>
@@ -86,7 +109,7 @@
                 <div class="mws-form-row">
                     <label>考试日期</label>
                     <div class="mws-form-item large">
-                        <input name="ex_date" required class="mws-textinput" type="date" value="<?=isset($obj->ex_date)?$obj->ex_date:'';?>" >
+                        <input name="ex_date" id="ex_date" required class="mws-textinput" type="date" value="<?=isset($obj->ex_date)?$obj->ex_date:'';?>" >
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -197,7 +220,7 @@
                 <div class="mws-form-row">
                     <label>不监考研究室</label>
                     <div class="mws-form-item large">
-                        <select multiple="multiple" class="chzn-select" name="ex_not_lab[]">
+                        <select multiple="multiple" class="chzn-select" name="ex_not_lab[]" id="ex_not_lab">
                             <?php
                             foreach($lab_arr as $row) {
                                 if(isset($obj->ex_not_lab) && $obj->ex_not_lab != '' && in_array($row->lb_id, explode('-', $obj->ex_not_lab))) {
@@ -213,7 +236,7 @@
                 <div class="mws-form-row">
                     <label>监考人数</label>
                     <div class="mws-form-item large">
-                        <select name="ex_invinum" class="chzn-select" required>
+                        <select name="ex_invinum" id="ex_invinum" class="chzn-select" required>
                             <option value=""></option>
                             <?php
                             for($i=1;$i<=5;$i++) {
@@ -253,8 +276,8 @@
                     echo('<div class="mws-form-row">');
                     echo('<label>监考教师所属研究室</label>');
                     echo('<div class="mws-form-item large">');
-                    echo('<select name="ex_lab" class="chzn-select">');
-                    foreach($update_lab_arr as $row) {
+                    echo('<select name="ex_lab" class="chzn-select" id="ex_lab" onchange="exlab_change();">');
+                    foreach($lab_arr as $row) {
                         if($obj->ex_lab == $row->lb_id) {
                             echo("<option value='$row->lb_id' selected>$row->lb_name</option>");
                         } else {
@@ -267,9 +290,10 @@
                         echo("<option value='0'>其它</option>");
                     }
                     echo('</select>');
+                    echo('<div style="color:red;" id="exlab_message"></div>');
                     echo('</div>');
                     echo('</div>');
-                    if(!(is_null($obj->ex_lab) || $obj->ex_lab == 0 || $obj->ex_lab == '')) {
+                    if(isset($obj->ex_lab) && !(is_null($obj->ex_lab) || $obj->ex_lab == 0 || $obj->ex_lab == '')) {
                         for($i=1;$i<=$obj->ex_invinum;$i++) {
                             echo('<div class="mws-form-row" id="ex_invname">');
                             echo("<label>监考教师$i</label>");

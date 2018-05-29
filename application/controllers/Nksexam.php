@@ -183,6 +183,7 @@ class Nksexam extends Nksmanager
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
         $data['lab_arr'] = $this->nks_lab->getAllLabs();
         $data['academy_arr'] = $academies;
+        $data['showExLab'] = true;
         if(count($academies) > 0) {
             $data['major_arr'] = $this->nks_major->getMajorsByAcId($academies[0]->ac_id);
         } else {
@@ -479,14 +480,6 @@ class Nksexam extends Nksmanager
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
         $lab_arr = $this->nks_lab->getAllLabs();
         $data['lab_arr'] = $lab_arr;
-        $date['update_lab_arr'] = array();
-        foreach($lab_arr as $lab) {
-            if(!$this->isInNotLab($lab, $exam) && !$this->hasExamCurrentDay($lab, $exam) && $this->teacherEnough($lab, $exam)) {
-                $data['update_lab_arr'][] = $lab;
-            } else if($lab->lb_id == $exam->lb_id) {
-                $data['update_lab_arr'][] = $lab;
-            }
-        }
         $data['academy_arr'] = $academies;
         if(count($academies) > 0) {
             $data['major_arr'] = $this->nks_major->getMajorsByAcId($data['obj']->ac_id);
@@ -573,14 +566,7 @@ class Nksexam extends Nksmanager
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
         $lab_arr = $this->nks_lab->getAllLabs();
         $data['lab_arr'] = $lab_arr;
-        $date['update_lab_arr'] = array();
-        foreach($lab_arr as $lab) {
-            if(!$this->isInNotLab($lab, $exam) && !$this->hasExamCurrentDay($lab, $exam) && $this->teacherEnough($lab, $exam)) {
-                $data['update_lab_arr'][] = $lab;
-            } else if($lab->lb_id == $exam->lb_id) {
-                $data['update_lab_arr'][] = $lab;
-            }
-        }
+
         $data['academy_arr'] = $academies;
         if(count($academies) > 0) {
             $data['major_arr'] = $this->nks_major->getMajorsByAcId($data['obj']->ac_id);
@@ -668,14 +654,7 @@ class Nksexam extends Nksmanager
         $data['nature_arr'] = $this->nks_nature->getAllNatures();
         $lab_arr = $this->nks_lab->getAllLabs();
         $data['lab_arr'] = $lab_arr;
-        $date['update_lab_arr'] = array();
-        foreach($lab_arr as $lab) {
-            if(!$this->isInNotLab($lab, $exam) && !$this->hasExamCurrentDay($lab, $exam) && $this->teacherEnough($lab, $exam)) {
-                $data['update_lab_arr'][] = $lab;
-            } else if($lab->lb_id == $exam->lb_id) {
-                $data['update_lab_arr'][] = $lab;
-            }
-        }
+
         $data['academy_arr'] = $academies;
         if(count($academies) > 0) {
             $data['major_arr'] = $this->nks_major->getMajorsByAcId($data['obj']->ac_id);
@@ -1087,5 +1066,46 @@ class Nksexam extends Nksmanager
         $this->load->model('nks/nks_major');
         $res = $this->nks_major->getMajorsbyAcId($ac_id);
         echo(json_encode($res));
+    }
+
+//    添加或修改考试时，当手动分配监考教师所属的研究室时，所显示的信息
+    public function exlab_change() {
+        $this->check_admin(2);
+        $mydata = json_decode($_GET['mydata']);
+        $ex_lab =$mydata->ex_lab;
+        $ex_id = $mydata->ex_id;
+        $this->load->model('nks/nks_lab');
+        $this->load->model('nks/nks_exam');
+        $lab = $this->nks_lab->getLabByid($ex_lab);
+        if(isset($mydata->ex_not_lab)) {
+            $notlab_arr = $mydata->ex_not_lab;
+            $mydata->ex_not_lab = '';
+            foreach($notlab_arr as $notlab) {
+                $mydata->ex_not_lab .= $notlab . '-';
+            }
+        } else {
+            $mydata->ex_not_lab = '';
+        }
+        $exam = $mydata;
+        $res = true;
+        if($ex_id != '') {
+            $ex = $this->nks_exam->getExamById($ex_id);
+            if($ex->ex_lab == $ex_lab) {
+                $res = true;
+            } else if($this->isInNotLab($lab, $exam) || $this->hasExamCurrentDay($lab, $exam) || !$this->teacherEnough($lab, $exam)) {
+                $res = false;
+            }
+        } else {
+            if($this->isInNotLab($lab, $exam) || $this->hasExamCurrentDay($lab, $exam) || !$this->teacherEnough($lab, $exam)) {
+                $res = false;
+            }
+        }
+        if($res) {
+            $rtv = array('color'=> 'green', 'message'=>'OK!!');
+        } else {
+            $rtv = array('color'=> 'red', 'message' => '不推荐!!');
+        }
+
+        echo(json_encode($rtv));
     }
 }

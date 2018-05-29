@@ -195,7 +195,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="<?=$baseurl?>#" class="mws-i-24 i-balloons">考试模块</a>
+                    <a href="<?=$baseurl?>#" class="mws-i-24 i-balloons">考试管理</a>
                     <ul class="closed">
                         <li><a href="<?=$url?>nksexam/examadd">添加考试</a></li>
                         <li><a href="<?=$url?>nksexam/assignteacher">分配监考教师</a></li>

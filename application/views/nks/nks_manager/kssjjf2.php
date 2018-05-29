@@ -950,17 +950,23 @@ width:22pt'>
   <td colspan=7 class=xl7227817 width=189 style='width:143pt'>
       <?php
       foreach($major_arr as $row) {
-          echo($row->mj_name . '<br />');
+          $x = explode('、', $row->mj_name);
+          if(count($x) < 2) {
+              echo($row->mj_name . '<br />');
+          }
       }
       ?>
   </td>
   <td colspan=2 class=xl7327817 width=50 style='width:38pt'>
       <?php
       foreach($major_arr as $row) {
-          if($row->mj_id == $obj->mj_id) {
-              echo("（&#10004）<br />");
-          } else {
-              echo("（&nbsp;）<br />");
+          $x = explode('、', $row->mj_name);
+          if(count($x) < 2) {
+              if(isset($obj->mj_name) && $obj->mj_name != '' && in_array($row->mj_name, explode('、', $obj->mj_name))) {
+                  echo("（&#10004）<br />");
+              } else {
+                  echo("（&nbsp;）<br />");
+              }
           }
       }
       ?>
