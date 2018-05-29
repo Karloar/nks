@@ -6,6 +6,42 @@
  * Time: 16:17
  */
 
+// 按照班级升序排序
+function class_name_cmp($a, $b) {
+    $x = explode('-', $a->class_name);
+    $y = explode('-', $b->class_name);
+    $x = str_replace('班', '', $x);
+    $y = str_replace('班', '', $y);
+    if($a->ex_date > $b->ex_date) {
+        return 1;
+    } elseif($a->ex_date < $b->ex_date) {
+        return -1;
+    } else {
+        if($a->tm_time > $b->tm_time) {
+            return 1;
+        } elseif($a->tm_time < $b->tm_time) {
+            return -1;
+        } else {
+            if($a->ex_name > $b->ex_name) {
+                return 1;
+            } elseif($a->ex_name < $b->ex_name) {
+                return -1;
+            } else {
+                if($a->ex_grade > $b->ex_grade) {
+                    return 1;
+                } elseif($a->ex_grade < $b->ex_grade) {
+                    return -1;
+                } else {
+                    return $x[0] > $y[0];
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+
 class Nks_exam extends CI_Model {
 
     const _table = 'nks_exam';
@@ -104,9 +140,10 @@ class Nks_exam extends CI_Model {
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
-            ->limit($maxResults, $firstResult)->order_by('ex_date, tm_time, ex_name, ex_grade')
             ->get(Nks_exam::_table);
-        return $query->result();
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return array_slice($rs, $firstResult, $maxResults);
     }
 
     public function getExamsBetweenDateByNameByPage($begin_date, $end_date, $ex_name, $firstResult, $maxResults) {
@@ -121,9 +158,10 @@ class Nks_exam extends CI_Model {
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
             ->where('ex_name', $ex_name)
-            ->limit($maxResults, $firstResult)->order_by('ex_date, tm_time, ex_name, ex_grade')
             ->get(Nks_exam::_table);
-        return $query->result();
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return array_slice($rs, $firstResult, $maxResults);
     }
 
 //    得到没有录入监考教师的考试
@@ -138,9 +176,10 @@ class Nks_exam extends CI_Model {
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname', '')
             ->where('ex_lab !=', 0)
-            ->limit($maxResults, $firstResult)->order_by('ex_date, tm_time, ex_name, ex_grade')
             ->get(Nks_exam::_table);
-        return $query->result();
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return array_slice($rs, $firstResult, $maxResults);
     }
 
 //    根据日期范围得到没有安排监考研究室的考试
@@ -156,17 +195,44 @@ class Nks_exam extends CI_Model {
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
             ->where('ex_lab', 0)
-            ->limit($maxResults, $firstResult)->order_by('ex_date, tm_time, ex_name, ex_grade')
             ->get(Nks_exam::_table);
-        return $query->result();
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return array_slice($rs, $firstResult, $maxResults);
     }
 
+//    根据日期范围得到没有安排监考研究室的考试数目
     public function getExamNotLabByDateNum($begin_date, $end_date) {
         return $this->db
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
             ->where('ex_lab', 0)->get(self::_table)->num_rows();
     }
+
+//    得到当天录入或修改的考试
+    public function getExamsUpdateTodayByPage($today, $firstResult, $maxResults) {
+        $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
+            ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
+            ->join('nks_major', 'nks_exam.mj_id=nks_major.mj_id', 'left')
+            ->join('nks_academy', 'nks_exam.ac_id=nks_academy.ac_id', 'left')
+            ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
+            ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
+            ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
+            ->where('ex_input_date like', $today . '%')
+            ->get(Nks_exam::_table);
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return array_slice($rs, $firstResult, $maxResults);
+    }
+
+//    得到当天录入或修改的考试数目
+    public function getExamUpdateLabTodayNum($today) {
+        return $this->db
+            ->where('ex_input_date like', $today . '%')
+            ->get(self::_table)->num_rows();
+    }
+
 
     public function getExamsInvByPage($firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
@@ -255,9 +321,10 @@ class Nks_exam extends CI_Model {
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_lab', 0)
-            ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
-        return $query->result();
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return array_slice($rs, $firstResult, $maxResults);
     }
 
     public function getExamBetweenDateNum($begin_date, $end_date) {

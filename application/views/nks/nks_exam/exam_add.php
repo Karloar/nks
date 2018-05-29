@@ -18,7 +18,7 @@
         var exlab_message = $("#exlab_message");
         var ex_invinum = $("#ex_invinum").val();
         var ex_date = $("#ex_date").val();
-        if(ex_lab && ex_invinum && ex_date) {
+        if(ex_lab != 0 && ex_invinum && ex_date) {
             var ex_not_lab = $("#ex_not_lab").val();
             var ex_id = '<?= isset($obj->ex_id) ? $obj->ex_id: '' ?>';
 
@@ -166,7 +166,7 @@
                                     echo("<option value='$row->mj_id'>$row->mj_name</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->mj_id) || $obj->mj_id == 0 || $obj->mj_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->mj_id) && (is_null($obj->mj_id) || $obj->mj_id == 0 || $obj->mj_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");
@@ -188,7 +188,7 @@
                                     echo("<option value='$row->class_id'>$row->class_name</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->class_id) || $obj->class_id == 0 || $obj->class_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->class_id) && (is_null($obj->class_id) || $obj->class_id == 0 || $obj->class_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");
@@ -210,7 +210,7 @@
                                     echo("<option value='$row->pl_id'>$row->pl_place</option>");
                                 }
                             }
-                            if(isset($showExLab) && $showExLab && isset($obj->tm_id) && (is_null($obj->pl_id) || $obj->pl_id == 0 || $obj->pl_id == '')) {
+                            if(isset($showExLab) && $showExLab && isset($obj->pl_id) && (is_null($obj->pl_id) || $obj->pl_id == 0 || $obj->pl_id == '')) {
                                 echo("<option value='0' selected>其它</option>");
                             } else {
                                 echo("<option value='0'>其它</option>");

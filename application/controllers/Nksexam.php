@@ -27,6 +27,8 @@ function ex_invinum_cmp($a, $b) {
     return $a->ex_invinum > $b->ex_invinum;
 }
 
+
+
 class Nksexam extends Nksmanager
 {
     public function __construct()
@@ -111,6 +113,34 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//   显示今天添加或修改的考试列表
+    public function showTodayExamList() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '考试列表（今日录入或修改）',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+        );
+        $this->load->model('nks/nks_exam');
+        $per_page_num = 13;
+        $firstResult = $this->uri->segment(3);
+        if(!isset($firstResult) || $firstResult == '') {
+            $firstResult = 0;
+        }
+        date_default_timezone_set("Asia/Shanghai");
+        $today = date('Y-m-d');
+        $total_num = $this->nks_exam->getExamUpdateLabTodayNum($today);
+        $this->myinput->load_page($total_num, 'nksexam/showTodayExamList', $per_page_num);
+        $data['result'] = $this->nks_exam->getExamsUpdateTodayByPage($today, $firstResult, $per_page_num);
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/examlist_add");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+
 
 //  添加考试信息
     public function examadd(){
@@ -123,10 +153,13 @@ class Nksexam extends Nksmanager
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note'));
             $arr['ex_not_lab'] = '';
-            foreach($_POST['ex_not_lab'] as $r) {
-                $arr['ex_not_lab'] .= $r . '-';
+            if(isset($_POST['ex_not_lab'])) {
+                foreach($_POST['ex_not_lab'] as $r) {
+                    $arr['ex_not_lab'] .= $r . '-';
+                }
             }
             $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
+            date_default_timezone_set("Asia/Shanghai");
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
             $this->load->model('nks/nks_exam');
             $res = $this->nks_exam->insert($arr);
@@ -141,8 +174,7 @@ class Nksexam extends Nksmanager
                 'mj_id' => $arr['mj_id']
             );
             $_SESSION['obj'] = (object)$obj;
-
-            $this->handle_res($res, 'nksexam/assignteacher', 'nksexam/examadd');
+            $this->handle_res($res, 'nksexam/showTodayExamList', 'nksexam/examadd');
         }
 
         $data = array(
@@ -281,6 +313,8 @@ class Nksexam extends Nksmanager
                         $exam->ex_lab = $lab->lb_id;
                         $invinum_arr[$lab->lb_id] -= $exam->ex_invinum;
                         $exam_num --;
+                        date_default_timezone_set("Asia/Shanghai");
+                        $exam->ex_input_date = date('Y-m-d H:i:s');
                         $this->nks_exam->update((array)$exam);
                         break;
                     }
@@ -291,9 +325,9 @@ class Nksexam extends Nksmanager
                 $res = true;
                 $_SESSION['assign_exams'] = $exam_arr;
             } else {
-                foreach($exam_copy as $exam) {
-                    $exam->ex_lab = 0;
-                    $this->nks_exam->update((array)$exam);
+                foreach($exam_copy as $e) {
+                    $e->ex_lab = 0;
+                    $this->nks_exam->update((array)$e);
                 }
                 $res = false;
             }
@@ -312,13 +346,15 @@ class Nksexam extends Nksmanager
         if(count($exam_arr) > 0) {
             foreach($exam_arr as $exam) {
                 $exam->ex_lab = 0;
+                date_default_timezone_set("Asia/Shanghai");
+                $exam->ex_input_date = date('Y-m-d H:i:s');
                 if(!$this->nks_exam->update((array)$exam)) {
                     $res = false;
                     break;
                 }
             }
         }
-        $this->handle_res($res, 'nksexam/assignteacher', 'nksexam/examlistnotiv',
+        $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/examlistnotiv',
             '撤销分配成功！', '撤销失败！');
     }
 
@@ -436,6 +472,94 @@ class Nksexam extends Nksmanager
 //        return 0;
 //    }
 
+//    由添加考试中当天添加或修改的考试列表修改考试信息
+    public function examupdateByshowToday($ex_id) {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $this->load->model('nks/nks_exam');
+        $this->load->model('nks/nks_lab');
+        $exam = $this->nks_exam->getExamById($ex_id);
+        if(isset($_POST['ex_name']) && $_POST['ex_name'] != '' && isset($_POST['ex_grade']) && $_POST['ex_grade'] != ''
+            && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
+
+            $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
+                'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
+                'ex_note', 'ex_lab'));
+            date_default_timezone_set("Asia/Shanghai");
+            $arr['ex_input_date'] = date('Y-m-d H:i:s');
+            $arr['ex_not_lab'] = '';
+            if(isset($_POST['ex_not_lab'])) {
+                foreach($_POST['ex_not_lab'] as $r) {
+                    $arr['ex_not_lab'] .= $r . '-';
+                }
+            }
+            $arr['ex_not_lab'] = trim($arr['ex_not_lab']);
+            $arr['ex_id'] = $ex_id;
+            $flag = true;
+            for($i=1;$i<=$exam->ex_invinum;$i++) {
+                if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
+                    $flag = false;
+                    break;
+                }
+            }
+            if($flag) {
+                $post_arr = array();
+                for($i=1;$i<=$exam->ex_invinum;$i++) {
+                    $post_arr[$i-1] = 'ex_invname' . $i;
+                }
+                $arr2 = $this->myinput->getBykeys($post_arr);
+                $arr['ex_invname'] = '';
+                if(count($arr2) > 0) {
+                    for($i=1;$i<$exam->ex_invinum;$i++) {
+                        $arr['ex_invname'] .= $arr2['ex_invname' . $i] . ' ';
+                    }
+                    $arr['ex_invname'] .= $arr2['ex_invname' . $i];
+                }
+            }
+            if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
+                $arr['ex_invname'] = '';
+            }
+            $res = $this->nks_exam->update($arr);
+            $this->handle_res($res, 'nksexam/showTodayExamList', 'nksexam/examupdateByshowToday');
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '修改考试信息',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/examupdateByshowToday/' . $ex_id
+        );
+        $data['showExLab'] = true;
+        $data['obj'] = $exam;
+        $data['obj']->ex_invname = explode(' ', $data['obj']->ex_invname);
+        $this->load->model('nks/nks_academy');
+        $this->load->model('nks/nks_place');
+        $this->load->model('nks/nks_time');
+        $this->load->model('nks/nks_class');
+        $this->load->model('nks/nks_nature');
+        $this->load->model('nks/nks_major');
+        $this->load->model('nks/nks_lab');
+        $academies = $this->nks_academy->getAllAcademies();
+        $data['place_arr'] = $this->nks_place->getAllPlaces();
+        $data['time_arr'] = $this->nks_time->getAllTime();
+        $data['class_arr'] = $this->nks_class->getAllClasses();
+        $data['nature_arr'] = $this->nks_nature->getAllNatures();
+        $lab_arr = $this->nks_lab->getAllLabs();
+        $data['lab_arr'] = $lab_arr;
+
+        $data['academy_arr'] = $academies;
+        if(count($academies) > 0) {
+            $data['major_arr'] = $this->nks_major->getMajorsByAcId($data['obj']->ac_id);
+        } else {
+            $data['major_arr'] = $this->nks_major->getAllMajors();
+        }
+
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/exam_add");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
 //   由分配监考教师界面修改考试信息
     public function examupdateassign($ex_id) {
         $this->check_admin(2);
@@ -449,6 +573,7 @@ class Nksexam extends Nksmanager
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note', 'ex_lab'));
+            date_default_timezone_set("Asia/Shanghai");
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
             $arr['ex_not_lab'] = '';
             if(isset($_POST['ex_not_lab'])) {
@@ -544,6 +669,7 @@ class Nksexam extends Nksmanager
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note', 'ex_lab'));
+            date_default_timezone_set("Asia/Shanghai");
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
             $arr['ex_not_lab'] = '';
             if(isset($_POST['ex_not_lab'])) {
@@ -632,6 +758,7 @@ class Nksexam extends Nksmanager
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
                 'ex_note', 'ex_lab'));
+            date_default_timezone_set("Asia/Shanghai");
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
             $arr['ex_not_lab'] = '';
             if(isset($_POST['ex_not_lab'])) {
@@ -813,6 +940,7 @@ class Nksexam extends Nksmanager
             }
             $arr['ex_invname'] .= trim($arr['ex_invname' . $i]);
             $obj->ex_invname = $arr['ex_invname'];
+            date_default_timezone_set("Asia/Shanghai");
             $obj->ex_input_date = date('Y-m-d H:i:s');
             $res = $this->nks_exam->update((array)$obj);
             $this->handle_res($res, 'nksexam/examlistinvbylab', 'nksexam/examlistnotinvbylab');
@@ -857,6 +985,7 @@ class Nksexam extends Nksmanager
             }
             $arr['ex_invname'] .= $arr['ex_invname' . $i];
             $obj->ex_invname = $arr['ex_invname'];
+            date_default_timezone_set("Asia/Shanghai");
             $obj->ex_input_date = date('Y-m-d H:i:s');
             $res = $this->nks_exam->update((array)$obj);
             $this->handle_res($res, 'nksexam/examlistinvbylab', 'nksexam/examlistinvbylab');
