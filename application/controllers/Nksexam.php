@@ -1166,7 +1166,11 @@ class Nksexam extends Nksmanager
         $data['obj'] = $obj;
         $cl_name = $obj->class_name;
         if($cl_name != '') {
+            $cl_name = str_replace('班', '', $cl_name);
             $cl_name = explode('-', $cl_name);
+            if(count($cl_name) == 1) {
+                $cl_name[1] = $cl_name[0];
+            }
             for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
                 $data['nc'] = $i;
                 $this->load->view('nks/nks_manager/kssjjf2', $data);
@@ -1197,7 +1201,11 @@ class Nksexam extends Nksmanager
             $data['obj'] = $exam;
             $cl_name = $exam->class_name;
             if($cl_name != '') {
+                $cl_name = str_replace('班', '', $cl_name);
                 $cl_name = explode('-', $cl_name);
+                if(count($cl_name) == 1) {
+                    $cl_name[1] = $cl_name[0];
+                }
                 for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
                     $data['nc'] = $i;
                     $this->load->view('nks/nks_manager/kssjjf2', $data);
