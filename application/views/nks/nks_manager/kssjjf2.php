@@ -1204,7 +1204,7 @@ width:22pt'>
   <td class=xl1527817></td>
   <td class=xl1527817></td>
  </tr>
- <tr height=19 style='height:17.75pt'>
+ <tr height=19 style='height:17.00pt'>
   <td height=19 class=xl1527817 style='height:14.25pt'></td>
   <td class=xl6427817></td>
   <td class=xl6427817></td>
