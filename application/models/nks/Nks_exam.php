@@ -76,6 +76,7 @@ class Nks_exam extends CI_Model {
         $this->load->database();
     }
 
+//    添加考试信息
     public function insert($arr) {
         $this->ex_id = isset($arr['ex_id']) ? $arr['ex_id']: null;
         $this->ex_name = $arr['ex_name'];
@@ -101,6 +102,7 @@ class Nks_exam extends CI_Model {
         return $this->db->insert(Nks_exam::_table, $this);
     }
 
+//    通过id获得考试信息
     public function getExamById($ex_id) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->where('ex_id', $ex_id)
@@ -115,6 +117,7 @@ class Nks_exam extends CI_Model {
         return $query->result()[0];
     }
 
+//    分页获得所有考试信息（按添加或修改的时间降序排序）
     public function getExamsByPage($firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -129,6 +132,7 @@ class Nks_exam extends CI_Model {
         return $query->result();
     }
 
+//    分页获得考试日期之间的所有考试（按照考试日期、考试时间、科目名称、考试年级排序）
     public function getExamsBetweenDateByPage($begin_date, $end_date, $firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -146,6 +150,7 @@ class Nks_exam extends CI_Model {
         return array_slice($rs, $firstResult, $maxResults);
     }
 
+//    通过科目名称分页获得考试日期之间的所有考试（按照考试日期、考试时间、科目名称、考试年级排序）
     public function getExamsBetweenDateByNameByPage($begin_date, $end_date, $ex_name, $firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -175,6 +180,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_invname', '')
+            ->where('ex_invinum !=', 0)
             ->where('ex_lab !=', 0)
             ->get(Nks_exam::_table);
         $rs = $query->result();
@@ -195,6 +201,8 @@ class Nks_exam extends CI_Model {
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
             ->where('ex_lab', 0)
+            ->where('ex_invname', '')
+            ->where('ex_invinum !=', 0)
             ->get(Nks_exam::_table);
         $rs = $query->result();
         usort($rs, 'class_name_cmp');
@@ -206,7 +214,9 @@ class Nks_exam extends CI_Model {
         return $this->db
             ->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
-            ->where('ex_lab', 0)->get(self::_table)->num_rows();
+            ->where('ex_lab', 0)
+            ->where('ex_invname', '')
+            ->where('ex_invinum !=', 0)->get(self::_table)->num_rows();
     }
 
 //    得到当天录入或修改的考试
@@ -233,8 +243,9 @@ class Nks_exam extends CI_Model {
             ->get(self::_table)->num_rows();
     }
 
-
+// 得到已经安排监考教师的考试
     public function getExamsInvByPage($firstResult, $maxResults) {
+        $where = "ex_invinum=0 or (ex_inv_name !='' and ex_lab !=0 and ex_invinum !=0)";
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
             ->join('nks_major', 'nks_exam.mj_id=nks_major.mj_id', 'left')
@@ -243,12 +254,13 @@ class Nks_exam extends CI_Model {
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
-            ->where('ex_invname !=', '')
+            ->where($where)
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
         return $query->result();
     }
 
+//    通过考试日期，得到某个研究室所监考的考试
     public function getExamsByLabByDate($lb_id, $ex_date) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -279,6 +291,7 @@ class Nks_exam extends CI_Model {
         return $query->result();
     }
 
+//    分页获得某个研究室所有已经分配监考教师的所有考试
     public function getExamsInvByLabByPage($lb_id, $firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -288,6 +301,7 @@ class Nks_exam extends CI_Model {
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
+            ->where('ex_invinum !=', 0)
             ->where('ex_invname !=', '')
             ->where('lb_id', $lb_id)
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
@@ -295,6 +309,7 @@ class Nks_exam extends CI_Model {
         return $query->result();
     }
 
+//    根据id获得某个研究室没有分配监考教师的所有考试
     public function getExamsNotInvByLabByPage($lb_id, $firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
             ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
@@ -304,12 +319,14 @@ class Nks_exam extends CI_Model {
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
+            ->where('ex_invinum !=', 0)
             ->where('ex_invname', '')
             ->where('lb_id', $lb_id)
             ->limit($maxResults, $firstResult)->order_by('ex_input_date desc')
             ->get(Nks_exam::_table);
         return $query->result();
     }
+
 
     public function getExamsNotLabByPage($firstResult, $maxResults) {
         $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
@@ -321,18 +338,22 @@ class Nks_exam extends CI_Model {
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
             ->where('ex_lab', 0)
+            ->where('ex_invname', '')
+            ->where('ex_invinum !=', 0)
             ->get(Nks_exam::_table);
         $rs = $query->result();
         usort($rs, 'class_name_cmp');
         return array_slice($rs, $firstResult, $maxResults);
     }
 
+//    得到日期之间的所有考试总数
     public function getExamBetweenDateNum($begin_date, $end_date) {
         return $this->db->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
             ->get(self::_table)->num_rows();
     }
 
+//    根据科目名称得到考试日期之间的考试总数
     public function getExamBetweenDateByNameNum($begin_date, $end_date, $ex_name) {
         return $this->db->where('ex_date >=', $begin_date)
             ->where('ex_date <=', $end_date)
@@ -340,35 +361,51 @@ class Nks_exam extends CI_Model {
             ->get(self::_table)->num_rows();
     }
 
+//    获得没有分配监考教师的考试数目
     public function getExamNotLabNum() {
-        return $this->db->where('ex_lab', 0)->get(self::_table)->num_rows();
+        return $this->db
+            ->where('ex_lab', 0)
+            ->where('ex_invname', '')
+            ->where('ex_invinum !=', 0)
+            ->get(self::_table)->num_rows();
     }
 
-
+//    获得考试总数
     public function getExamNum() {
         return $this->db->count_all(Nks_exam::_table);
     }
 
+//    获得已经分配监考教师的考试总数
     public function getInvExamNum() {
-        return $this->db->where('ex_invname !=', '')->get(self::_table)->num_rows();
+        $where = "ex_invinum=0 or (ex_inv_name !='' and ex_lab !=0 and ex_invinum !=0)";
+        return $this->db->where($where)->get(self::_table)->num_rows();
     }
 
+//   得到没有安排监考教师的考试总数
     public function getNotInvExamNum() {
-        return $this->db->where('ex_lab !=', 0)->where('ex_invname', '')->get(self::_table)->num_rows();
+        return $this->db->where('ex_invname', '')
+            ->where('ex_invinum !=', 0)
+            ->where('ex_lab !=', 0)->get(self::_table)->num_rows();
     }
 
+//    根据id得到某个研究室的考试总数
     public function getExamNumByLabId($lb_id) {
         return $this->db->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
+//    根据id获得研究室已经分配监考教师的考试总数
     public function getInvExamNumByLabId($lb_id) {
-        return $this->db->where('ex_invname !=', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
+        return $this->db->where('ex_invinum !=', 0)
+            ->where('ex_invname !=', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
+//    根据id获得研究室没有安排监考教师的考试总数
     public function getNotInvExamNumByLabId($lb_id) {
-        return $this->db->where('ex_invname', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
+        return $this->db->where('ex_invinum !=', 0)
+            ->where('ex_invname', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
+//    修改考试
     public function update($arr) {
         $data = array(
             'ex_name' => $arr['ex_name'],
@@ -395,7 +432,7 @@ class Nks_exam extends CI_Model {
         return $this->db->where('ex_id', $arr['ex_id'])->update(Nks_exam::_table, $data);
     }
 
-
+//   删除考试
     public function deleteExamById($ex_id) {
         return $this->db->delete(Nks_exam::_table, array('ex_id'=>$ex_id));
     }

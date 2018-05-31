@@ -50,7 +50,11 @@
                 echo("<td>$row->ex_date</td>");
                 echo("<td>$row->tm_time</td>");
                 echo("<td>$row->ex_invinum</td>");
-                echo("<td>$row->lb_name</td>");
+                if($row->ex_invinum == 0 && $row->ex_lab == 0) {
+                    echo("<td>无</td>");
+                } else {
+                    echo("<td>$row->lb_name</td>");
+                }
 
                 $print_cover = $url . 'nksexam/printcover/' . $row->ex_id;
                 $detail = $url . 'nksexam/showdetail/' . $row->ex_id;

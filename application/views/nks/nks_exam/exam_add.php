@@ -241,7 +241,7 @@
                         <select name="ex_invinum" id="ex_invinum" class="chzn-select" required>
                             <option value=""></option>
                             <?php
-                            for($i=1;$i<=5;$i++) {
+                            for($i=0;$i<=5;$i++) {
                                 if(isset($obj->ex_invinum) && $i == $obj->ex_invinum) {
                                     echo("<option value='$i' selected='selected'>$i</option>");
                                 } else {
