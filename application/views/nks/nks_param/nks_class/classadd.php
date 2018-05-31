@@ -21,6 +21,7 @@
                     <label>班级名称</label>
                     <div class="mws-form-item large">
                         <input name="class_name"  class="mws-textinput" type="text" value="<?=isset($obj->class_name)?$obj->class_name:'';?>" >
+                        <div style="color:red;">多个班级以“、”(中文顿号)分隔</div>
                     </div>
                 </div>
 

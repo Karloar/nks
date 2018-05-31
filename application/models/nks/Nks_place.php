@@ -5,7 +5,22 @@
  * Date: 2018/5/4
  * Time: 19:56
  */
-
+function cmp($a, $b) {
+    $x = explode('阶', $a->pl_place);
+    $y = explode('阶', $b->pl_place);
+    if(count($x) > 1 && count($y) == 1) {
+        return 1;
+    } elseif(count($x) == 1 && count($y) > 1) {
+        return -1;
+    } else {
+        $x = str_replace('阶', '', $a->pl_place);
+        $x = str_replace('逸夫-', '', $x);
+        $y = str_replace('阶', '', $b->pl_place);
+        $y = str_replace('逸夫-', '', $y);
+        return $x > $y;
+    }
+    return 0;
+}
 class Nks_place extends CI_Model
 {
     const _table = 'nks_place';
@@ -26,7 +41,9 @@ class Nks_place extends CI_Model
 
     public function getAllPlaces() {
         $query = $this->db->get(Nks_place::_table);
-        return $query->result();
+        $rs = $query->result();
+        usort($rs, 'cmp');
+        return $rs;
     }
 
     public function getPlaceById($pl_id) {

@@ -1166,15 +1166,26 @@ class Nksexam extends Nksmanager
         $data['obj'] = $obj;
         $cl_name = $obj->class_name;
         if($cl_name != '') {
-            $cl_name = str_replace('班', '', $cl_name);
-            $cl_name = explode('-', $cl_name);
-            if(count($cl_name) == 1) {
-                $cl_name[1] = $cl_name[0];
-            }
-            for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
-                $data['nc'] = $i;
+
+            if($cl_name == '重修') {
+                $data['nc'] = '重修';
                 $this->load->view('nks/nks_manager/kssjjf2', $data);
+            } else {
+
+                $cl_name = str_replace('班', '', $cl_name);
+                $cl_name = explode('、', $cl_name);
+                for($i=0;$i<count($cl_name);$i++) {
+                    $cl_name[$i] = explode('-', $cl_name[$i]);
+                    if(count($cl_name[$i]) == 1) {
+                        $cl_name[$i][1] = $cl_name[$i][0];
+                    }
+                    for($j=$cl_name[$i][0];$j<=$cl_name[$i][1];$j++) {
+                        $data['nc'] = $j;
+                        $this->load->view('nks/nks_manager/kssjjf2', $data);
+                    }
+                }
             }
+
         } else {
             $data['nc'] = '';
             $this->load->view('nks/nks_manager/kssjjf2', $data);
@@ -1201,14 +1212,23 @@ class Nksexam extends Nksmanager
             $data['obj'] = $exam;
             $cl_name = $exam->class_name;
             if($cl_name != '') {
-                $cl_name = str_replace('班', '', $cl_name);
-                $cl_name = explode('-', $cl_name);
-                if(count($cl_name) == 1) {
-                    $cl_name[1] = $cl_name[0];
-                }
-                for($i=$cl_name[0];$i<=$cl_name[1];$i++) {
-                    $data['nc'] = $i;
+                if($cl_name == '重修') {
+                    $data['nc'] = '重修';
                     $this->load->view('nks/nks_manager/kssjjf2', $data);
+                } else {
+
+                    $cl_name = str_replace('班', '', $cl_name);
+                    $cl_name = explode('、', $cl_name);
+                    for($i=0;$i<count($cl_name);$i++) {
+                        $cl_name[$i] = explode('-', $cl_name[$i]);
+                        if(count($cl_name[$i]) == 1) {
+                            $cl_name[$i][1] = $cl_name[$i][0];
+                        }
+                        for($j=$cl_name[$i][0];$j<=$cl_name[$i][1];$j++) {
+                            $data['nc'] = $j;
+                            $this->load->view('nks/nks_manager/kssjjf2', $data);
+                        }
+                    }
                 }
             } else {
                 $data['nc'] = '';
