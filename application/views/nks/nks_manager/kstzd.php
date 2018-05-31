@@ -797,7 +797,9 @@ rt
   border-left:none'><?= isset($obj->ex_maininv)? $obj->ex_maininv: '' ?></td>
   <td colspan=2 class=xl8912210 style='border-right:.5pt solid black'>监考教师</td>
   <td colspan=4 class=xl8912210 style='border-right:.5pt solid black;font-size:10px;'><?php
-      echo($obj->us_name . ' 研究室<br />' . $obj->ex_invinum . '人');
+      if(!($obj->ex_invinum == 0 && $obj->ex_lab == 0)) {
+          echo($obj->us_name . ' 研究室<br />' . $obj->ex_invinum . '人');
+      }
       ?></td>
   <td colspan=2 class=xl8812210 style='border-right:.5pt solid black;
   border-left:none;'>考试地点</td>
