@@ -30,7 +30,9 @@
                             <option value="0"></option>
                             <?php
 
-                            echo("<option value='$obj->us_id' selected>$obj->us_name</option>");
+                            if(isset($obj)) {
+                                echo("<option value='$obj->us_id' selected>$obj->us_name</option>");
+                            }
                             foreach($manager as $m) {
                                 echo("<option value='$m->us_id'>$m->us_name</option>");
                             }
