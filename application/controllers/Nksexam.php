@@ -1118,6 +1118,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    显示要修改监考教师的考试列表
     public function showupdateinvs() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -1154,7 +1155,7 @@ class Nksexam extends Nksmanager
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
-            'title' => '选择考试时间范围以及考试科目',
+            'title' => '选择要打印的考试时间范围以及考试科目',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
             'form_ac' => 'nksexam/printexam',
