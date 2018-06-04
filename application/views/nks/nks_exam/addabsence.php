@@ -18,7 +18,7 @@
             <div class="mws-form-inline">
 
                 <div class="mws-form-row">
-                    <label>缺考学生</label>
+                    <label>请假学生</label>
                     <div class="mws-form-item large">
                         <input name="ex_absence"  class="mws-textinput" type="text" value="<?=isset($obj->ex_absence)?$obj->ex_absence:'';?>">
                         <div style="color:red;">多个以空格分隔</div>

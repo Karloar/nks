@@ -985,7 +985,7 @@ class Nksexam extends Nksmanager
             date_default_timezone_set("Asia/Shanghai");
             $obj->ex_input_date = date('Y-m-d H:i:s');
             $res = $this->nks_exam->update((array)$obj);
-            $this->handle_res($res, 'nksexam/examlistinvbylab', 'nksexam/examlistinvbylab');
+            $this->handle_res($res, 'nksexam/showupdateinvs', 'nksexam/showupdateinvs');
         }
 
         $data = array(
@@ -994,7 +994,7 @@ class Nksexam extends Nksmanager
             'title' => '修改监考教师',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
-            'form_ac' => 'nksexam/addinv/' . $ex_id
+            'form_ac' => 'nksexam/updateinv/' . $ex_id
         );
         $obj->ex_invname = explode(' ', $obj->ex_invname);
         $data['obj'] = $obj;
@@ -1061,6 +1061,7 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+//    执行添加请假学生
     public function toaddabsence($ex_id) {
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
@@ -1089,6 +1090,53 @@ class Nksexam extends Nksmanager
 
     }
 
+//    修改监考教师
+    public function updateinvname() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date']) && isset($_POST['lb_id'])) {
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $lb_id = $_POST['lb_id'];
+            $_SESSION['updateinvname'] = array('begin_date' => $begin_date, 'end_date' => $end_date, 'lb_id' => $lb_id);
+            redirect('nksexam/showupdateinvs');
+
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择考试时间范围以及研究室名称',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/updateinvname',
+            'showName' => true
+        );
+        $this->load->model('nks/nks_lab');
+        $data['lab_arr'] = $this->nks_lab->getAllLabs();
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/updateargs");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+    public function showupdateinvs() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $absences = $_SESSION['updateinvname'];
+        $this->load->model('nks/nks_exam');
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '修改监考教师',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+        );
+
+        $data['result'] = $this->nks_exam->getExamsBetweenDateByLbid($absences['begin_date'], $absences['end_date'], $absences['lb_id']);
+
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/updateinvlist");
+        $this->load->view("nks/nks_global/footer_man");
+    }
 
 
     // 菜单中的打印功能

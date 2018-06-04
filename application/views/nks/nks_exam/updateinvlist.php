@@ -30,8 +30,9 @@
                 <th title="考试班级">考试班级</th>
                 <th title="考试日期">考试日期</th>
                 <th title="考试时间">考试时间</th>
-                <th title="监考人数">监考人数</th>
-                <th title="监考老师所属研究室">监考教师所属研究室</th>
+                <th title="考试地点">考试地点</th>
+                <th title="监考教师">监考教师人数</th>
+                <th title="监考教师">监考教师</th>
                 <th title="操作">操作</th>
             </tr>
             </thead>
@@ -49,33 +50,22 @@
                 }
                 echo("<td>$row->ex_date</td>");
                 echo("<td>$row->tm_time</td>");
+                echo("<td>$row->pl_place</td>");
                 echo("<td>$row->ex_invinum</td>");
-                if($row->ex_invinum == 0 && $row->ex_lab == 0) {
-                    echo("<td>无</td>");
-                } else {
-                    echo("<td>$row->lb_name</td>");
-                }
-
+                echo("<td>$row->ex_invname</td>");
                 $detail = $url . 'nksexam/showdetail/' . $row->ex_id;
                 $updateinv = $url . 'nksexam/updateinv/' . $row->ex_id;
 
                 echo('<td>');
-                echo("<a href='$detail' class='mws-button blue small'>详细信息</a>");
-//                echo("<a href='$updateinv' class='mws-button red small'>修改监考教师</a>");
-                echo('</td>');
-                echo("</tr>");
+                echo("<a href='$detail' class='mws-button blue small'>详细</a>");
+                echo("<a href='$updateinv' class='mws-button red small'>修改监考教师</a>");
+
                 echo("</tr>");
             }
             ?>
 
-
             </tbody>
         </table>
-        <?php
-        echo "<div style='text-align: center;font-size: 20px;'>";
-        echo $this->pagination->create_links();
-        echo "</div>";
-        ?>
     </div>
 </div>
 
