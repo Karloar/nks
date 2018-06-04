@@ -827,14 +827,22 @@ rt
   <td colspan=3 class=xl8912210 style='border-right:.5pt solid black'><?= isset($obj->ex_stunum) && $obj->ex_stunum != 0 ? $obj->ex_stunum: '' ?></td>
   <td colspan=2 class=xl8812210 style='border-right:.5pt solid black;
   border-left:none'>应试人数</td>
-  <td class=xl6812210 style='border-top:none'>　</td>
+  <td class=xl6812210 style='border-top:none; text-align: center;'>
+      <?php
+      if(isset($obj->ex_stunum) && $obj->ex_stunum != 0) {
+          if(isset($obj->ex_absence) && $obj->ex_absence != '') {
+              echo($obj->ex_stunum - count(explode(' ', $obj->ex_absence)));
+          }
+      }
+      ?>
+  </td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=33 style='mso-height-source:userset;height:24.95pt'>
   <td height=33 class=xl6612210 style='height:24.95pt'>　</td>
   <td colspan=4 class=xl8512210 style='border-right:.5pt solid black;
   border-left:none'>请假学生姓名</td>
-  <td colspan=11 class=xl8612210 style='border-right:.5pt solid black'>　</td>
+  <td colspan=11 class=xl8612210 style='border-right:.5pt solid black'><?= isset($obj->ex_absence) ? $obj->ex_absence: '' ?></td>
   <td class=xl6412210></td>
  </tr>
  <tr class=xl6312210 height=15 style='mso-height-source:userset;height:11.25pt'>

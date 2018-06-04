@@ -282,9 +282,10 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>请假学生人数</label>
+                    <label>缺考学生</label>
                     <div class="mws-form-item large">
-                        <input name="ex_absence" class="mws-textinput" value="<?=isset($obj->ex_absence) && $obj->ex_absence?$obj->ex_absence:'';?>" type="number">
+                        <input name="ex_absence" class="mws-textinput" value="<?=isset($obj->ex_absence) && $obj->ex_absence?$obj->ex_absence:'';?>" type="text">
+                        <div style="color:red;">多个以空格分隔</div>
                     </div>
                 </div>
                 <div class="mws-form-row">

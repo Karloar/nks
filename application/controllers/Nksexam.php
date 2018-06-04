@@ -1003,6 +1003,93 @@ class Nksexam extends Nksmanager
         $this->load->view("nks/nks_global/footer_man");
     }
 
+// 添加请假学生
+    public function addabsence() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $ex_name = $_POST['ex_name'];
+            $_SESSION['addabsence'] = array('begin_date' => $begin_date, 'end_date' => $end_date, 'ex_name' => $ex_name);
+            redirect('nksexam/showAddAbsences');
+
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择考试时间范围以及考试科目',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/addabsence',
+            'showName' => true
+        );
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/printargs");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+//    显示添加请假学生的考试
+    public function showAddAbsences() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $absences = $_SESSION['addabsence'];
+        $this->load->model('nks/nks_exam');
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '录入请假学生',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+        );
+        $per_page_num = 13;
+        $firstResult = $this->uri->segment(3);
+        if(!isset($firstResult) || $firstResult == '') {
+            $firstResult = 0;
+        }
+        if($absences['ex_name'] == '') {
+            $total_num = $this->nks_exam->getExamBetweenDateNum($absences['begin_date'], $absences['end_date']);
+            $this->myinput->load_page($total_num, 'nksexam/showAddAbsences', $per_page_num);
+            $data['result'] = $this->nks_exam->getExamsBetweenDateByPage($absences['begin_date'], $absences['end_date'], $firstResult, $per_page_num);
+        } else {
+            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($absences['begin_date'], $absences['end_date'], $absences['ex_name']);
+            $this->myinput->load_page($total_num, 'nksexam/showAddAbsences', $per_page_num);
+            $data['result'] = $this->nks_exam->getExamsBetweenDateByNameByPage($absences['begin_date'], $absences['end_date'], $absences['ex_name'], $firstResult, $per_page_num);
+        }
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/absencelist");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+    public function toaddabsence($ex_id) {
+        $this->check_admin(1);
+        $user = $_SESSION['nks_user'];
+        $this->load->model('nks/nks_exam');
+        $obj = $this->nks_exam->getExamById($ex_id);
+
+        if(isset($_POST['ex_absence']) && $_POST['ex_absence'] != '') {
+            $obj->ex_absence = $_POST['ex_absence'];
+            date_default_timezone_set("Asia/Shanghai");
+            $obj->ex_input_date = date('Y-m-d H:i:s');
+            $res = $this->nks_exam->update((array)$obj);
+            $this->handle_res($res, 'nksexam/showAddAbsences', 'nksexam/showAddAbsences');
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '录入或修改请假学生',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/toaddabsence/' . $ex_id
+        );
+        $data['obj'] = $obj;
+        $this->load->view("nks/nks_global/header_ks", $data);
+        $this->load->view("nks/nks_exam/addabsence");
+        $this->load->view("nks/nks_global/footer_man");
+
+    }
+
+
 
     // 菜单中的打印功能
     public function printexam() {
@@ -1261,31 +1348,6 @@ class Nksexam extends Nksmanager
         $res = $this->nks_major->getMajorsbyAcId($ac_id);
         echo(json_encode($res));
     }
-
-//    添加或修改考试时，选择考试地点时，进行提示
-    public function place_change() {
-        $this->check_admin(2);
-        $mydata = json_decode($_GET['mydata']);
-        $ex_id = $mydata->ex_id;
-        $this->load->model('nks/nks_exam');
-        $res = true;
-        if($ex_id != '') {
-            $pl_id = $mydata->pl_id;
-            $exams = $this->nks_exam->getExamsByplid($pl_id);
-        }
-
-        if($res) {
-            $rtv = array('color'=> 'green', 'message'=>'OK!!');
-        } else {
-            $rtv = array('color'=> 'red', 'message' => '不推荐!!');
-        }
-
-        echo(json_encode($rtv));
-    }
-
-public function timeEqual($t1, $t2) {
-
-}
 
 
 //    添加或修改考试时，当手动分配监考教师所属的研究室时，所显示的信息
