@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="mws-form-row">
-                    <label>缺考学生</label>
+                    <label>请假学生</label>
                     <div class="mws-form-item large">
                         <input name="ex_absence" class="mws-textinput" value="<?=isset($obj->ex_absence) && $obj->ex_absence?$obj->ex_absence:'';?>" type="text" readonly="readonly">
                     </div>

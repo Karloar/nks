@@ -6,13 +6,13 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=ProgId content=Excel.Sheet>
 <meta name=Generator content="Microsoft Excel 15">
-<title>打印考试列表</title>
 <link rel=File-List href="考试大表.files/filelist.xml">
-<style id="新建 Microsoft Excel 工作表_17734_Styles">
+<title>打印考试列表</title>
+<style id="考试大表_1369_Styles">
 <!--table
 	{mso-displayed-decimal-separator:"\.";
 	mso-displayed-thousand-separator:"\,";}
-.font517734
+.font51369
 	{color:windowtext;
 	font-size:9.0pt;
 	font-weight:400;
@@ -21,7 +21,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	font-family:等线;
 	mso-generic-font-family:auto;
 	mso-font-charset:134;}
-.xl1517734
+.xl151369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -40,7 +40,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6317734
+.xl631369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -59,7 +59,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6417734
+.xl641369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -79,7 +79,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6517734
+.xl651369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -99,7 +99,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6617734
+.xl661369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -122,7 +122,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6717734
+.xl671369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -145,7 +145,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6817734
+.xl681369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -168,7 +168,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl6917734
+.xl691369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -191,7 +191,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl7017734
+.xl701369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -214,7 +214,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl7117734
+.xl711369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -237,7 +237,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl7217734
+.xl721369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -260,7 +260,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-background-source:auto;
 	mso-pattern:auto;
 	white-space:nowrap;}
-.xl7317734
+.xl731369
 	{padding-top:1px;
 	padding-right:1px;
 	padding-left:1px;
@@ -306,111 +306,115 @@ rt
 <!----------------------------->
 <!--“从 EXCEL 发布网页”向导开始-->
 <!----------------------------->
-<?php
-foreach($page as $p) {
 
-    echo("<div id=\"新建 Microsoft Excel 工作表_17734\" align=center x:publishsource=\"Excel\">");
-    echo("<table border=0 cellpadding=0 cellspacing=0 width=1565 style='border-collapse:
- collapse;table-layout:fixed;width:1176pt'>");
-    echo(" <col width=178 style='mso-width-source:userset;mso-width-alt:5696;width:134pt'>");
-    echo(" <col width=72 style='width:54pt'>");
-    echo(" <col width=106 span=2 style='mso-width-source:userset;mso-width-alt:3392;
- width:80pt'>");
-    echo(" <col width=108 style='mso-width-source:userset;mso-width-alt:3456;width:81pt'>");
-    echo(" <col width=110 style='mso-width-source:userset;mso-width-alt:3520;width:83pt'>");
-    echo(" <col width=72 style='width:54pt'>");
-    echo(" <col width=246 style='mso-width-source:userset;mso-width-alt:7872;width:185pt'>");
-    echo(" <col width=91 style='mso-width-source:userset;mso-width-alt:2912;width:68pt'>");
-    echo(" <col width=87 span=2 style='mso-width-source:userset;mso-width-alt:2784;
- width:65pt'>");
-    echo(" <col width=302 style='mso-width-source:userset;mso-width-alt:9664;width:227pt'>");
-    echo(" <tr height=24 style='mso-height-source:userset;height:18.0pt'>");
-    echo("  <td height=24 class=xl6617734 width=178 style='height:18.0pt;width:134pt'><a
-  name=\"RANGE!A1:L40\">学院</a></td>");
-    echo("  <td class=xl6717734 width=72 style='border-left:none;width:54pt'>年级</td>");
-    echo("  <td class=xl6717734 width=106 style='border-left:none;width:80pt'>考试地点</td>");
-    echo("  <td class=xl6717734 width=106 style='border-left:none;width:80pt'>考试班级</td>");
-    echo("  <td class=xl6717734 width=108 style='border-left:none;width:81pt'>主考教师</td>");
-    echo("  <td class=xl6717734 width=110 style='border-left:none;width:83pt'>监考教师</td>");
-    echo("  <td class=xl6717734 width=72 style='border-left:none;width:54pt'>人数</td>");
-    echo("  <td class=xl6717734 width=246 style='border-left:none;width:185pt'>考试科目</td>");
-    echo("  <td class=xl6717734 width=91 style='border-left:none;width:68pt'>考试方式</td>");
-    echo("  <td class=xl6717734 width=87 style='border-left:none;width:65pt'>日期</td>");
-    echo("  <td class=xl6717734 width=87 style='border-left:none;width:65pt'>巡考</td>");
-    echo("  <td class=xl6817734 width=302 style='border-left:none;width:227pt'>监考教师</td>");
-    echo(" </tr>");
+<?php
+echo('<br />');
+foreach($page as $p) {
+    echo('<div id="考试大表_1369" align=center x:publishsource="Excel">');
+    echo('<table border=0 cellpadding=0 cellspacing=0 width=1605 style=\'border-collapse:
+ collapse;table-layout:fixed;width:1205pt\'>');
+    echo('    <col width=178 style=\'mso-width-source:userset;mso-width-alt:5696;width:134pt\'>');
+    echo('    <col width=72 style=\'width:54pt\'>');
+    echo('    <col width=106 span=2 style=\'mso-width-source:userset;mso-width-alt:3392;
+ width:80pt\'>');
+    echo('    <col width=124 style=\'mso-width-source:userset;mso-width-alt:3968;width:93pt\'>');
+    echo('    <col width=99 style=\'mso-width-source:userset;mso-width-alt:3168;width:74pt\'>');
+    echo('    <col width=72 style=\'width:54pt\'>');
+    echo('    <col width=237 style=\'mso-width-source:userset;mso-width-alt:7584;width:178pt\'>');
+    echo('    <col width=91 style=\'mso-width-source:userset;mso-width-alt:2912;width:68pt\'>');
+    echo('    <col width=87 span=2 style=\'mso-width-source:userset;mso-width-alt:2784;
+ width:65pt\'>');
+    echo('    <col width=76 style=\'mso-width-source:userset;mso-width-alt:2432;width:57pt\'>');
+    echo('   <col width=270 style=\'mso-width-source:userset;mso-width-alt:8640;width:203pt\'>');
+    echo(' <tr height=24 style=\'mso-height-source:userset;height:18.0pt\'>');
+    echo('  <td height=24 class=xl661369 style=\'height:18.0pt\'><a name="RANGE!A2:M41">学院</a></td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>年级</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>考试地点</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>考试班级</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>主考教师</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>监考教师</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>人数</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>考试科目</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>考试方式</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>日期</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>时间</td>');
+    echo('  <td class=xl671369 style=\'border-left:none\'>巡考</td>');
+    echo('  <td class=xl681369 style=\'border-left:none\'>监考教师</td>');
+    echo(' </tr>');
+
     foreach($p as $row) {
-        echo(" <tr class=xl6317734 height=24 style='mso-height-source:userset;height:18.0pt'>");
-        echo("<td height=24 class=xl6917734 style='height:18.0pt;border-top:none'>$row->ac_name</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_grade</td>");
+        echo(' <tr class=xl631369 height=24 style=\'mso-height-source:userset;height:18.0pt\'>');
+        echo('  <td height=24 class=xl691369 style=\'height:18.0pt;border-top:none\'>'. $row->ac_name .'</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$row->ex_grade .'</td>');
         $row->pl_place = str_replace('-', '', $row->pl_place);
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$row->pl_place</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$row->class_name</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_maininv</td>");
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$row->pl_place.'</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$row->class_name.'</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$row->ex_maininv.'</td>');
         if(!($row->ex_invinum == 0 && $row->ex_lab == 0)) {
             $invname = $row->us_name . ' ' . $row->ex_invinum . ' 人';
         } else {
             $invname = '';
         }
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$invname</td>");
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$invname.'</td>');
         if($row->ex_stunum == 0) {
             $row->ex_stunum = '';
         }
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_stunum</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$row->ex_name</td>");
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$row->ex_stunum.'</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$row->ex_name.'</td>');
         $ex_mode = array('闭卷', '开卷');
         $em = $ex_mode[$row->ex_mode];
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>$em</td>");
-        echo("  <td class=xl6517734 style='border-top:none;border-left:none'>$row->ex_date</td>");
-        echo("  <td class=xl6517734 style='border-top:none;border-left:none'>$row->ex_xunkao</td>");
-        echo("  <td class=xl7017734 style='border-top:none;border-left:none'>$row->ex_invname</td>");
-        echo("</tr>");
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>'.$em.'</td>');
+        echo('  <td class=xl651369 style=\'border-top:none;border-left:none\'>'.$row->ex_date.'</td>');
+        echo('  <td class=xl651369 style=\'border-top:none;border-left:none\'>'.$row->tm_time.'</td>');
+        echo('  <td class=xl651369 style=\'border-top:none;border-left:none\'>'.$row->ex_xunkao.'</td>');
+        echo('  <td class=xl701369 style=\'border-top:none;border-left:none\'>'.$row->ex_invname.'</td>');
+        echo(' </tr>');
     }
     for($i=0;$i<40-count($p);$i++) {
-        echo(" <tr height=24 style='mso-height-source:userset;height:18.0pt'>");
-        echo("  <td height=24 class=xl6917734 style='height:18.0pt;border-top:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl6417734 style='border-top:none;border-left:none'>　</td>");
-        echo("  <td class=xl7017734 style='border-top:none;border-left:none'>　</td>");
-        echo(" </tr>");
+        echo(' <tr height=24 style=\'mso-height-source:userset;height:18.0pt\'>');
+        echo('  <td height=24 class=xl691369 style=\'height:18.0pt;border-top:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl641369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo('  <td class=xl701369 style=\'border-top:none;border-left:none\'>　</td>');
+        echo(' </tr>');
     }
-    echo(" <tr height=24 style='mso-height-source:userset;height:30.0pt'></tr>");
-    echo(" <![if supportMisalignedColumns]>");
-    echo(" <tr height=0 style='display:none'>");
-    echo("  <td width=178 style='width:134pt'></td>");
-    echo("  <td width=72 style='width:54pt'></td>");
-    echo("  <td width=106 style='width:80pt'></td>");
-    echo("  <td width=106 style='width:80pt'></td>");
-    echo("  <td width=108 style='width:81pt'></td>");
-    echo("  <td width=110 style='width:83pt'></td>");
-    echo("  <td width=72 style='width:54pt'></td>");
-    echo("  <td width=246 style='width:185pt'></td>");
-    echo("  <td width=91 style='width:68pt'></td>");
-    echo("  <td width=87 style='width:65pt'></td>");
-    echo("  <td width=87 style='width:65pt'></td>");
-    echo("  <td width=302 style='width:227pt'></td>");
-    echo(" </tr>");
-    echo(" <![endif]>");
-    echo("</table>");
-    echo("</div>");
+    echo(' <tr height=24 style=\'mso-height-source:userset;height:30.0pt\'></tr>');
+
+    echo(' <![if supportMisalignedColumns]>');
+    echo(' <tr height=0 style=\'display:none\'>');
+    echo('  <td width=178 style=\'width:134pt\'></td>');
+    echo('  <td width=72 style=\'width:54pt\'></td>');
+    echo('  <td width=106 style=\'width:80pt\'></td>');
+    echo('  <td width=106 style=\'width:80pt\'></td>');
+    echo('  <td width=98 style=\'width:74pt\'></td>');
+    echo('  <td width=99 style=\'width:74pt\'></td>');
+    echo('  <td width=72 style=\'width:54pt\'></td>');
+    echo('  <td width=237 style=\'width:178pt\'></td>');
+    echo('  <td width=91 style=\'width:68pt\'></td>');
+    echo('  <td width=87 style=\'width:65pt\'></td>');
+    echo('  <td width=87 style=\'width:65pt\'></td>');
+    echo('  <td width=76 style=\'width:57pt\'></td>');
+    echo('  <td width=282 style=\'width:212pt\'></td>');
+    echo(' </tr>');
+    echo(' <![endif]>');
+    echo('</table>');
+    echo('</div>');
     if(count($p) == 40) {
-        echo("<br /><br /><br />");
+        echo("<br /><br /><br /><br />");
     }
-
-
 }
 
-
-
 ?>
+
 
 <!----------------------------->
 <!--“从 EXCEL 发布网页”向导结束-->

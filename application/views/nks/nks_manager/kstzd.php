@@ -832,6 +832,8 @@ rt
       if(isset($obj->ex_stunum) && $obj->ex_stunum != 0) {
           if(isset($obj->ex_absence) && $obj->ex_absence != '') {
               echo($obj->ex_stunum - count(explode(' ', $obj->ex_absence)));
+          } else {
+              echo($obj->ex_stunum);
           }
       }
       ?>
