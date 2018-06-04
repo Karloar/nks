@@ -21,7 +21,6 @@
         if(ex_lab != 0 && ex_invinum && ex_date) {
             var ex_not_lab = $("#ex_not_lab").val();
             var ex_id = '<?= isset($obj->ex_id) ? $obj->ex_id: '' ?>';
-
             var mydata = {'ex_lab': ex_lab, 'ex_date': ex_date, 'ex_not_lab': ex_not_lab, 'ex_id': ex_id, 'ex_invinum':ex_invinum};
             mydata = JSON.stringify(mydata);
             var htmlobj = $.ajax({url:'<?php echo($url); ?>nksexam/exlab_change/', async:false, data: {'mydata':mydata}});
@@ -33,6 +32,28 @@
         } else {
             exlab_message.empty();
         }
+    }
+
+    function place_change() {
+        var pl_id = $("#pl_id").val();
+        var pl_message = $("#pl_message");
+        var ex_date = $("#ex_date").val();
+        var tm_id = $("#tm_id").val();
+        if(ex_date && tm_id) {
+            var ex_id = '<?= isset($obj->ex_id) ? $obj->ex_id: '' ?>';
+            var mydata = {'ex_date': ex_date, 'ex_id': ex_id, 'pl_id': pl_id, 'tm_id': tm_id};
+            mydata = JSON.stringify(mydata);
+            var htmlobj = $.ajax({url:'<?php echo($url); ?>nksexam/place_change/', async:false, data: {'mydata':mydata}});
+            pl_message.empty();
+            // exlab_message.html(htmlobj.responseText);
+            var rtv = eval("(" + htmlobj.responseText + ")");
+            pl_message.css({'color': rtv['color']});
+            pl_message.html(rtv['message']);
+        } else {
+            pl_message.empty();
+        }
+
+
     }
 
 
@@ -117,7 +138,7 @@
                 <div class="mws-form-row">
                     <label>考试时间</label>
                     <div class="mws-form-item large">
-                        <select name="tm_id" class="chzn-select">
+                        <select name="tm_id" class="chzn-select" id="tm_id">
                             <?php
                             echo("<option value='0'></option>");
                             foreach($time_arr as $row) {
@@ -200,7 +221,7 @@
                 <div class="mws-form-row">
                     <label>考试地点</label>
                     <div class="mws-form-item large">
-                        <select name="pl_id" class="chzn-select">
+                        <select name="pl_id" class="chzn-select" id="pl_id" >
                             <?php
                             echo("<option value='0'></option>");
                             foreach($place_arr as $row) {
@@ -217,6 +238,7 @@
                             }
                             ?>
                         </select>
+                        <div style="color:red;" id="pl_message"></div>
                     </div>
                 </div>
                 <div class="mws-form-row">

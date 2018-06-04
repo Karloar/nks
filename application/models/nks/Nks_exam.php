@@ -405,6 +405,24 @@ class Nks_exam extends CI_Model {
             ->where('ex_invname', '')->where('ex_lab', $lb_id)->get(self::_table)->num_rows();
     }
 
+
+//    通过地点id获得考试信息
+    public function getExamsByplid($pl_id) {
+        $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
+            ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
+            ->join('nks_major', 'nks_exam.mj_id=nks_major.mj_id', 'left')
+            ->join('nks_academy', 'nks_exam.ac_id=nks_academy.ac_id', 'left')
+            ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
+            ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
+            ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
+            ->where('pl_id', $pl_id)
+            ->get(Nks_exam::_table);
+        return $query->result();
+    }
+
+
+
 //    修改考试
     public function update($arr) {
         $data = array(

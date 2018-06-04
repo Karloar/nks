@@ -331,7 +331,7 @@ class Nksexam extends Nksmanager
                 }
                 $res = false;
             }
-//            return;
+
             $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/assignteacher',
                 '分配成功！', '分配失败');
         }
@@ -395,7 +395,7 @@ class Nksexam extends Nksmanager
         return count($examArr) > 0;
     }
 
-//   判断教研室的教师人数是否满足要求：监考教师人数 * 4 - 2
+//   判断教研室的教师人数是否满足要求
     private function teacherEnough($lab, $exam) {
         switch ($exam->ex_invinum) {
             case 1:
@@ -403,11 +403,8 @@ class Nksexam extends Nksmanager
             case 3:
                 return true;
             case 4:
-                if($lab->lb_num >= 10) {
-                    return true;
-                }
             case 5:
-                if($lab->lb_num >= 20) {
+                if($lab->lb_num >= 10) {
                     return true;
                 }
         }
@@ -1264,6 +1261,32 @@ class Nksexam extends Nksmanager
         $res = $this->nks_major->getMajorsbyAcId($ac_id);
         echo(json_encode($res));
     }
+
+//    添加或修改考试时，选择考试地点时，进行提示
+    public function place_change() {
+        $this->check_admin(2);
+        $mydata = json_decode($_GET['mydata']);
+        $ex_id = $mydata->ex_id;
+        $this->load->model('nks/nks_exam');
+        $res = true;
+        if($ex_id != '') {
+            $pl_id = $mydata->pl_id;
+            $exams = $this->nks_exam->getExamsByplid($pl_id);
+        }
+
+        if($res) {
+            $rtv = array('color'=> 'green', 'message'=>'OK!!');
+        } else {
+            $rtv = array('color'=> 'red', 'message' => '不推荐!!');
+        }
+
+        echo(json_encode($rtv));
+    }
+
+public function timeEqual($t1, $t2) {
+
+}
+
 
 //    添加或修改考试时，当手动分配监考教师所属的研究室时，所显示的信息
     public function exlab_change() {
