@@ -1097,7 +1097,7 @@ class Nksexam extends Nksmanager
             $page[0] = array();
         }
         $data['page'] = $page;
-        $this->load->view('nks/nks_exam/exambigtable', $data);
+        $this->load->view('nks/nks_manager/ksdb', $data);
 
     }
 
@@ -1118,7 +1118,7 @@ class Nksexam extends Nksmanager
         $filename = 'excel-doc';
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition: attachment;filename=$filename.xls");
-        $this->load->view('nks/nks_exam/examtoexcel', $data);
+        $this->load->view('nks/nks_manager/examtoexcel', $data);
     }
 
 

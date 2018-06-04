@@ -799,6 +799,8 @@ rt
   <td colspan=4 class=xl8912210 style='border-right:.5pt solid black;font-size:10px;'><?php
       if(!($obj->ex_invinum == 0 && $obj->ex_lab == 0)) {
           echo($obj->us_name . ' 研究室<br />' . $obj->ex_invinum . '人');
+      }  else {
+          echo('/');
       }
       ?></td>
   <td colspan=2 class=xl8812210 style='border-right:.5pt solid black;

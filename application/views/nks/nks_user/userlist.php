@@ -36,7 +36,7 @@
             <tbody>
             <?php
 
-            $style = array('普通用户', '教研室负责人', '管理员');
+            $style = array('普通用户', '研究室主任', '管理员');
 
             foreach($result as $row) {
                 echo('<tr>');
