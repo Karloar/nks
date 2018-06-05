@@ -28,8 +28,8 @@ function ex_invinum_cmp($a, $b) {
 }
 
 function name_cmp($a, $b) {
-    $x = iconv('UTF-8', 'GB2312',$a->name);
-    $y = iconv('UTF-8', 'GB2312', $b->name);
+    $x = iconv('UTF-8', 'GBK//IGNORE',$a->name);
+    $y = iconv('UTF-8', 'GBK//IGNORE',$b->name);
     return $x > $y;
 }
 
