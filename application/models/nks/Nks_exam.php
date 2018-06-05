@@ -462,6 +462,27 @@ class Nks_exam extends CI_Model {
         return $rs;
     }
 
+    //    根据日期范围获得所有已经录入巡考教师的考试信息
+    public function getExamXunkaoByDate($begin_date, $end_date) {
+        $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
+            ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
+            ->join('nks_major', 'nks_exam.mj_id=nks_major.mj_id', 'left')
+            ->join('nks_academy', 'nks_exam.ac_id=nks_academy.ac_id', 'left')
+            ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
+            ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
+            ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
+            ->where('ex_date >=', $begin_date)
+            ->where('ex_date <=', $end_date)
+            ->where('ex_xunkao !=', '')
+            ->get(Nks_exam::_table);
+        $rs = $query->result();
+        usort($rs, 'class_name_cmp');
+        return $rs;
+    }
+
+
+
 //    修改考试
     public function update($arr) {
         $data = array(

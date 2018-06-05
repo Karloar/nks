@@ -28,7 +28,6 @@
                 <th  title="教师姓名">教师姓名</th>
                 <th  title="工作日">工作日</th>
                 <th title="非工作日（晚上）">非工作日（晚上）</th>
-                <th title="巡考">巡考</th>
 
             </tr>
             </thead>
@@ -40,7 +39,6 @@
                 echo("<td>$row->name</td>");
                 echo("<td>$row->weekday</td>");
                 echo("<td>$row->weekend</td>");
-                echo("<td>$row->xunkao</td>");
                 echo("</tr>");
             }
             ?>
@@ -48,6 +46,11 @@
 
             </tbody>
         </table>
+        <?php
+        echo "<div style='text-align: center;font-size: 20px;'>";
+        echo $this->pagination->create_links();
+        echo "</div>";
+        ?>
     </div>
 </div>
 

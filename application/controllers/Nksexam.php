@@ -27,6 +27,11 @@ function ex_invinum_cmp($a, $b) {
     return $a->ex_invinum > $b->ex_invinum;
 }
 
+function name_cmp($a, $b) {
+    $x = iconv('UTF-8', 'GB2312',$a->name);
+    $y = iconv('UTF-8', 'GB2312', $b->name);
+    return $x > $y;
+}
 
 
 class Nksexam extends Nksmanager
@@ -1444,10 +1449,11 @@ class Nksexam extends Nksmanager
     public function statistics() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
-        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+        if(isset($_POST['begin_date']) && isset($_POST['end_date']) && isset($_POST['tp'])) {
             $begin_date = $_POST['begin_date'];
             $end_date = $_POST['end_date'];
-            $_SESSION['statistics'] = array('begin_date' => $begin_date, 'end_date' => $end_date);
+            $tp = $_POST['tp'];
+            $_SESSION['statistics'] = array('begin_date' => $begin_date, 'end_date' => $end_date, 'tp'=>$tp);
             redirect('nksexam/processStatistics');
 
         }
@@ -1460,7 +1466,7 @@ class Nksexam extends Nksmanager
             'form_ac' => 'nksexam/statistics',
         );
         $this->load->view("nks/nks_global/admin_header_ks", $data);
-        $this->load->view("nks/nks_exam/printargs");
+        $this->load->view("nks/nks_exam/workargs");
         $this->load->view("nks/nks_global/footer_man");$this->check_admin(2);
 
     }
@@ -1488,47 +1494,70 @@ class Nksexam extends Nksmanager
         if(isset($_SESSION['statistics'])) {
             $statisticsArgs = $_SESSION['statistics'];
             $this->load->model('nks/nks_exam');
-            $exam_arr = $this->nks_exam->getInvExamsBetweenDate($statisticsArgs['begin_date'], $statisticsArgs['end_date']);
             $name_arr = array();
             $work_arr = array();
-            foreach($exam_arr as $ex) {
-                foreach(explode(' ', $ex->ex_invname) as $name) {
-                    if(!in_array($name, $name_arr)) {
-                        $work_arr[] = (object)array('name'=>$name, 'weekday'=>0, 'weekend' => 0, 'xunkao' => 0);
-                        $name_arr[] = $name;
-                    }
-                    for($i=0;$i<count($work_arr);$i++) {
-                        if($work_arr[$i]->name == $name) {
-                            if($this->examIsWeekday($ex)) {
-                                $work_arr[$i]->weekday += 1;
-                            } else {
-                                $work_arr[$i]->weekend += 1;
+            if($statisticsArgs['tp'] == 1) {
+                $title = '工作量列表（监考）';
+                $exam_arr = $this->nks_exam->getInvExamsBetweenDate($statisticsArgs['begin_date'], $statisticsArgs['end_date']);
+                foreach($exam_arr as $ex) {
+                    foreach (explode(' ', $ex->ex_invname) as $name) {
+                        if (!in_array($name, $name_arr)) {
+                            $work_arr[] = (object)array('name' => $name, 'weekday' => 0, 'weekend' => 0);
+                            $name_arr[] = $name;
+                        }
+                        for ($i = 0; $i < count($work_arr); $i++) {
+                            if ($work_arr[$i]->name == $name) {
+                                if ($this->examIsWeekday($ex)) {
+                                    $work_arr[$i]->weekday += 1;
+                                } else {
+                                    $work_arr[$i]->weekend += 1;
+                                }
+                                break;
                             }
-                            break;
                         }
                     }
                 }
-                if($ex->ex_xunkao != '') {
-                    if(!in_array($ex->ex_xunkao, $name_arr)) {
-                        $work_arr[] = (object)array('name'=>$ex->ex_xunkao, 'weekday'=>0, 'weekend' => 0, 'xunkao' => 0);
-                        $name_arr[] = $ex->ex_xunkao;
-                    }
-                    for($i=0;$i<count($work_arr);$i++) {
-                        if($work_arr[$i]->name == $ex->ex_xunkao) {
-                            $work_arr[$i]->xunkao += 1;
-                            break;
+            } elseif($statisticsArgs['tp'] == 2) {
+                $title = '工作量列表（巡考）';
+                $exam_arr = $this->nks_exam->getExamXunkaoByDate($statisticsArgs['begin_date'], $statisticsArgs['end_date']);
+                foreach($exam_arr as $ex) {
+                    foreach(explode(' ', $ex->ex_xunkao) as $name) {
+                        if(trim($ex->ex_xunkao) != '') {
+                            if(!in_array($name, $name_arr)) {
+                                $work_arr[] = (object)array('name'=>$name, 'weekday'=>0, 'weekend' => 0);
+                                $name_arr[] = $name;
+                            }
+                            for($i=0;$i<count($work_arr);$i++) {
+                                if($work_arr[$i]->name == $name) {
+                                    if($this->examIsWeekday($ex)) {
+                                        $work_arr[$i]->weekday += 1;
+                                    } else {
+                                        $work_arr[$i]->weekend += 1;
+                                    }
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
             }
+
             $data = array(
                 'url' => base_url(''),
                 'baseurl' => base_url('load/'),
-                'title' => '工作量列表',
+                'title' => $title,
                 'us_name' => $user->us_name,
                 'us_img' => $user->us_img,
             );
-            $data['result'] = $work_arr;
+
+            $per_page_num = 13;
+            $firstResult = $this->uri->segment(3);
+            if(!isset($firstResult) || $firstResult == '') {
+                $firstResult = 0;
+            }
+            usort($work_arr, 'name_cmp');
+            $data['result'] = array_slice($work_arr, $firstResult, $per_page_num);
+            $this->myinput->load_page(count($work_arr), 'nksexam/processStatistics', $per_page_num);
             $this->load->view("nks/nks_global/admin_header_ks", $data);
             $this->load->view("nks/nks_exam/worklist");
             $this->load->view("nks/nks_global/footer_man");$this->check_admin(2);
