@@ -1488,6 +1488,7 @@ class Nksexam extends Nksmanager
     }
 
 
+//    执行统计
     public function processStatistics() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
@@ -1541,7 +1542,6 @@ class Nksexam extends Nksmanager
                     }
                 }
             }
-
             $data = array(
                 'url' => base_url(''),
                 'baseurl' => base_url('load/'),
@@ -1556,6 +1556,7 @@ class Nksexam extends Nksmanager
                 $firstResult = 0;
             }
             usort($work_arr, 'name_cmp');
+            $_SESSION['work_arr'] = $work_arr;
             $data['result'] = array_slice($work_arr, $firstResult, $per_page_num);
             $this->myinput->load_page(count($work_arr), 'nksexam/processStatistics', $per_page_num);
             $this->load->view("nks/nks_global/admin_header_ks", $data);
@@ -1563,5 +1564,25 @@ class Nksexam extends Nksmanager
             $this->load->view("nks/nks_global/footer_man");$this->check_admin(2);
 
         }
+    }
+
+//    下载工作量表
+    public function workListExcel() {
+        $this->check_admin(2);
+        if(isset($_SESSION['statistics']) && isset($_SESSION['work_arr'])) {
+            $statistics = $_SESSION['statistics'];
+            $work_arr = $_SESSION['work_arr'];
+            $this->load->model('nks/nks_exam');
+            $filename = 'jiankaogongzuoliang';
+            if($statistics['tp'] == 2) {
+                $filename = 'xunkaogongzuoliang';
+            }
+            $data['work_arr'] = $work_arr;
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition: attachment;filename=$filename.xls");
+            $this->load->view('nks/nks_manager/gzldb', $data);
+        }
+
+
     }
 }

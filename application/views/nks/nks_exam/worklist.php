@@ -51,6 +51,9 @@
         echo $this->pagination->create_links();
         echo "</div>";
         ?>
+        <div class="actionBar">
+            <a href="<?php echo($url); ?>nksexam/workListExcel" class="mws-button green large">下载工作量统计表</a>
+        </div>
     </div>
 </div>
 
