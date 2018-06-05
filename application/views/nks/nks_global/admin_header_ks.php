@@ -204,6 +204,7 @@
                         <li><a href="<?=$url?>nksexam/addabsence">录入请假学生</a></li>
                         <li><a href="<?=$url?>nksexam/examlist">全部考试列表</a></li>
                         <li><a href="<?=$url?>nksexam/printexam">打印考试信息</a></li>
+                        <li><a href="<?=$url?>nksexam/statistics">工作量统计</a></li>
 
                     </ul>
                 </li>

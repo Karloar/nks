@@ -1439,4 +1439,100 @@ class Nksexam extends Nksmanager
 
         echo(json_encode($rtv));
     }
+
+//    统计工作量
+    public function statistics() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $_SESSION['statistics'] = array('begin_date' => $begin_date, 'end_date' => $end_date);
+            redirect('nksexam/processStatistics');
+
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择要统计的考试时间范围',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/statistics',
+        );
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/printargs");
+        $this->load->view("nks/nks_global/footer_man");$this->check_admin(2);
+
+    }
+
+    public function examIsWeekday($exam) {
+        $ex_date = $exam->ex_date;
+        $tm_time = $exam->tm_time;
+        if($tm_time >= '18:00-18:00') {
+            return false;
+        }
+        $n = date('w', strtotime($ex_date));
+//        var_dump($ex_date);
+//        var_dump($n);
+        if($n == 0 || $n == 6) {
+            return false;
+        }
+        return true;
+
+    }
+
+
+    public function processStatistics() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_SESSION['statistics'])) {
+            $statisticsArgs = $_SESSION['statistics'];
+            $this->load->model('nks/nks_exam');
+            $exam_arr = $this->nks_exam->getInvExamsBetweenDate($statisticsArgs['begin_date'], $statisticsArgs['end_date']);
+            $name_arr = array();
+            $work_arr = array();
+            foreach($exam_arr as $ex) {
+                foreach(explode(' ', $ex->ex_invname) as $name) {
+                    if(!in_array($name, $name_arr)) {
+                        $work_arr[] = (object)array('name'=>$name, 'weekday'=>0, 'weekend' => 0, 'xunkao' => 0);
+                        $name_arr[] = $name;
+                    }
+                    for($i=0;$i<count($work_arr);$i++) {
+                        if($work_arr[$i]->name == $name) {
+                            if($this->examIsWeekday($ex)) {
+                                $work_arr[$i]->weekday += 1;
+                            } else {
+                                $work_arr[$i]->weekend += 1;
+                            }
+                            break;
+                        }
+                    }
+                }
+                if($ex->ex_xunkao != '') {
+                    if(!in_array($ex->ex_xunkao, $name_arr)) {
+                        $work_arr[] = (object)array('name'=>$ex->ex_xunkao, 'weekday'=>0, 'weekend' => 0, 'xunkao' => 0);
+                        $name_arr[] = $ex->ex_xunkao;
+                    }
+                    for($i=0;$i<count($work_arr);$i++) {
+                        if($work_arr[$i]->name == $ex->ex_xunkao) {
+                            $work_arr[$i]->xunkao += 1;
+                            break;
+                        }
+                    }
+                }
+            }
+            $data = array(
+                'url' => base_url(''),
+                'baseurl' => base_url('load/'),
+                'title' => '工作量列表',
+                'us_name' => $user->us_name,
+                'us_img' => $user->us_img,
+            );
+            $data['result'] = $work_arr;
+            $this->load->view("nks/nks_global/admin_header_ks", $data);
+            $this->load->view("nks/nks_exam/worklist");
+            $this->load->view("nks/nks_global/footer_man");$this->check_admin(2);
+
+        }
+    }
 }

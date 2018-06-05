@@ -113,6 +113,7 @@ class Myinput
         $config['next_tag_close'] = '&nbsp&nbsp';
         $config['num_tag_open'] = '&nbsp&nbsp';
         $config['num_tag_close'] = '&nbsp&nbsp';
+        $config['num_links'] = 7;
         $CI->pagination->initialize($config);
     }
 
