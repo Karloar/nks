@@ -25,7 +25,7 @@
                         if(isset($obj->us_number)) {
                             $us_number = $obj->us_number;
                         }
-                        if(isset($person)) {
+                        if(isset($person) && $obj->us_admin != 2) {
                             echo("<input name=\"us_number\"  class=\"mws-textinput\" type=\"text\" value='$us_number' readonly='readonly'>");
                         } else {
                             echo("<input name=\"us_number\"  class=\"mws-textinput\" type=\"text\" value='$us_number'>");

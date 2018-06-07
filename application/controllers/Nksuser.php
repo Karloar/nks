@@ -426,8 +426,9 @@ class Nksuser extends CI_Controller
         $user = $_SESSION['nks_user'];
         $this->load->model('nks/nks_user');
         if((isset($_POST['us_name']) && $_POST['us_name'] != '' || $user->us_admin==2) && isset($_POST['us_email']) && isset($_POST['us_phone'])) {
-            $arr = $this->myinput->getBykeys(array('us_name', 'us_email', 'us_phone'));
+            $arr = $this->myinput->getBykeys(array('us_number','us_name', 'us_email', 'us_phone'));
             $this->load->model('nks/nks_user');
+            $user->us_number = $arr['us_number'];
             $user->us_name = $arr['us_name'];
             $user->us_email = $arr['us_email'];
             $user->us_phone = $arr['us_phone'];
