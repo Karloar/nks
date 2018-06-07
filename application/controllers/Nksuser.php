@@ -355,4 +355,100 @@ class Nksuser extends CI_Controller
             $_SESSION['expiretime'] = time() + 3600;
         }
     }
+    //    显示原始密码
+    public function showpassword() {
+        $this->check_admin(1);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['old_password']) && $_POST['old_password'] != '') {
+            $old_password = $_POST['old_password'];
+            $res = false;
+            if(hash_pbkdf2("sha256",$old_password, $user->us_solt,1000,20) == $user->us_password) {
+                $res = true;
+            }
+            $this->handle_res($res, 'nksuser/addnewpassword', 'nksuser/showpassword', '密码正确！', '密码错误！');
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '填写原始密码',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksuser/showpassword'
+        );
+        if($user->us_admin == 2) {
+            $this->load->view("nks/nks_global/admin_header_ks", $data);
+        } else {
+            $this->load->view("nks/nks_global/header_ks", $data);
+        }
+        $this->load->view("nks/nks_user/showpassword");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+//    添加新密码
+    public function addnewpassword() {
+        $this->check_admin(1);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['new_password']) && isset($_POST['re_newpassword'])) {
+            $new_password = $_POST['new_password'];
+            $re_newpassword = $_POST['re_newpassword'];
+            if($new_password != $re_newpassword) {
+                $this->handle_res(false, 'nksmanager/index', 'nksuser/addnewpassword', '密码修改成功！', '两次密码不一致！');
+            }
+
+            $user->us_password = hash_pbkdf2("sha256",$new_password, $user->us_solt,1000,20) ;
+            $this->load->model('nks/nks_user');
+            $res = $this->nks_user->update((array)$user);
+            if($res) {
+                $_SESSION['nks_user'] = $user;
+            }
+            $this->handle_res($res, 'nksmanager/index', 'nksuser/addnewpassword', '密码修改成功！', '密码修改成功！');
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '填写新密码',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksuser/addnewpassword'
+        );
+        if($user->us_admin == 2) {
+            $this->load->view("nks/nks_global/admin_header_ks", $data);
+        } else {
+            $this->load->view("nks/nks_global/header_ks", $data);
+        }
+        $this->load->view("nks/nks_user/addnewpassword");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+//    修改个人信息
+    public function updateinfo() {
+        $this->check_admin(1);
+        $user = $_SESSION['nks_user'];
+        $this->load->model('nks/nks_user');
+        if((isset($_POST['us_name']) && $_POST['us_name'] != '' || $user->us_admin==2) && isset($_POST['us_email']) && isset($_POST['us_phone'])) {
+            $arr = $this->myinput->getBykeys(array('us_name', 'us_email', 'us_phone'));
+            $this->load->model('nks/nks_user');
+            $user->us_name = $arr['us_name'];
+            $user->us_email = $arr['us_email'];
+            $user->us_phone = $arr['us_phone'];
+            $res = $this->nks_user->update((array)$user);
+            if($res) {
+                $_SESSION['nks_user'] = $user;
+            }
+            $this->handle_res($res, 'nksmanager/index', 'nksuser/updateinfo/', '修改成功！', '修改失败！');
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '修改个人信息',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksuser/updateinfo/'
+        );
+        $data['obj'] = $user;
+        $data['person'] = true;
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_user/useradd");
+        $this->load->view("nks/nks_global/footer_man");
+    }
 }

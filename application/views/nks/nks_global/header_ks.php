@@ -181,9 +181,9 @@
                 <li>
                     <a href="<?=$baseurl?>#" class="mws-i-24 i-admin-user">个人中心</a>
                     <ul class="closed">
-                        <li><a href="<?=$url?>nksmanager/index">修改个人信息</a></li>
+                        <li><a href="<?=$url?>nksuser/updateinfo">修改个人信息</a></li>
                         <li><a href="<?=$url?>nksmanager/index">修改头像</a></li>
-                        <li><a href="<?=$url?>nksmanager/index">修改密码</a></li>
+                        <li><a href="<?=$url?>nksuser/showpassword">修改密码</a></li>
                         <li><a href="<?=$url?>nksuser/logout" >注销</a></li>
                     </ul>
                 </li>

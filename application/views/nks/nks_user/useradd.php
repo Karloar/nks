@@ -20,7 +20,17 @@
                 <div class="mws-form-row">
                     <label>职工号</label>
                     <div class="mws-form-item large">
-                        <input name="us_number"  class="mws-textinput" type="text" value="<?=isset($obj->us_number)?$obj->us_number:'';?>" >
+                        <?php
+                        $us_number = '';
+                        if(isset($obj->us_number)) {
+                            $us_number = $obj->us_number;
+                        }
+                        if(isset($person)) {
+                            echo("<input name=\"us_number\"  class=\"mws-textinput\" type=\"text\" value='$us_number' readonly='readonly'>");
+                        } else {
+                            echo("<input name=\"us_number\"  class=\"mws-textinput\" type=\"text\" value='$us_number'>");
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -29,13 +39,17 @@
                         <input name="us_name"  class="mws-textinput" type="text" value="<?=isset($obj->us_name)?$obj->us_name:'';?>" >
                     </div>
                 </div>
-                <div class="mws-form-row">
-                    <label>密码</label>
-                    <div class="mws-form-item large">
-                        <input name="us_password"  class="mws-textinput" type="password" value="0000" >
-                        <div style="color:red;">默认：0000</div>
-                    </div>
-                </div>
+                <?php
+                if(!isset($person)) {
+                    echo('<div class="mws-form-row">');
+                    echo('<label>密码</label>');
+                    echo('<div class="mws-form-item large">');
+                    echo('<input name="us_password"  class="mws-textinput" type="password" value="0000" >');
+                    echo('<div style="color:red;">默认：0000</div>');
+                    echo('</div>');
+                    echo('</div>');
+                }
+                ?>
                 <div class="mws-form-row">
                     <label>邮箱</label>
                     <div class="mws-form-item large">
