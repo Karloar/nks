@@ -498,6 +498,7 @@ class Nks_exam extends CI_Model {
             'class_id' => isset($arr['class_id']) ? $arr['class_id']: 0,
             'ex_stunum' => $arr['ex_stunum'],
             'ex_absence' => $arr['ex_absence'],
+            'ex_maininv' => $arr['ex_maininv'],
             'ex_invinum' => $arr['ex_invinum'],
             'ex_invname' => isset($arr['ex_invname']) ? $arr['ex_invname']: '',
             'ex_xunkao' => $arr['ex_xunkao'],
