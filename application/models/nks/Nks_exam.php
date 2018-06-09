@@ -113,8 +113,22 @@ class Nks_exam extends CI_Model {
             ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
             ->join('nks_lab', 'ex_lab=lb_id', 'left')
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
-            ->get(Nks_exam::_table);
+            ->get(self::_table);
         return $query->result()[0];
+    }
+
+//    获得所有考试
+    public function getAllExams() {
+        $query = $this->db->join('nks_time', 'nks_exam.tm_id=nks_time.tm_id', 'left')
+            ->join('nks_place', 'nks_exam.pl_id=nks_place.pl_id', 'left')
+            ->join('nks_major', 'nks_exam.mj_id=nks_major.mj_id', 'left')
+            ->join('nks_academy', 'nks_exam.ac_id=nks_academy.ac_id', 'left')
+            ->join('nks_class', 'nks_exam.class_id=nks_class.class_id', 'left')
+            ->join('nks_nature', 'nks_exam.nt_id=nks_nature.nt_id', 'left')
+            ->join('nks_lab', 'ex_lab=lb_id', 'left')
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id', 'left')
+            ->get(self::_table);
+        return $query->result();
     }
 
 //    分页获得所有考试信息（按添加或修改的时间降序排序）
@@ -542,6 +556,11 @@ class Nks_exam extends CI_Model {
 //   删除考试
     public function deleteExamById($ex_id) {
         return $this->db->delete(Nks_exam::_table, array('ex_id'=>$ex_id));
+    }
+
+    public function getLastExam() {
+        $query = $this->db->order_by('ex_id desc')->get(self::_table);
+        return $query->result()[0];
     }
 
 }

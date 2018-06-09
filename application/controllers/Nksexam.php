@@ -192,7 +192,7 @@ class Nksexam extends Nksmanager
             && isset($_POST['ex_date']) && $_POST['ex_date'] != '' && isset($_POST['ex_invinum']) && $_POST['ex_invinum'] != '') {
             $arr = $this->myinput->getBykeys(array('ex_name', 'ex_grade', 'nt_id', 'ex_mode', 'ex_date', 'tm_id',
                 'pl_id', 'ac_id', 'mj_id', 'class_id', 'ex_stunum', 'ex_absence', 'ex_invinum', 'ex_maininv', 'ex_xunkao',
-                'ex_note'));
+                'ex_note', 'ex_lab'));
             $arr['ex_not_lab'] = '';
             if(isset($_POST['ex_not_lab'])) {
                 foreach($_POST['ex_not_lab'] as $r) {
@@ -203,7 +203,11 @@ class Nksexam extends Nksmanager
             date_default_timezone_set("Asia/Shanghai");
             $arr['ex_input_date'] = date('Y-m-d H:i:s');
             $this->load->model('nks/nks_exam');
+            $this->load->model('nks/nks_invtemp');
             $res = $this->nks_exam->insert($arr);
+            $exam = $this->nks_exam->getLastExam();
+            $arr2 = array('ex_id'=>$exam->ex_id, 'ex_invinum'=>$exam->ex_invinum, 'ex_invname' => '');
+            $res2 = $this->nks_invtemp->insert($arr2);
             $obj = array(
                 'ex_name' => $arr['ex_name'],
                 'ex_grade' => $arr['ex_grade'],
@@ -215,7 +219,7 @@ class Nksexam extends Nksmanager
                 'mj_id' => $arr['mj_id']
             );
             $_SESSION['obj'] = (object)$obj;
-            $this->handle_res($res, 'nksexam/showTodayExamList', 'nksexam/examadd');
+            $this->handle_res($res && $res2, 'nksexam/showTodayExamList', 'nksexam/examadd');
         }
 
         $data = array(
@@ -438,6 +442,8 @@ class Nksexam extends Nksmanager
 
 //   判断教研室的教师人数是否满足要求
     private function teacherEnough($lab, $exam) {
+        $this->load->model('nks/nks_lab');
+        $labs = $this->nks_lab->getAllLabsOrderByLbnum();
         switch ($exam->ex_invinum) {
             case 1:
             case 2:
@@ -445,7 +451,7 @@ class Nksexam extends Nksmanager
                 return true;
             case 4:
             case 5:
-                if($lab->lb_num >= 10) {
+                if($lab->lb_num >= $labs[intval(count($labs) * 0.75)]->lb_num) {
                     return true;
                 }
         }
@@ -956,31 +962,32 @@ class Nksexam extends Nksmanager
         $this->check_admin(1);
         $user = $_SESSION['nks_user'];
         $this->load->model('nks/nks_exam');
-        $obj = $this->nks_exam->getExamById($ex_id);
+        $this->load->model('nks/nks_invtemp');
+        $exam = $this->nks_exam->getExamById($ex_id);
+        $obj = $this->nks_invtemp->getInvtempByExid($ex_id);
         $flag = true;
         for($i=1;$i<=$obj->ex_invinum;$i++) {
-            if(!isset($_POST['ex_invname' . $i]) || $_POST['ex_invname' . $i] == '') {
+            if(!isset($_POST['ex_invname' . $i])) {
                 $flag = false;
                 break;
             }
         }
         if($flag) {
-
             $post_arr = array();
-            for($i=1;$i<=$obj->ex_invinum;$i++) {
+            for($i=1;$i<=$exam->ex_invinum;$i++) {
                 $post_arr[$i-1] = 'ex_invname' . $i;
             }
 
             $arr = $this->myinput->getBykeys($post_arr);
             $arr['ex_invname'] = '';
-            for($i=1;$i<$obj->ex_invinum;$i++) {
+            for($i=1;$i<$exam->ex_invinum;$i++) {
                 $arr['ex_invname'] .= trim($arr['ex_invname' . $i]) . ' ';
             }
             $arr['ex_invname'] .= trim($arr['ex_invname' . $i]);
-            $obj->ex_invname = $arr['ex_invname'];
+            $exam->ex_invname = $arr['ex_invname'];
             date_default_timezone_set("Asia/Shanghai");
-            $obj->ex_input_date = date('Y-m-d H:i:s');
-            $res = $this->nks_exam->update((array)$obj);
+            $exam->ex_input_date = date('Y-m-d H:i:s');
+            $res = $this->nks_exam->update((array)$exam);
             $this->handle_res($res, 'nksexam/examlistinvbylab', 'nksexam/examlistnotinvbylab');
         }
         $data = array(
@@ -1416,6 +1423,9 @@ class Nksexam extends Nksmanager
         $ex_id = $this->uri->segment(3);
         $this->load->model('nks/nks_exam');
         $this->load->model('nks/nks_lab');
+        $this->load->model('nks/nks_invtemp');
+        $tinv = $this->nks_invtemp->getInvtempByExid($ex_id);
+        $this->nks_invtemp->deleteById($tinv->tinv_id);
         $ex = $this->nks_exam->getExamById($ex_id);
         if($ex->ex_lab != 0) {
             $lab = $this->nks_lab->getLabById($ex->ex_lab);
@@ -1478,6 +1488,21 @@ class Nksexam extends Nksmanager
 
         echo(json_encode($rtv));
     }
+
+//    研究室主任点击保存按钮时触发
+    public function saveInvtemp() {
+        $this->check_admin(1);
+        $mydata = json_decode($_GET['mydata']);
+//        json_encode(var_dump($mydata));
+        $this->load->model('nks/nks_invtemp');
+        $res = $this->nks_invtemp->update((array)$mydata);
+        if($res) {
+            echo(json_encode('保存成功！'));
+        } else {
+            echo(json_encode('保存失败！'));
+        }
+    }
+
 
 //    统计工作量
     public function statistics() {
@@ -1670,5 +1695,22 @@ class Nksexam extends Nksmanager
             $this->load->view("nks/nks_exam/exportexamlist");
             $this->load->view("nks/nks_global/footer_man");
         }
+    }
+
+//   手动保存监考教师到nks_invtemp表中
+    public function addData() {
+        $this->load->model('nks/nks_exam');
+        $this->load->model('nks/nks_invtemp');
+        $exam_list = $this->nks_exam->getAllExams();
+        foreach($exam_list as $exam) {
+            if(!$this->nks_invtemp->getInvtempByExid($exam->ex_id)) {
+                $arr = array(
+                    'ex_id'=>$exam->ex_id,
+                    'ex_invinum'=>$exam->ex_invinum,
+                    'ex_invname'=>$exam->ex_invname);
+                $this->nks_invtemp->insert($arr);
+            }
+        }
+        echo('信息添加成功！');
     }
 }

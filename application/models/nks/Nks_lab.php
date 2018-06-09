@@ -37,6 +37,14 @@ class Nks_lab extends CI_Model
         return $query->result();
     }
 
+    public function getAllLabsOrderByLbnum() {
+        $query = $this->db->from(Nks_lab::_table)
+            ->join('nks_user', 'nks_lab.us_id=nks_user.us_id')
+            ->order_by('lb_num asc')
+            ->get();
+        return $query->result();
+    }
+
     public function getLabsOrderByExnum() {
         $query = $this->db->from(Nks_lab::_table)
             ->join('nks_user', 'nks_lab.us_id=nks_user.us_id')
