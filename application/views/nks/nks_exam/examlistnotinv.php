@@ -61,7 +61,7 @@
 
                 echo('<td>');
                 echo("<a href='$detail' class='mws-button blue small'>详细信息</a>");
-                echo("<a href='$addinv' class='mws-button red small'>添加监考监考教师</a>");
+                echo("<a href='$addinv' class='mws-button red small'>添加监考教师</a>");
                 echo('</td>');
                 echo("</tr>");
             }

@@ -1670,6 +1670,5 @@ class Nksexam extends Nksmanager
             $this->load->view("nks/nks_exam/exportexamlist");
             $this->load->view("nks/nks_global/footer_man");
         }
-
     }
 }
