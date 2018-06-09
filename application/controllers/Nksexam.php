@@ -41,29 +41,65 @@ class Nksexam extends Nksmanager
         parent::__construct();
     }
 
+
+    public function examlistargs() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $ex_name = $_POST['ex_name'];
+            $_SESSION['examlist_args'] = array('begin_date' => $begin_date, 'end_date' => $end_date, 'ex_name' => $ex_name);
+            redirect('nksexam/examlist');
+
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择要显示的考试时间范围以及考试科目',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/examlistargs',
+            'showName' => true
+        );
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/printargs");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
 //  显示所有考试列表
     public function examlist() {
         $this->check_admin(2);
         $user = $_SESSION['nks_user'];
-        $data = array(
-            'url' => base_url(''),
-            'baseurl' => base_url('load/'),
-            'title' => '考试列表',
-            'us_name' => $user->us_name,
-            'us_img' => $user->us_img,
-        );
-        $this->load->model('nks/nks_exam');
-        $per_page_num = 13;
-        $firstResult = $this->uri->segment(3);
-        if(!isset($firstResult) || $firstResult == '') {
-            $firstResult = 0;
+        if(isset($_SESSION['examlist_args'])) {
+            $examlist_args = $_SESSION['examlist_args'];
+            $data = array(
+                'url' => base_url(''),
+                'baseurl' => base_url('load/'),
+                'title' => '考试列表',
+                'us_name' => $user->us_name,
+                'us_img' => $user->us_img,
+            );
+
+            $per_page_num = 13;
+            $firstResult = $this->uri->segment(3);
+            if(!isset($firstResult) || $firstResult == '') {
+                $firstResult = 0;
+            }
+            $this->load->model('nks/nks_exam');
+            if($examlist_args['ex_name'] == '') {
+                $total_num = $this->nks_exam->getExamBetweenDateNum($examlist_args['begin_date'], $examlist_args['end_date']);
+                $this->myinput->load_page($total_num, 'nksexam/examlist', $per_page_num);
+                $data['result'] = $this->nks_exam->getExamsBetweenDateByPage($examlist_args['begin_date'], $examlist_args['end_date'], $firstResult, $per_page_num);
+            } else {
+                $total_num = $this->nks_exam->getExamBetweenDateByNameNum($examlist_args['begin_date'], $examlist_args['end_date'], $examlist_args['ex_name']);
+                $this->myinput->load_page($total_num, 'nksexam/examlist', $per_page_num);
+                $data['result'] = $this->nks_exam->getExamsBetweenDateByNameByPage($examlist_args['begin_date'], $examlist_args['end_date'], $examlist_args['ex_name'], $firstResult, $per_page_num);
+            }
+            $this->load->view("nks/nks_global/admin_header_ks", $data);
+            $this->load->view("nks/nks_exam/examlist");
+            $this->load->view("nks/nks_global/footer_man");
         }
-        $total_num = $this->nks_exam->getExamNum();
-        $this->myinput->load_page($total_num, 'nksexam/examlist', $per_page_num);
-        $data['result'] = $this->nks_exam->getExamsByPage($firstResult, $per_page_num);
-        $this->load->view("nks/nks_global/admin_header_ks", $data);
-        $this->load->view("nks/nks_exam/examlist");
-        $this->load->view("nks/nks_global/footer_man");
     }
 
 //  显示所有已录入监考教师的考试列表
@@ -1193,10 +1229,12 @@ class Nksexam extends Nksmanager
             $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
             $this->myinput->load_page($total_num, 'nksexam/showPrintExamList', $per_page_num);
             $data['result'] = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], $firstResult, $per_page_num);
+            $_SESSION['export_exams'] = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], 0, $total_num);
         } else {
             $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
             $this->myinput->load_page($total_num, 'nksexam/showPrintExamList', $per_page_num);
             $data['result'] = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], $firstResult, $per_page_num);
+            $_SESSION['export_exams'] = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
         }
         $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_exam/showprintexamlist");
@@ -1244,22 +1282,18 @@ class Nksexam extends Nksmanager
 
 // 导出考试大表的Excel
     public function exportExcel() {
-        $this->check_admin(2);
+        $this->check_admin(1);
         $user = $_SESSION['nks_user'];
         $printArgs = $_SESSION['print_args'];
         $this->load->model('nks/nks_exam');
-        if($printArgs['ex_name'] == '') {
-            $total_num = $this->nks_exam->getExamBetweenDateNum($printArgs['begin_date'], $printArgs['end_date']);
-            $examList = $this->nks_exam->getExamsBetweenDateByPage($printArgs['begin_date'], $printArgs['end_date'], 0, $total_num);
-        } else {
-            $total_num = $this->nks_exam->getExamBetweenDateByNameNum($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name']);
-            $examList = $this->nks_exam->getExamsBetweenDateByNameByPage($printArgs['begin_date'], $printArgs['end_date'], $printArgs['ex_name'], 0, $total_num);
+        if(isset($_SESSION['export_exams'])) {
+            $data['p'] = $_SESSION['export_exams'];
+            $filename = 'excel-doc';
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition: attachment;filename=$filename.xls");
+            $this->load->view('nks/nks_manager/examtoexcel', $data);
         }
-        $data['p'] = $examList;
-        $filename = 'excel-doc';
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition: attachment;filename=$filename.xls");
-        $this->load->view('nks/nks_manager/examtoexcel', $data);
+
     }
 
 
@@ -1583,6 +1617,59 @@ class Nksexam extends Nksmanager
             $this->load->view('nks/nks_manager/gzldb', $data);
         }
 
+    }
+
+//    选择要导出Excel的考试日期范围
+    public function chooseExcelDate() {
+        $this->check_admin(1);
+        $user = $_SESSION['nks_user'];
+        if(isset($_POST['begin_date']) && isset($_POST['end_date'])) {
+            $begin_date = $_POST['begin_date'];
+            $end_date = $_POST['end_date'];
+            $_SESSION['lab_excel_args'] = array('begin_date' => $begin_date, 'end_date' => $end_date);
+            redirect('nksexam/showExportExamsByLab');
+
+        }
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '选择考试日期',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+            'form_ac' => 'nksexam/chooseExcelDate'
+        );
+        $this->load->view("nks/nks_global/header_ks", $data);
+        $this->load->view("nks/nks_exam/printargs");
+        $this->load->view("nks/nks_global/footer_man");
+    }
+
+//    显示要导出的当前研究室监考的考试列表
+    public function showExportExamsByLab() {
+        $this->check_admin(1);
+        $user = $_SESSION['nks_user'];
+        if(isset($_SESSION['lab_excel_args'])) {
+            $export_args = $_SESSION['lab_excel_args'];
+            $this->load->model('nks/nks_exam');
+            $data = array(
+                'url' => base_url(''),
+                'baseurl' => base_url('load/'),
+                'title' => '导出考试列表',
+                'us_name' => $user->us_name,
+                'us_img' => $user->us_img,
+            );
+            $per_page_num = 13;
+            $firstResult = $this->uri->segment(3);
+            if(!isset($firstResult) || $firstResult == '') {
+                $firstResult = 0;
+            }
+            $total_num = $this->nks_exam->getExamsByLabManagerBetweenDateNum($user->us_id, $export_args['begin_date'], $export_args['end_date']);
+            $this->myinput->load_page($total_num, 'nksexam/showExportExamsByLab', $per_page_num);
+            $data['result'] = $this->nks_exam->getExamsByLabManagerBetweenDateByPage($user->us_id, $export_args['begin_date'], $export_args['end_date'], $firstResult, $per_page_num);
+            $_SESSION['export_exams'] = $this->nks_exam->getExamsByLabManagerBetweenDateByPage($user->us_id, $export_args['begin_date'], $export_args['end_date'], 0, $total_num);
+            $this->load->view("nks/nks_global/header_ks", $data);
+            $this->load->view("nks/nks_exam/exportexamlist");
+            $this->load->view("nks/nks_global/footer_man");
+        }
 
     }
 }

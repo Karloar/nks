@@ -192,6 +192,7 @@
                     <ul class="closed">
                         <li><a href="<?=$url?>nksexam/examlistnotinvbylab">未录入监考教师</a></li>
                         <li><a href="<?=$url?>nksexam/examlistinvbylab">已录入监考教师</a></li>
+                        <li><a href="<?=$url?>nksexam/chooseExcelDate">导出考试信息Excel</a></li>
                     </ul>
                 </li>
 
