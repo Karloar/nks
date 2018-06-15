@@ -368,7 +368,12 @@ class Nksexam extends Nksmanager
 
             if($exam_num == 0) {
                 $res = true;
-                $_SESSION['assign_exams'] = $exam_arr;
+                $show_exam_arr = array();
+                foreach($exam_arr as $ex) {
+                    $show_exam_arr[] = $this->nks_exam->getExamById($ex->ex_id);
+                }
+                usort($show_exam_arr, 'class_name_cmp');
+                $_SESSION['assign_exams'] = $show_exam_arr;
             } else {
                 foreach($exam_copy as $e) {
                     $e->ex_lab = 0;
@@ -377,7 +382,7 @@ class Nksexam extends Nksmanager
                 $res = false;
             }
 
-            $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/assignteacher',
+            $this->handle_res($res, 'nksexam/showAssignedExams', 'nksexam/assignteacher',
                 '分配成功！', '分配失败');
         }
     }
@@ -386,21 +391,57 @@ class Nksexam extends Nksmanager
     public function unassignteacher() {
         $this->check_admin(2);
         $this->load->model('nks/nks_exam');
-        $exam_arr = $this->nks_exam->getExamsNotInvByPage(0, $this->nks_exam->getNotInvExamNum());
         $res = true;
-        if(count($exam_arr) > 0) {
-            foreach($exam_arr as $exam) {
-                $exam->ex_lab = 0;
-                date_default_timezone_set("Asia/Shanghai");
-                $exam->ex_input_date = date('Y-m-d H:i:s');
-                if(!$this->nks_exam->update((array)$exam)) {
-                    $res = false;
-                    break;
+        if(isset($_SESSION['assign_exams'])) {
+            $exam_arr = $_SESSION['assign_exams'];
+            if(count($exam_arr) > 0) {
+                foreach($exam_arr as $exam) {
+                    $exam->ex_lab = 0;
+                    date_default_timezone_set("Asia/Shanghai");
+                    $exam->ex_input_date = date('Y-m-d H:i:s');
+                    if(!$this->nks_exam->update((array)$exam)) {
+                        $res = false;
+                        break;
+                    }
                 }
             }
+            $_SESSION['assign_exams'] = array();
+        } else {
+            $res = false;
         }
-        $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/examlistnotiv',
+        $this->handle_res($res, 'nksexam/showAssignedExams', 'nksexam/showAssignedExams',
             '撤销分配成功！', '撤销失败！');
+
+    }
+
+//   显示已分配监考研究室的考试信息
+    public function showAssignedExams() {
+        $this->check_admin(2);
+        $user = $_SESSION['nks_user'];
+        $data = array(
+            'url' => base_url(''),
+            'baseurl' => base_url('load/'),
+            'title' => '考试列表（已分配监考研究室）',
+            'us_name' => $user->us_name,
+            'us_img' => $user->us_img,
+        );
+        $this->load->model('nks/nks_exam');
+        $per_page_num = 13;
+        $firstResult = $this->uri->segment(3);
+        if(!isset($firstResult) || $firstResult == '') {
+            $firstResult = 0;
+        }
+        if(isset($_SESSION['assign_exams'])) {
+            $exam_arr = $_SESSION['assign_exams'];
+        } else {
+            $exam_arr = array();
+        }
+        $total_num = count($exam_arr);
+        $this->myinput->load_page($total_num, 'nksexam/showAssignedExams', $per_page_num);
+        $data['result'] = array_slice($exam_arr, $firstResult, $per_page_num);
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
+        $this->load->view("nks/nks_exam/showAssignedExams");
+        $this->load->view("nks/nks_global/footer_man");
     }
 
 //    计算每个教研室所出的监考教师人数
@@ -1698,19 +1739,19 @@ class Nksexam extends Nksmanager
     }
 
 //   手动保存监考教师到nks_invtemp表中
-    public function addData() {
-        $this->load->model('nks/nks_exam');
-        $this->load->model('nks/nks_invtemp');
-        $exam_list = $this->nks_exam->getAllExams();
-        foreach($exam_list as $exam) {
-            if(!$this->nks_invtemp->getInvtempByExid($exam->ex_id)) {
-                $arr = array(
-                    'ex_id'=>$exam->ex_id,
-                    'ex_invinum'=>$exam->ex_invinum,
-                    'ex_invname'=>$exam->ex_invname);
-                $this->nks_invtemp->insert($arr);
-            }
-        }
-        echo('信息添加成功！');
-    }
+//    public function addData() {
+//        $this->load->model('nks/nks_exam');
+//        $this->load->model('nks/nks_invtemp');
+//        $exam_list = $this->nks_exam->getAllExams();
+//        foreach($exam_list as $exam) {
+//            if(!$this->nks_invtemp->getInvtempByExid($exam->ex_id)) {
+//                $arr = array(
+//                    'ex_id'=>$exam->ex_id,
+//                    'ex_invinum'=>$exam->ex_invinum,
+//                    'ex_invname'=>$exam->ex_invname);
+//                $this->nks_invtemp->insert($arr);
+//            }
+//        }
+//        echo('信息添加成功！');
+//    }
 }

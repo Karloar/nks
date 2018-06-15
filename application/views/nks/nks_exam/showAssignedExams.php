@@ -74,6 +74,9 @@
         echo $this->pagination->create_links();
         echo "</div>";
         ?>
+        <div class="actionBar">
+            <a href="<?php echo($url); ?>nksexam/unassignteacher" class="mws-button red large">撤销分配</a>
+        </div>
     </div>
 </div>
 
