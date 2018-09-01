@@ -1177,7 +1177,7 @@ class Nksexam extends Nksmanager
             'form_ac' => 'nksexam/toaddabsence/' . $ex_id
         );
         $data['obj'] = $obj;
-        $this->load->view("nks/nks_global/header_ks", $data);
+        $this->load->view("nks/nks_global/admin_header_ks", $data);
         $this->load->view("nks/nks_exam/addabsence");
         $this->load->view("nks/nks_global/footer_man");
 
