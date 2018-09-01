@@ -65,7 +65,12 @@
 
                 <div class="mws-button-row">
                     <input type="submit" class="mws-button green" value="提交">
-                    <input type="button" class="mws-button blue" value="保存" onclick="saveInvtemp();">
+                    <?php
+                    $user = $_SESSION['nks_user'];
+                    if($user->us_admin == 1) {
+                        echo('echo(<input type="button" class="mws-button blue" value="保存" onclick="saveInvtemp();">');
+                    }
+                    ?>
                     <input type="reset" class="mws-button gray" value="重置">
                 </div>
             </div>

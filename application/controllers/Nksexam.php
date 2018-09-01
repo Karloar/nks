@@ -1087,7 +1087,11 @@ class Nksexam extends Nksmanager
         );
         $obj->ex_invname = explode(' ', $obj->ex_invname);
         $data['obj'] = $obj;
-        $this->load->view("nks/nks_global/header_ks", $data);
+        if($user->us_admin == 2) {
+            $this->load->view("nks/nks_global/admin_header_ks", $data);
+        } else {
+            $this->load->view("nks/nks_global/header_ks", $data);
+        }
         $this->load->view("nks/nks_exam/addinv");
         $this->load->view("nks/nks_global/footer_man");
     }
