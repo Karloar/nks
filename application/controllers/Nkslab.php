@@ -21,7 +21,7 @@ class Nkslab extends Nksmanager
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
-            'title' => '教研室列表',
+            'title' => '研究室列表',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
         );
@@ -57,7 +57,7 @@ class Nkslab extends Nksmanager
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
-            'title' => '添加教研室',
+            'title' => '添加研究室',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
             'form_ac' => 'nkslab/labadd'
@@ -92,7 +92,7 @@ class Nkslab extends Nksmanager
         $data = array(
             'url' => base_url(''),
             'baseurl' => base_url('load/'),
-            'title' => '修改教研室信息',
+            'title' => '修改研究室信息',
             'us_name' => $user->us_name,
             'us_img' => $user->us_img,
             'form_ac' => 'nkslab/labupdate/' . $lb_id
