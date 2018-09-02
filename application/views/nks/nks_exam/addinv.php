@@ -68,7 +68,7 @@
                     <?php
                     $user = $_SESSION['nks_user'];
                     if($user->us_admin == 1) {
-                        echo('echo(<input type="button" class="mws-button blue" value="保存" onclick="saveInvtemp();">');
+                        echo('<input type="button" class="mws-button blue" value="保存" onclick="saveInvtemp();">');
                     }
                     ?>
                     <input type="reset" class="mws-button gray" value="重置">
