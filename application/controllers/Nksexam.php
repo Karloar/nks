@@ -604,6 +604,11 @@ class Nksexam extends Nksmanager
             if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
                 $arr['ex_invname'] = '';
             }
+            $this->load->model('nks/nks_invtemp');
+            $temp_arr = $this->nks_invtemp->getInvtempByExid($arr['ex_id']);
+            $temp_arr = (array)$temp_arr;
+            $temp_arr['ex_invinum'] = $arr['ex_invinum'];
+            $this->nks_invtemp->update($temp_arr);
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/showTodayExamList', 'nksexam/examupdateByshowToday');
         }
@@ -701,6 +706,11 @@ class Nksexam extends Nksmanager
             if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
                 $arr['ex_invname'] = '';
             }
+            $this->load->model('nks/nks_invtemp');
+            $temp_arr = $this->nks_invtemp->getInvtempByExid($arr['ex_id']);
+            $temp_arr = (array)$temp_arr;
+            $temp_arr['ex_invinum'] = $arr['ex_invinum'];
+            $this->nks_invtemp->update($temp_arr);
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/assignteacher', 'nksexam/examupdateassign');
         }
@@ -788,6 +798,11 @@ class Nksexam extends Nksmanager
             if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
                 $arr['ex_invname'] = '';
             }
+            $this->load->model('nks/nks_invtemp');
+            $temp_arr = $this->nks_invtemp->getInvtempByExid($arr['ex_id']);
+            $temp_arr = (array)$temp_arr;
+            $temp_arr['ex_invinum'] = $arr['ex_invinum'];
+            $this->nks_invtemp->update($temp_arr);
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/examlistnotinv', 'nksexam/examupdatenotinv');
         }
@@ -877,6 +892,11 @@ class Nksexam extends Nksmanager
             if(isset($arr['ex_lab']) && $arr['ex_lab'] == 0) {
                 $arr['ex_invname'] = '';
             }
+            $this->load->model('nks/nks_invtemp');
+            $temp_arr = $this->nks_invtemp->getInvtempByExid($arr['ex_id']);
+            $temp_arr = (array)$temp_arr;
+            $temp_arr['ex_invinum'] = $arr['ex_invinum'];
+            $this->nks_invtemp->update($temp_arr);
             $res = $this->nks_exam->update($arr);
             $this->handle_res($res, 'nksexam/examlist', 'nksexam/examupdate');
         }
